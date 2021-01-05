@@ -18,9 +18,12 @@ import java.security.MessageDigest
 
 val format = Json { ignoreUnknownKeys = true }
 
+val API_SECRET = "e4e1eb5bf14d2418f51ed6ea6ae5d91a"
+var API_KEY = "d404c94c63e190519d70002332f09509"
+
+
 class LoginDataSource {
     private val client = OkHttpClient()
-
 
     fun md5(s: String): String? {
         try {
@@ -40,16 +43,35 @@ class LoginDataSource {
     }
 
     fun buildSignature(vararg params: String): String? {
-        var toSign = ""
 
+        // Api key is always part of the params
+        val paramsMap = mutableMapOf("api_key" to API_KEY)
 
-        for (item in params) {
-            Log.v("wesh", item)
-            toSign += item
+        // transform vararg to map
+        for (i in params.indices step 2) {
+            paramsMap[params[i]] = params[i + 1]
         }
 
-        toSign += "e4e1eb5bf14d2418f51ed6ea6ae5d91a"
+        // sort map by keys
+        // this is because the signature has to be made with params in alphabetical order
+        // for the last.fm API
+        val sortedParams = paramsMap.toSortedMap()
 
+        // init our to-be-signed string
+        var toSign = ""
+
+        // add params
+        for (key in sortedParams.keys) {
+            toSign += key
+            toSign += sortedParams[key]
+        }
+
+        // end with secret
+        toSign += API_SECRET
+
+        Log.v("wesh", toSign)
+
+        // return signature :)
         return md5(toSign)
 
     }
@@ -57,84 +79,45 @@ class LoginDataSource {
     fun login(username: String, password: String): Result<LoggedInUser> {
         try {
 
-            var APIKey = "d404c94c63e190519d70002332f09509"
-            var method = "auth.getMobileSession"
-//            var APISig = "2872cff6f3c173a96b9af991ed487fbf"
-            var APISig = buildSignature(
-                "api_key",
-                APIKey,
+            Log.v("wesh", "coucou")
+
+
+            val method = "auth.getMobileSession"
+            val signature = buildSignature(
                 "method",
                 method,
+                "username",
+                username,
                 "password",
                 password,
-                "username",
-                username
             )
 
-            if (APISig != null) {
-                val okHttpClient = OkHttpClient()
+            if (signature != null) {
                 val body =
-                    FormBody.Builder().addEncoded("api_key", APIKey).addEncoded("method", method)
+                    FormBody.Builder().addEncoded("api_key", API_KEY).addEncoded("method", method)
                         .addEncoded("username", username).addEncoded("password", password)
-                        .addEncoded("api_sig", APISig)
+                        .addEncoded("api_sig", signature)
+
                 val request = Request.Builder()
                     .method("POST", body.build())
                     .url("https://ws.audioscrobbler.com/2.0/?format=json")
                     .build()
 
-//                lateinit var user: LoggedInUserSession
-
 
                 client.newCall(request).execute().use { response ->
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
-//
-//                    Log.v("wesh response body",response.body!!.string())
-//                    Log.v("wesh response body",response.body!!.string())
-//                    Log.v("wesh response body",response.body.toString())
-
                     val user =
                         format.decodeFromString<LoggedInUserSession>(response.body!!.string())
-                    Log.v("wesh user to string", user.toString())
 
                     return Result.Success(user.user)
-
-
                 }
-
-//                okHttpClient.newCall(request).enqueue(object : Callback {
-//                    override fun onFailure(call: Call, e: IOException) {
-//                        Log.v("wesh", e.toString())
-//                    }
-//
-//                    override fun onResponse(call: Call, response: Response) {
-//                        Log.v("wesh", response.toString())
-//                        if (response.body == null) {
-//                            throw Error(Exception("Error logging in"))
-//                        }
-//                        val resbody: String = response.body!!.string()
-//                        Log.v("wesh", resbody)
-//
-//                        user = format.decodeFromString<LoggedInUserSession>(resbody)
-//
-//                        Log.v("wesh", user.toString())
-//
-//
-//                    }
-//
-//
-//                })
-//                Log.v("wesh", "last return")
-
-
             }
 
-
         } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in1" + e.message, e))
+            return Result.Error(IOException("Error logging in: " + e.message, e))
         }
-        Log.v("wesh", "last return")
-        return Result.Error(Exception("Error logging in2"))
+        return Result.Error(Exception("Error logging in"))
     }
 
     fun logout() {
