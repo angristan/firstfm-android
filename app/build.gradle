@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlinx-serialization'
+
 
 android {
     compileSdkVersion 30
@@ -28,6 +30,9 @@ android {
         targetCompatibility kotlin_version
     }
 }
+repositories {
+    jcenter()
+}
 
 dependencies {
     implementation 'com.google.android.material:material:1.2.1'
@@ -49,10 +54,12 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

@@ -2,7 +2,12 @@ package fr.esgi.firstfm.data
 
 import android.util.Log
 import fr.esgi.firstfm.data.model.LoggedInUser
-import okhttp3.*
+import fr.esgi.firstfm.data.model.LoggedInUserSession
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.IOException
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest
@@ -10,7 +15,12 @@ import java.security.MessageDigest
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
+
+val format = Json { ignoreUnknownKeys = true }
+
 class LoginDataSource {
+    private val client = OkHttpClient()
+
 
     fun md5(s: String): String? {
         try {
@@ -46,7 +56,6 @@ class LoginDataSource {
 
     fun login(username: String, password: String): Result<LoggedInUser> {
         try {
-            // TODO: handle loggedInUser authentication
 
             var APIKey = "d404c94c63e190519d70002332f09509"
             var method = "auth.getMobileSession"
@@ -72,24 +81,60 @@ class LoginDataSource {
                     .method("POST", body.build())
                     .url("https://ws.audioscrobbler.com/2.0/?format=json")
                     .build()
-                okHttpClient.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        Log.v("wesh", e.toString())
-                    }
 
-                    override fun onResponse(call: Call, response: Response) {
-                        Log.v("wesh", response.toString())
-                        response.body?.string()?.let { Log.v("wesh", it) }
-                    }
-                })
+//                lateinit var user: LoggedInUserSession
+
+
+                client.newCall(request).execute().use { response ->
+                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+//
+//                    Log.v("wesh response body",response.body!!.string())
+//                    Log.v("wesh response body",response.body!!.string())
+//                    Log.v("wesh response body",response.body.toString())
+
+                    val user =
+                        format.decodeFromString<LoggedInUserSession>(response.body!!.string())
+                    Log.v("wesh user to string", user.toString())
+
+                    return Result.Success(user.user)
+
+
+                }
+
+//                okHttpClient.newCall(request).enqueue(object : Callback {
+//                    override fun onFailure(call: Call, e: IOException) {
+//                        Log.v("wesh", e.toString())
+//                    }
+//
+//                    override fun onResponse(call: Call, response: Response) {
+//                        Log.v("wesh", response.toString())
+//                        if (response.body == null) {
+//                            throw Error(Exception("Error logging in"))
+//                        }
+//                        val resbody: String = response.body!!.string()
+//                        Log.v("wesh", resbody)
+//
+//                        user = format.decodeFromString<LoggedInUserSession>(resbody)
+//
+//                        Log.v("wesh", user.toString())
+//
+//
+//                    }
+//
+//
+//                })
+//                Log.v("wesh", "last return")
+
+
             }
 
 
-            val fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), "Jane Doe")
-            return Result.Success(fakeUser)
         } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in", e))
+            return Result.Error(IOException("Error logging in1" + e.message, e))
         }
+        Log.v("wesh", "last return")
+        return Result.Error(Exception("Error logging in2"))
     }
 
     fun logout() {

@@ -8,6 +8,11 @@ import androidx.lifecycle.ViewModel
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.data.LoginRepository
 import fr.esgi.firstfm.data.Result
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -19,13 +24,18 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
+        CoroutineScope(IO).launch {
+            val result = loginRepository.login(username, password)
 
-        if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+            withContext(Main) {
+                if (result is Result.Success) {
+                    _loginResult.value =
+                        LoginResult(success = LoggedInUserView(displayName = result.data.userId))
+                } else {
+                    _loginResult.value = LoginResult(error = R.string.login_failed)
+                }
+            }
+
         }
     }
 
