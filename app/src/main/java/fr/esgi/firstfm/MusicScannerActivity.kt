@@ -8,12 +8,11 @@ import android.media.MediaRecorder
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import fr.esgi.firstfm.auddapi.AuddApi
@@ -25,10 +24,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.util.*
 
 class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback<AuddApiResponse>{
 
     private var recorder: MediaRecorder? = null
+    private lateinit var recordPath: String
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -76,8 +77,7 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
 
             buttonWebservices?.visibility = View.VISIBLE
 
-            val dir = File(Environment.getExternalStorageDirectory().absolutePath + "/records")
-            FileManager.delete(dir)
+            FileManager.delete(File(this.recordPath))
 
             navigateTo(this, musicInfo, MusicActivity::class.java)
         }
@@ -101,22 +101,19 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
     }
 
     private fun setUpRecorder() {
-
-        val dir = File(Environment.getExternalStorageDirectory().absolutePath + "/records")
-        FileManager.create(dir)
-        val path = "${dir.absolutePath}/record.mp3"
+        this.recordPath = "${this.cacheDir}/${UUID.randomUUID()}.mp3"
 
         recorder = MediaRecorder()
 
         recorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
         recorder?.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
         recorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-        recorder?.setOutputFile(path)
+        recorder?.setOutputFile(this.recordPath)
         recorder?.setMaxDuration(4000)
         recorder?.setOnInfoListener { mr, what, _ ->
             if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
                 stopRecording(mr)
-                val record = File(path)
+                val record = File(this.recordPath)
 
                 Log.d("recognizing:", "Start recognizing audio file")
                 AuddApi.recognizeAudio(record, this)
