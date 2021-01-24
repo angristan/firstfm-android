@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".album.AlbumDetailActivity"></activity>
         <activity android:name=".MusicScannerActivity" />
         <activity android:name=".MusicActivity" />
-        <activity android:name=".RecyclerActivity" />
+        <activity android:name=".album.albumList.AlbumRecyclerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

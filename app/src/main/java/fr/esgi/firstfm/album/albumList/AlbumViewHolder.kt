@@ -1,10 +1,11 @@
-package fr.esgi.firstfm
+package fr.esgi.firstfm.album.albumList
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import fr.esgi.firstfm.R
 import fr.esgi.firstfm.objects.Album
 
 class AlbumViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
