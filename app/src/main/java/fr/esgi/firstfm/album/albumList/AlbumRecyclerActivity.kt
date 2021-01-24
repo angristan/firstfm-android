@@ -1,4 +1,4 @@
-package fr.esgi.firstfm
+package fr.esgi.firstfm.album.albumList
 
 import android.content.Context
 import android.content.Intent
@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import fr.esgi.firstfm.R
+import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
-import kotlinx.android.synthetic.main.activity_recycler.*
+import kotlinx.android.synthetic.main.activity_album_recycler.*
 
-class RecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedListener
+class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedListener
 {
     private val albums = listOf(
         Album("John", "Cena", "Lorem ipsum"),
@@ -29,7 +31,7 @@ class RecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedList
 
         fun navigateTo(context: Context, param1: String, param2: Int)
         {
-            val intent = Intent(context, RecyclerActivity::class.java).apply {
+            val intent = Intent(context, AlbumRecyclerActivity::class.java).apply {
                 putExtra(PARAM1, param1)
                 putExtra(PARAM2, param2)
             }
@@ -40,16 +42,18 @@ class RecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedList
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recycler)
+        setContentView(R.layout.activity_album_recycler)
 
         recyclerView?.apply {
-            layoutManager = LinearLayoutManager(this@RecyclerActivity)
-            adapter = AlbumAdapter(albums, this@RecyclerActivity)
+            layoutManager = LinearLayoutManager(this@AlbumRecyclerActivity)
+            adapter = AlbumAdapter(albums, this@AlbumRecyclerActivity)
         }
     }
 
     override fun onAlbumClicked(album: Album?)
     {
-        Log.d("totoro", album.toString())
+        if (album != null) {
+            AlbumDetailActivity.navigateTo(this, album.album, album.artist)
+        }
     }
 }
