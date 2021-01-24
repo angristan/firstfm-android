@@ -76,7 +76,7 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
 
             buttonWebservices?.visibility = View.VISIBLE
 
-            val dir = File(Environment.getExternalStorageDirectory().absolutePath + "/records")
+            val dir = File(externalCacheDir!!.absolutePath + "/records")
             FileManager.delete(dir)
 
             navigateTo(this, musicInfo, MusicActivity::class.java)
@@ -102,7 +102,7 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
 
     private fun setUpRecorder() {
 
-        val dir = File(Environment.getExternalStorageDirectory().absolutePath + "/records")
+        val dir = File(externalCacheDir!!.absolutePath + "/records")
         FileManager.create(dir)
         val path = "${dir.absolutePath}/record.mp3"
 
