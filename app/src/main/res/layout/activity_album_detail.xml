@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".album.AlbumDetailActivity">
 
-
-<!--    <include-->
-<!--        layout="@layout/activity_menu"/>-->
-
-
     <TextView
         android:id="@+id/album_detail_name"
         android:layout_width="wrap_content"
@@ -32,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/album_detail_name"
         app:layout_constraintBottom_toTopOf="@+id/album_detail_description"
-        app:srcCompat="@drawable/default_album_cover" />
+        app:srcCompat="@drawable/default_album_picture" />
 
     <TextView
         android:id="@+id/album_detail_description"
@@ -53,5 +48,15 @@
         app:layout_constraintTop_toBottomOf="@+id/album_detail_description"
         app:layout_constraintBottom_toTopOf="parent"
         android:text="@string/button_detail_album_default_value" />
+
+    <fragment
+        android:id="@+id/fragmentMainMenu"
+        android:name="fr.esgi.firstfm.fragments.MainMenuFragment"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
