@@ -12,28 +12,14 @@ class AlbumDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_detail)
 
-
-        val receivedValue = intent?.getStringExtra("album name")
-
+        val receivedValue = intent?.getStringExtra("albumName")
         album_detail_name?.text = "$receivedValue"
-
-
-//        bottomNavigationView?.setOnNavigationItemSelectedListener{true}
-//        bottomNavigationView.setOnNavigationItemSelectedListener {
-//            Log.d(MenuActivity::class.simpleName, "bottomNavigationView")
-//            when(it.itemId){
-//                R.id.album1-> AlbumRecyclerActivity.navigateTo(this, "TEST", 1234)
-//                R.id.album2-> AlbumDetailActivity.navigateTo(this, "album 1", "Artist 1")
-//
-//            }
-//            true
-//        }
     }
 
     companion object
     {
-        private val PARAM1: String = "album name"
-        private val PARAM2: String = "artist name"
+        private val PARAM1: String = "albumName"
+        private val PARAM2: String = "artistName"
 
         fun navigateTo(context: Context, param1: String, param2: String)
         {
