@@ -1,17 +1,15 @@
-package fr.esgi.firstfm.album.albumList
+package fr.esgi.firstfm
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import fr.esgi.firstfm.R
-import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
-import kotlinx.android.synthetic.main.activity_album_recycler.*
-import kotlinx.android.synthetic.main.fragment_main_menu.*
+import kotlinx.android.synthetic.main.activity_recycler.*
 
-class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedListener
+class RecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedListener
 {
     private val albums = listOf(
         Album("John", "Cena", "Lorem ipsum"),
@@ -26,27 +24,32 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
 
     companion object
     {
-        fun navigateTo(context: Context)
+        private val PARAM1: String = "param1"
+        private val PARAM2: String = "param2"
+
+        fun navigateTo(context: Context, param1: String, param2: Int)
         {
-            context.startActivity(Intent(context, AlbumRecyclerActivity::class.java))
+            val intent = Intent(context, RecyclerActivity::class.java).apply {
+                putExtra(PARAM1, param1)
+                putExtra(PARAM2, param2)
+            }
+            context.startActivity(intent)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_album_recycler)
+        setContentView(R.layout.activity_recycler)
 
         recyclerView?.apply {
-            layoutManager = LinearLayoutManager(this@AlbumRecyclerActivity)
-            adapter = AlbumAdapter(albums, this@AlbumRecyclerActivity)
+            layoutManager = LinearLayoutManager(this@RecyclerActivity)
+            adapter = AlbumAdapter(albums, this@RecyclerActivity)
         }
     }
 
     override fun onAlbumClicked(album: Album?)
     {
-        if (album != null) {
-            AlbumDetailActivity.navigateTo(this, album.album, album.artist)
-        }
+        Log.d("totoro", album.toString())
     }
 }
