@@ -175,4 +175,12 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
             )
         }
     }
+
+    companion object
+    {
+        fun navigateTo(context: Context)
+        {
+            context.startActivity(Intent(context, MusicScannerActivity::class.java))
+        }
+    }
 }
