@@ -4,4 +4,7 @@
     <string name="album_image_content_description_default_value">Default Album Description</string>
     <string name="album_description_default_value">Default Album Description</string>
     <string name="button_detail_album_default_value">button</string>
+    <string name="menu_historical_label">Historical</string>
+    <string name="menu_main_label">Home</string>
+    <string name="menu_scanner_label">Scanner</string>
 </resources>

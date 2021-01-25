@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
 import kotlinx.android.synthetic.main.activity_album_recycler.*
+import kotlinx.android.synthetic.main.fragment_main_menu.*
 
 class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedListener
 {
@@ -26,16 +26,9 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
 
     companion object
     {
-        private val PARAM1: String = "param1"
-        private val PARAM2: String = "param2"
-
-        fun navigateTo(context: Context, param1: String, param2: Int)
+        fun navigateTo(context: Context)
         {
-            val intent = Intent(context, AlbumRecyclerActivity::class.java).apply {
-                putExtra(PARAM1, param1)
-                putExtra(PARAM2, param2)
-            }
-            context.startActivity(intent)
+            context.startActivity(Intent(context, AlbumRecyclerActivity::class.java))
         }
     }
 

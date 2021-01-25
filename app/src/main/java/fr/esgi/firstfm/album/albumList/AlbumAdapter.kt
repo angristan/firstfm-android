@@ -11,6 +11,7 @@ class AlbumAdapter(private val albums: List<Album>, private val onAlbumClickedLi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder
     {
         val inflater = LayoutInflater.from(parent.context)
+
         return AlbumViewHolder(inflater, parent)
     }
 
