@@ -1,4 +1,4 @@
-package fr.esgi.firstfm
+package fr.esgi.firstfm.album.albumList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
