@@ -14,11 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".album.AlbumDetailActivity"></activity>
-        <activity android:name=".MusicScannerActivity" />
-        <activity android:name=".MusicActivity" />
-        <activity android:name=".album.albumList.AlbumRecyclerActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".album.AlbumDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MusicScannerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MusicActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".album.albumList.AlbumRecyclerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
