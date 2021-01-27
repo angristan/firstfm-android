@@ -7,4 +7,9 @@
     <string name="menu_historical_label">Historical</string>
     <string name="menu_main_label">Home</string>
     <string name="menu_scanner_label">Scanner</string>
+    <string name="top_five_artists_title_value">Top Five Artists</string>
+    <string name="top_five_tracks_title_value">Top Five Tracks</string>
+    <string name="top_five_albums_title_value">Top Five Albums</string>
+    <string name="default_nominated_artist_name_value">A nominated artist name</string>
+    <string name="rank_value">1</string>
 </resources>
