@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <dimen name="padding">20dp</dimen>
-  <dimen name="titleTextSize">24sp</dimen>
+  <dimen name="titleTextSize">28sp</dimen>
+  <dimen name="listValueSize">18sp</dimen>
+  <dimen name="topPictureValue">64dp</dimen>
+  <dimen name="paddingElement">5dp</dimen>
 </resources>
