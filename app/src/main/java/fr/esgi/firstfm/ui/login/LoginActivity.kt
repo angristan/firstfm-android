@@ -1,6 +1,8 @@
 package fr.esgi.firstfm.ui.login
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -60,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-//            finish()
+            finish()
         })
 
         username.afterTextChanged {
@@ -98,6 +100,13 @@ class LoginActivity : AppCompatActivity() {
                     password.text.toString()
                 )
             }
+        }
+    }
+
+    companion object {
+        fun navigateTo(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
         }
     }
 
