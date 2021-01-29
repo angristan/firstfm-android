@@ -1,4 +1,4 @@
-package fr.esgi.firstfm.data.model
+package fr.esgi.firstfm.entity
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

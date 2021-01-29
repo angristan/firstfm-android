@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.ui.login
 
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -35,12 +34,10 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                     _loginResult.value = LoginResult(error = R.string.login_failed)
                 }
             }
-
         }
     }
 
     fun loginDataChanged(username: String, password: String) {
-        Log.v("firstfm", "oui")
         if (!isUserNameValid(username)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         } else if (!isPasswordValid(password)) {

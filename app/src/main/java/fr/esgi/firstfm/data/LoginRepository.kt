@@ -3,7 +3,8 @@ package fr.esgi.firstfm.data
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
-import fr.esgi.firstfm.data.model.LoggedInUser
+import fr.esgi.firstfm.api.Auth
+import fr.esgi.firstfm.entity.LoggedInUser
 
 
 /**
@@ -37,7 +38,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
         password: String
     ): Result<LoggedInUser> {
         // handle login
-        val result = dataSource.login(username, password)
+        val result = Auth.getMobileSession(username, password)
 
         if (result is Result.Success) {
             setLoggedInUser(activity, result.data)
