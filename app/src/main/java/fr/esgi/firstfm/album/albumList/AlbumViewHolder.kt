@@ -34,8 +34,8 @@ class AlbumViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     {
         this.album = album
         this.onAlbumClickedListener = onAlbumClickedListener
-        albumNameTextView?.text = album.album
-        artistNameTextView?.text = album.artist
+        albumNameTextView?.text = album.name
+        artistNameTextView?.text = album.name // XXX
         urlTextView?.text = album.url
 
         itemView.setOnClickListener(this)

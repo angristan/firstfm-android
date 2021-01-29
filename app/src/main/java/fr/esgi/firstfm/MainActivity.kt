@@ -4,7 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
@@ -12,65 +17,39 @@ import fr.esgi.firstfm.objects.Artist
 import fr.esgi.firstfm.objects.Track
 import fr.esgi.firstfm.topFive.NominatedViewHolder
 import fr.esgi.firstfm.topFive.TopFiveAdapter
+import fr.esgi.firstfm.topFive.TopFiveViewModel
 import fr.esgi.firstfm.ui.login.LoginActivity
+import fr.esgi.firstfm.ui.login.TopFiveViewModelFactory
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClickedListener {
 
-    private val albums = listOf(
-        Album(
-            "Album_1",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"
-        ),
-        Album(
-            "Album_2",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"
-        ),
-        Album(
-            "Album_3",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"
-        ),
-        Album(
-            "Album_4",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"
-        ),
-        Album(
-            "Album_5",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"
-        )
-    )
+    private lateinit var topFiveViewModel: TopFiveViewModel
+
+
+    private var albums: List<Album> = listOf()
 
     private val artists = listOf(
         Artist(
-            "Artist_1",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            name = "Artist_1",
+            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
         ),
         Artist(
-            "Artist_2",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            name = "Artist_2",
+            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
         ),
         Artist(
-            "Artist_3",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            name = "Artist_3",
+            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
         ),
         Artist(
-            "Artist_4",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            name = "Artist_4",
+            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
         ),
         Artist(
-            "Artist_5",
-            "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            name = "Artist_5",
+            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
         )
     )
 
@@ -108,8 +87,42 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
             LoginActivity.navigateTo(this)
         }
 
+        Log.v("wesh", "coucou")
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        topFiveViewModel = ViewModelProviders.of(this, TopFiveViewModelFactory())
+            .get(TopFiveViewModel::class.java)
+
+        topFiveViewModel.getTopAlbums(this)
+
+        topFiveViewModel.topAlbumResult.observe(this@MainActivity, Observer {
+            Log.v("wesh", "observe")
+            val topAlbumResult = it ?: return@Observer
+
+            Log.v("wesh", topAlbumResult.toString())
+
+
+            if (loading != null) {
+                loading.visibility = View.GONE
+            }
+            if (topAlbumResult.error != null) {
+                Toast.makeText(applicationContext, topAlbumResult.error, Toast.LENGTH_SHORT).show()
+
+            }
+            if (topAlbumResult.success != null) {
+
+                this.albums = topAlbumResult.success
+                recyclerView?.apply {
+                    layoutManager = LinearLayoutManager(this@MainActivity)
+                    adapter = TopFiveAdapter(albums, artists, tracks, this@MainActivity)
+                    (adapter as TopFiveAdapter).notifyDataSetChanged()
+                }
+            }
+        })
+
+
         recyclerView?.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = TopFiveAdapter(albums, artists, tracks, this@MainActivity)
@@ -119,7 +132,7 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
     private fun isLoggedIn(): Boolean {
         val sharedPreferences: SharedPreferences =
             this.getSharedPreferences("firstfm", MODE_PRIVATE)
-        return sharedPreferences.contains("token")
+        return sharedPreferences.contains("token") && sharedPreferences.contains("username")
     }
 
     companion object {
@@ -131,14 +144,14 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
     override fun onNominatedAlbumClicked(album: Album?) {
         // TODO update this part, navigate to album page
         if (album != null) {
-            AlbumDetailActivity.navigateTo(this, album.album, album.artist)
+            AlbumDetailActivity.navigateTo(this, album.name, album.artist.name)
         }
     }
 
     override fun onNominatedArtistClicked(artist: Artist?) {
         // TODO update this part, navigate to artist page
         if (artist != null) {
-            AlbumDetailActivity.navigateTo(this, artist.album, artist.artist)
+            AlbumDetailActivity.navigateTo(this, artist.name, artist.url)
         }
     }
 

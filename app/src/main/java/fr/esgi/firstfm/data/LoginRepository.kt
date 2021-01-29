@@ -58,6 +58,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
         val myEdit = sharedPreferences.edit()
 
         myEdit.putString("token", loggedInUser.token)
+        myEdit.putString("username", loggedInUser.userId)
 
         myEdit.apply()
     }

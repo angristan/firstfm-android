@@ -8,11 +8,12 @@ import fr.esgi.firstfm.objects.Artist
 import fr.esgi.firstfm.objects.Track
 
 class TopFiveAdapter(
-        private val albums: List<Album>,
-        private val artists: List<Artist>,
-        private val tracks: List<Track>,
-        private val onNominatedClickedListener: NominatedViewHolder.OnNominatedClickedListener) :
-        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val albums: List<Album>,
+    private val artists: List<Artist>,
+    private val tracks: List<Track>,
+    private val onNominatedClickedListener: NominatedViewHolder.OnNominatedClickedListener
+) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val TYPE_TITLE = 1
     private val TYPE_NOMINATED = 2
 
@@ -42,9 +43,11 @@ class TopFiveAdapter(
                 (holder as TitleViewHolder).bind("Top Five Album")
             }
             in 1..5 -> {
-                val album = albums[position - 1]
-                (holder as NominatedViewHolder).bindAlbumValues(album)
-                holder.bind(position, onNominatedClickedListener)
+                if (albums.size >= position) {
+                    val album = albums[position - 1]
+                    (holder as NominatedViewHolder).bindAlbumValues(album)
+                    holder.bind(position, onNominatedClickedListener)
+                }
             }
             6 -> {
                 (holder as TitleViewHolder).bind("Top Five Artist")
