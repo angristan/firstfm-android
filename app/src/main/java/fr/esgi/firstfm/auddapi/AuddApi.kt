@@ -1,10 +1,10 @@
 package fr.esgi.firstfm.auddapi
 
 import fr.esgi.firstfm.BuildConfig
-
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,7 +22,7 @@ object AuddApi {
     }
 
     fun recognizeAudio(file: File, callback: Callback<AuddApiResponse>) {
-        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
         val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
         val requestApiToken: RequestBody = RequestBody.create(MultipartBody.FORM, BuildConfig.AUDD_API_TOKEN)
 
