@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.api
 
-import android.util.Log
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.entity.TopAlbumsResponse
 import fr.esgi.firstfm.util.BuildApiSignature
@@ -24,6 +23,8 @@ class User {
                     method,
                     "username",
                     username,
+                    "limit",
+                    "5"
                 ) ?: throw Exception("Could not build API signature")
 
                 val body =
@@ -31,6 +32,7 @@ class User {
                         .addEncoded("api_key", API_KEY)
                         .addEncoded("method", method)
                         .addEncoded("username", username)
+                        .addEncoded("limit", "5")
                         .addEncoded("api_sig", signature)
 
                 val request = Request.Builder()
@@ -42,14 +44,8 @@ class User {
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
                     val format = Json { ignoreUnknownKeys = true }
 
-//                    Log.v("wesh", response.body!!.string())
-
                     val topAlbums =
                         format.decodeFromString<TopAlbumsResponse>(response.body!!.string())
-
-                    Log.v("wesh", topAlbums.toString())
-
-
 
                     return Result.Success(topAlbums)
                 }

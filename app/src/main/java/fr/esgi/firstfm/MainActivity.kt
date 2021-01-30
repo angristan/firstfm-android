@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
+import fr.esgi.firstfm.objects.AlbumImage
 import fr.esgi.firstfm.objects.Artist
 import fr.esgi.firstfm.objects.Track
 import fr.esgi.firstfm.topFive.NominatedViewHolder
@@ -26,9 +26,31 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClickedListener {
 
     private lateinit var topFiveViewModel: TopFiveViewModel
+    private lateinit var adapter: TopFiveAdapter
 
 
-    private var albums: List<Album> = listOf()
+    private var albums: MutableList<Album> = mutableListOf(
+        Album(
+            name = "Album_1",
+            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+        ),
+        Album(
+            name = "Album_2",
+            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+        ),
+        Album(
+            name = "Album_3",
+            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+        ),
+        Album(
+            name = "Album_4",
+            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+        ),
+        Album(
+            name = "Album_5",
+            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+        )
+    )
 
     private val artists = listOf(
         Artist(
@@ -87,8 +109,6 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
             LoginActivity.navigateTo(this)
         }
 
-        Log.v("wesh", "coucou")
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -98,11 +118,7 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
         topFiveViewModel.getTopAlbums(this)
 
         topFiveViewModel.topAlbumResult.observe(this@MainActivity, Observer {
-            Log.v("wesh", "observe")
             val topAlbumResult = it ?: return@Observer
-
-            Log.v("wesh", topAlbumResult.toString())
-
 
             if (loading != null) {
                 loading.visibility = View.GONE
@@ -112,21 +128,14 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
 
             }
             if (topAlbumResult.success != null) {
-
-                this.albums = topAlbumResult.success
-                recyclerView?.apply {
-                    layoutManager = LinearLayoutManager(this@MainActivity)
-                    adapter = TopFiveAdapter(albums, artists, tracks, this@MainActivity)
-                    (adapter as TopFiveAdapter).notifyDataSetChanged()
-                }
+                this.albums = topAlbumResult.success as MutableList<Album>
+                this.adapter.updateAlbums(albums)
             }
         })
 
-
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = TopFiveAdapter(albums, artists, tracks, this@MainActivity)
-        }
+        this.adapter = TopFiveAdapter(this.albums, this.artists, this.tracks, this@MainActivity)
+        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+        recyclerView.adapter = this.adapter
     }
 
     private fun isLoggedIn(): Boolean {

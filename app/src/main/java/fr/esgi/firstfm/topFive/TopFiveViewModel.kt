@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.topFive
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +20,6 @@ class TopFiveViewModel(private val userRepository: UserRepository) : ViewModel()
     val topAlbumResult: LiveData<TopAlbumsResult> = _topAlbumResult
 
     fun getTopAlbums(activity: MainActivity) {
-        Log.v("wesh", "TopFiveViewModel.getTopAlbums")
         // can be launched in a separate asynchronous job
         CoroutineScope(IO).launch {
             val result = userRepository.getTopAlbums(activity)
@@ -31,7 +29,6 @@ class TopFiveViewModel(private val userRepository: UserRepository) : ViewModel()
                     _topAlbumResult.value =
                         TopAlbumsResult(success = result.data.albumsContainer.albums)
                 } else {
-                    Log.v("wesh", result.toString())
                     _topAlbumResult.value = TopAlbumsResult(error = R.string.cant_get_top_albums)
                 }
             }

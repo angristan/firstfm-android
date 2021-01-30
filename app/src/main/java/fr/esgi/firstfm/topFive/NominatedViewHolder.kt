@@ -13,8 +13,10 @@ import fr.esgi.firstfm.objects.Artist
 import fr.esgi.firstfm.objects.Track
 
 class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.nominated_item, parent, false)), View.OnClickListener {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.nominated_item, parent, false)),
+    View.OnClickListener {
     interface OnNominatedClickedListener {
+
         fun onNominatedAlbumClicked(album: Album?)
         fun onNominatedArtistClicked(artist: Artist?)
         fun onNominatedTrackClicked(track: Track?)
@@ -40,8 +42,8 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         this.album = album
         nominatedNameTextView?.text = album.name
         Picasso.get()
-            .load(album.image[2].url)
-                .into(nominatedPictureImageView)
+            .load(album.image[album.image.size - 1].url)
+            .into(nominatedPictureImageView)
     }
 
     fun bindArtistValues(artist: Artist) {
@@ -50,7 +52,7 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         nominatedNameTextView?.text = artist.name
         Picasso.get()
             .load(artist.image)
-                .into(nominatedPictureImageView)
+            .into(nominatedPictureImageView)
     }
 
     fun bindTrackValues(track: Track) {

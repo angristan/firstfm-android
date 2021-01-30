@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.util
 
-import android.util.Log
 import fr.esgi.firstfm.data.API_KEY
 import fr.esgi.firstfm.data.API_SECRET
 import java.io.UnsupportedEncodingException
@@ -49,8 +48,6 @@ fun BuildApiSignature(vararg params: String): String? {
 
     // end with secret
     toSign += API_SECRET
-
-    Log.v("wesh", toSign)
 
     // return signature :)
     return md5(toSign)
