@@ -9,6 +9,7 @@ import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.data.User.UserRepository
 import fr.esgi.firstfm.entity.TopAlbumsResult
 import fr.esgi.firstfm.entity.TopArtistsResult
+import fr.esgi.firstfm.entity.TopTracksResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
@@ -21,6 +22,8 @@ class TopFiveViewModel(private val userRepository: UserRepository) : ViewModel()
     val topAlbumResult: LiveData<TopAlbumsResult> = _topAlbumResult
     private val _topArtistsResult = MutableLiveData<TopArtistsResult>()
     val topArtistsResult: LiveData<TopArtistsResult> = _topArtistsResult
+    private val _topTracksResult = MutableLiveData<TopTracksResult>()
+    val topTracksResult: LiveData<TopTracksResult> = _topTracksResult
 
     fun getTopAlbums(activity: MainActivity) {
         // can be launched in a separate asynchronous job
@@ -49,6 +52,22 @@ class TopFiveViewModel(private val userRepository: UserRepository) : ViewModel()
                         TopArtistsResult(success = result.data.artistsContainer.artists)
                 } else {
                     _topArtistsResult.value = TopArtistsResult(error = R.string.cant_get_top_albums)
+                }
+            }
+        }
+    }
+
+    fun getTopTracks(activity: MainActivity) {
+        // can be launched in a separate asynchronous job
+        CoroutineScope(IO).launch {
+            val result = userRepository.getTopTracks(activity)
+
+            withContext(Main) {
+                if (result is Result.Success) {
+                    _topTracksResult.value =
+                        TopTracksResult(success = result.data.tracksContainer.tracks)
+                } else {
+                    _topTracksResult.value = TopTracksResult(error = R.string.cant_get_top_tracks)
                 }
             }
         }

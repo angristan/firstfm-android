@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.entity.TopAlbumsResponse
 import fr.esgi.firstfm.entity.TopArtistsResponse
+import fr.esgi.firstfm.entity.TopTracksResponse
 
 
 /**
@@ -32,5 +33,16 @@ class UserRepository(val dataSource: UserDataSource) {
 
         val username = sharedPreferences.getString("username", "")
         return dataSource.getTopArtists(username!!)
+    }
+
+
+    fun getTopTracks(
+        activity: AppCompatActivity,
+    ): Result<TopTracksResponse> {
+        val sharedPreferences: SharedPreferences =
+            activity.getSharedPreferences("firstfm", MODE_PRIVATE)
+
+        val username = sharedPreferences.getString("username", "")
+        return dataSource.getTopTracks(username!!)
     }
 }

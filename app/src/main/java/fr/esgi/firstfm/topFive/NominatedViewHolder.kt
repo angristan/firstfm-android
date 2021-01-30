@@ -1,5 +1,6 @@
 package fr.esgi.firstfm.topFive
 
+import Track
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,6 @@ import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.objects.Album
 import fr.esgi.firstfm.objects.Artist
-import fr.esgi.firstfm.objects.Track
 
 class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.nominated_item, parent, false)),
@@ -55,9 +55,9 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bindTrackValues(track: Track) {
         this.track = track
-        nominatedNameTextView?.text = track.album
+        nominatedNameTextView?.text = track.name
         Picasso.get()
-            .load(track.url) // XXX
+            .load(track.image[track.image.size - 1].url)
             .into(nominatedPictureImageView)
     }
 

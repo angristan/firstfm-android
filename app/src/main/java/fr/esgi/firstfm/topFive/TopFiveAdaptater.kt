@@ -1,11 +1,11 @@
 package fr.esgi.firstfm.topFive
 
+import Track
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.firstfm.objects.Album
 import fr.esgi.firstfm.objects.Artist
-import fr.esgi.firstfm.objects.Track
 
 
 class TopFiveAdapter(
@@ -40,6 +40,14 @@ class TopFiveAdapter(
         with(artists) {
             clear()
             addAll(newArtists)
+        }
+        notifyDataSetChanged()
+    }
+
+    fun updateTracks(newTracks: List<Track>) {
+        with(tracks) {
+            clear()
+            addAll(newTracks)
         }
         notifyDataSetChanged()
     }

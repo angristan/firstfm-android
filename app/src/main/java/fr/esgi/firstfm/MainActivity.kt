@@ -1,6 +1,7 @@
 package fr.esgi.firstfm
 
 import Image
+import Track
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
 import fr.esgi.firstfm.objects.Artist
-import fr.esgi.firstfm.objects.Track
 import fr.esgi.firstfm.topFive.NominatedViewHolder
 import fr.esgi.firstfm.topFive.TopFiveAdapter
 import fr.esgi.firstfm.topFive.TopFiveViewModel
@@ -75,31 +75,31 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
         )
     )
 
-    private val tracks = mutableListOf(
+    private var tracks = mutableListOf(
         Track(
             "Track_1",
             "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
         ),
         Track(
             "Track_2",
             "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
         ),
         Track(
             "Track_3",
             "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
         ),
         Track(
             "Track_4",
             "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
         ),
         Track(
             "Track_5",
             "TEST",
-            "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
         )
     )
 
@@ -117,6 +117,7 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
 
         topFiveViewModel.getTopAlbums(this)
         topFiveViewModel.getTopArtists(this)
+        topFiveViewModel.getTopTracks(this)
 
         topFiveViewModel.topAlbumResult.observe(this@MainActivity, Observer {
             val topAlbumResult = it ?: return@Observer
@@ -148,6 +149,23 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
             if (topArtistsResult.success != null) {
                 this.artists = topArtistsResult.success as MutableList<Artist>
                 this.adapter.updateArtists(artists)
+            }
+        })
+
+        topFiveViewModel.topTracksResult.observe(this@MainActivity, Observer {
+            val topTracksResult = it ?: return@Observer
+
+            if (loading != null) {
+                loading.visibility = View.GONE
+            }
+            if (topTracksResult.error != null) {
+                Toast.makeText(applicationContext, topTracksResult.error, Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+            if (topTracksResult.success != null) {
+                this.tracks = topTracksResult.success as MutableList<Track>
+                this.adapter.updateTracks(tracks)
             }
         })
 
@@ -185,7 +203,7 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
     override fun onNominatedTrackClicked(track: Track?) {
         // TODO update this part, navigate to track page
         if (track != null) {
-            AlbumDetailActivity.navigateTo(this, track.album, track.artist)
+            AlbumDetailActivity.navigateTo(this, track.name, track.url)
         }
     }
 }
