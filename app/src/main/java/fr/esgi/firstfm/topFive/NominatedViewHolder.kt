@@ -48,17 +48,21 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bindArtistValues(artist: Artist) {
         this.artist = artist
         nominatedNameTextView?.text = artist.name
-        Picasso.get()
-            .load(artist.image[artist.image.size - 1].url)
-            .into(nominatedPictureImageView)
+        if (artist.spotifyImages.isNotEmpty()) {
+            Picasso.get()
+                .load(artist.spotifyImages[0].url)
+                .into(nominatedPictureImageView)
+        }
     }
 
     fun bindTrackValues(track: Track) {
         this.track = track
         nominatedNameTextView?.text = track.name
-        Picasso.get()
-            .load(track.image[track.image.size - 1].url)
-            .into(nominatedPictureImageView)
+        if (track.spotifyImages.isNotEmpty()) {
+            Picasso.get()
+                .load(track.spotifyImages[0].url)
+                .into(nominatedPictureImageView)
+        }
     }
 
     fun bind(position: Int, onNominatedClickedListener: OnNominatedClickedListener) {

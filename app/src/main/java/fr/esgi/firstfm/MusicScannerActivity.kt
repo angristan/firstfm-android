@@ -9,7 +9,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -115,7 +114,6 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
                 stopRecording(mr)
                 val record = File(this.recordPath)
 
-                Log.d("recognizing:", "Start recognizing audio file")
                 AuddApi.recognizeAudio(record, this)
             }
         }

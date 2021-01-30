@@ -2,6 +2,10 @@ package fr.esgi.firstfm.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import fr.esgi.firstfm.data.Artist.ArtistDataSource
+import fr.esgi.firstfm.data.Artist.ArtistRepository
+import fr.esgi.firstfm.data.Artist.TrackRepository
+import fr.esgi.firstfm.data.Track.TrackDataSource
 import fr.esgi.firstfm.data.User.UserDataSource
 import fr.esgi.firstfm.data.User.UserRepository
 import fr.esgi.firstfm.topFive.TopFiveViewModel
@@ -18,6 +22,12 @@ class TopFiveViewModelFactory : ViewModelProvider.Factory {
             return TopFiveViewModel(
                 userRepository = UserRepository(
                     dataSource = UserDataSource()
+                ),
+                artistRepository = ArtistRepository(
+                    dataSource = ArtistDataSource()
+                ),
+                trackRepository = TrackRepository(
+                    dataSource = TrackDataSource()
                 )
             ) as T
         }

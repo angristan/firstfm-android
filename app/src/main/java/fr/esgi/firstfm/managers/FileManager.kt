@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.managers
 
-import android.util.Log
 import java.io.File
 
 class FileManager {
@@ -15,7 +14,6 @@ class FileManager {
 
         fun delete(dir: File) {
             if (!dir.isDirectory) {
-                Log.d("not dir:", dir.absolutePath)
                 return
             }
 

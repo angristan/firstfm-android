@@ -1,3 +1,5 @@
+import fr.esgi.firstfm.entity.SpotifyImage
+import fr.esgi.firstfm.objects.Artist
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -7,5 +9,8 @@ data class Track(
     @SerialName("mbid") val mbid: String = "",
     @SerialName("url") val url: String = "",
     @SerialName("playcount") val playcount: Int = 0,
-    @SerialName("image") val image: List<Image> = listOf()
+    @SerialName("artist") val artist: Artist = Artist(),
+
+    @SerialName("image") val image: List<Image> = listOf(),
+    var spotifyImages: List<SpotifyImage> = listOf()
 )

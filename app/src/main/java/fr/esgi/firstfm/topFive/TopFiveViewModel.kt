@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import fr.esgi.firstfm.MainActivity
 import fr.esgi.firstfm.R
+import fr.esgi.firstfm.data.Artist.ArtistRepository
+import fr.esgi.firstfm.data.Artist.TrackRepository
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.data.User.UserRepository
 import fr.esgi.firstfm.entity.TopAlbumsResult
@@ -16,7 +18,11 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TopFiveViewModel(private val userRepository: UserRepository) : ViewModel() {
+class TopFiveViewModel(
+    private val userRepository: UserRepository,
+    private val artistRepository: ArtistRepository,
+    private val trackRepository: TrackRepository,
+) : ViewModel() {
 
     private val _topAlbumResult = MutableLiveData<TopAlbumsResult>()
     val topAlbumResult: LiveData<TopAlbumsResult> = _topAlbumResult
@@ -48,8 +54,25 @@ class TopFiveViewModel(private val userRepository: UserRepository) : ViewModel()
 
             withContext(Main) {
                 if (result is Result.Success) {
-                    _topArtistsResult.value =
-                        TopArtistsResult(success = result.data.artistsContainer.artists)
+                    val artists = result.data.artistsContainer.artists
+                    CoroutineScope(IO).launch {
+                        for (i in artists.indices) {
+                            val imageResult = artistRepository.getImage(activity, artists[i].name)
+                            if (imageResult is Result.Success) {
+                                artists[i].spotifyImages =
+                                    imageResult.data.artistsContainer.artistsResults[0].images
+                            } else {
+                                withContext(Main) {
+                                    _topArtistsResult.value =
+                                        TopArtistsResult(error = R.string.cant_get_top_albums_image)
+                                }
+                            }
+                        }
+                        withContext(Main) {
+                            _topArtistsResult.value =
+                                TopArtistsResult(success = artists)
+                        }
+                    }
                 } else {
                     _topArtistsResult.value = TopArtistsResult(error = R.string.cant_get_top_albums)
                 }
@@ -64,8 +87,30 @@ class TopFiveViewModel(private val userRepository: UserRepository) : ViewModel()
 
             withContext(Main) {
                 if (result is Result.Success) {
-                    _topTracksResult.value =
-                        TopTracksResult(success = result.data.tracksContainer.tracks)
+                    val tracks = result.data.tracksContainer.tracks
+                    CoroutineScope(IO).launch {
+                        for (i in tracks.indices) {
+                            val imageResult = trackRepository.getImage(
+                                activity,
+                                tracks[i].name,
+                                tracks[i].artist.name
+                            )
+                            if (imageResult is Result.Success) {
+                                tracks[i].spotifyImages =
+                                    imageResult.data.tracksContainer.tracksResults[0].track.images
+                            } else {
+                                withContext(Main) {
+                                    _topTracksResult.value =
+                                        TopTracksResult(error = R.string.cant_get_top_tracks_image)
+                                }
+                            }
+                        }
+                        withContext(Main) {
+                            _topTracksResult.value =
+                                TopTracksResult(success = tracks)
+                        }
+                    }
+
                 } else {
                     _topTracksResult.value = TopTracksResult(error = R.string.cant_get_top_tracks)
                 }

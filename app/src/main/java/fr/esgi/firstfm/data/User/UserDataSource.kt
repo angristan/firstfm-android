@@ -42,7 +42,7 @@ class UserDataSource {
             }
 
         } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in: " + e.message, e))
+            return Result.Error(IOException("Error getting top albums: " + e.message, e))
         }
     }
 
@@ -74,7 +74,7 @@ class UserDataSource {
             }
 
         } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in: " + e.message, e))
+            return Result.Error(IOException("Error getting top artists: " + e.message, e))
         }
     }
 
@@ -106,7 +106,7 @@ class UserDataSource {
             }
 
         } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in: " + e.message, e))
+            return Result.Error(IOException("Error getting top tracks: " + e.message, e))
         }
     }
 
