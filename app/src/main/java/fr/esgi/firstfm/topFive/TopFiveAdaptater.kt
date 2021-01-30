@@ -1,11 +1,11 @@
 package fr.esgi.firstfm.topFive
 
-import Track
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import fr.esgi.firstfm.objects.Album
-import fr.esgi.firstfm.objects.Artist
+import fr.esgi.firstfm.entity.Album
+import fr.esgi.firstfm.entity.Artist
+import fr.esgi.firstfm.entity.Track
 
 
 class TopFiveAdapter(
@@ -87,7 +87,7 @@ fun updateTracks(newTracks: List<Track>) {
                 }
             }
             12 -> {
-                (holder as TitleViewHolder).bind("Top Five Track")
+                (holder as TitleViewHolder).bind("Top Five fr.esgi.firstfm.entity.Track")
             }
             in 13..18 -> {
                 if (tracks.size > position - 13) {

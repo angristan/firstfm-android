@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.topFive
 
-import Track
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.R
-import fr.esgi.firstfm.objects.Album
-import fr.esgi.firstfm.objects.Artist
+import fr.esgi.firstfm.entity.Album
+import fr.esgi.firstfm.entity.Artist
+import fr.esgi.firstfm.entity.Track
 
 class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.nominated_item, parent, false)),

@@ -1,16 +1,15 @@
-package fr.esgi.firstfm.objects
+package fr.esgi.firstfm.entity
 
 import Image
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Album(
+data class Artist(
     @SerialName("name") val name: String = "",
     @SerialName("mbid") val mbid: String = "",
-    @SerialName("playcount") val playcount: Int = 0,
     @SerialName("url") val url: String = "",
-    @SerialName("artist") val artist: Artist = Artist(),
-    @SerialName("image") val image: List<Image> = listOf()
+    @SerialName("playcount") val playcount: Int = 0,
+    @SerialName("image") val images: List<Image> = listOf(),
+    var spotifyImages: List<SpotifyImage> = listOf()
 )
-

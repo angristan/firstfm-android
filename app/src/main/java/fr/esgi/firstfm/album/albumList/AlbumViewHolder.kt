@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.firstfm.R
-import fr.esgi.firstfm.objects.Album
+import fr.esgi.firstfm.entity.Album
 
 class AlbumViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.album_item, parent, false)), View.OnClickListener

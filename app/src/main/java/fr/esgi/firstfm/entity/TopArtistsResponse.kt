@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.entity
 
-import fr.esgi.firstfm.objects.Artist
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

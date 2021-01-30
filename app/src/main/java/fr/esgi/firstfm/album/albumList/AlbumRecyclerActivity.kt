@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
-import fr.esgi.firstfm.objects.Album
+import fr.esgi.firstfm.entity.Album
 import kotlinx.android.synthetic.main.activity_album_recycler.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 

@@ -1,5 +1,6 @@
-import fr.esgi.firstfm.entity.SpotifyImage
-import fr.esgi.firstfm.objects.Artist
+package fr.esgi.firstfm.entity
+
+import Image
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
