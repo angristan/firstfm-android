@@ -2,8 +2,8 @@ package fr.esgi.firstfm.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import fr.esgi.firstfm.data.LoginDataSource
-import fr.esgi.firstfm.data.LoginRepository
+import fr.esgi.firstfm.data.Auth.LoginDataSource
+import fr.esgi.firstfm.data.Auth.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

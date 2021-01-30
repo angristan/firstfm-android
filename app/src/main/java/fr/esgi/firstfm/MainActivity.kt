@@ -1,5 +1,6 @@
 package fr.esgi.firstfm
 
+import Image
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -12,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
-import fr.esgi.firstfm.objects.AlbumImage
 import fr.esgi.firstfm.objects.Artist
 import fr.esgi.firstfm.objects.Track
 import fr.esgi.firstfm.topFive.NominatedViewHolder
@@ -32,50 +32,50 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
     private var albums: MutableList<Album> = mutableListOf(
         Album(
             name = "Album_1",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Album_2",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Album_3",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Album_4",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Album_5",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         )
     )
 
-    private val artists = listOf(
+    private var artists = mutableListOf(
         Artist(
             name = "Artist_1",
-            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
         ),
         Artist(
             name = "Artist_2",
-            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
         ),
         Artist(
             name = "Artist_3",
-            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
         ),
         Artist(
             name = "Artist_4",
-            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
         ),
         Artist(
             name = "Artist_5",
-            image = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
         )
     )
 
-    private val tracks = listOf(
+    private val tracks = mutableListOf(
         Track(
             "Track_1",
             "TEST",
@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
             .get(TopFiveViewModel::class.java)
 
         topFiveViewModel.getTopAlbums(this)
+        topFiveViewModel.getTopArtists(this)
 
         topFiveViewModel.topAlbumResult.observe(this@MainActivity, Observer {
             val topAlbumResult = it ?: return@Observer
@@ -130,6 +131,23 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
             if (topAlbumResult.success != null) {
                 this.albums = topAlbumResult.success as MutableList<Album>
                 this.adapter.updateAlbums(albums)
+            }
+        })
+
+        topFiveViewModel.topArtistsResult.observe(this@MainActivity, Observer {
+            val topArtistsResult = it ?: return@Observer
+
+            if (loading != null) {
+                loading.visibility = View.GONE
+            }
+            if (topArtistsResult.error != null) {
+                Toast.makeText(applicationContext, topArtistsResult.error, Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+            if (topArtistsResult.success != null) {
+                this.artists = topArtistsResult.success as MutableList<Artist>
+                this.adapter.updateArtists(artists)
             }
         })
 

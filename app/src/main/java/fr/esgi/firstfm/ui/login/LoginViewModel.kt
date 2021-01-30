@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import fr.esgi.firstfm.R
-import fr.esgi.firstfm.data.LoginRepository
+import fr.esgi.firstfm.data.Auth.LoginRepository
 import fr.esgi.firstfm.data.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO

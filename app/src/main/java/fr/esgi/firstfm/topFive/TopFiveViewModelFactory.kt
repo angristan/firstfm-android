@@ -2,8 +2,8 @@ package fr.esgi.firstfm.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import fr.esgi.firstfm.data.UserDataSource
-import fr.esgi.firstfm.data.UserRepository
+import fr.esgi.firstfm.data.User.UserDataSource
+import fr.esgi.firstfm.data.User.UserRepository
 import fr.esgi.firstfm.topFive.TopFiveViewModel
 
 /**

@@ -1,5 +1,6 @@
 package fr.esgi.firstfm.album.albumList
 
+import Image
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.objects.Album
-import fr.esgi.firstfm.objects.AlbumImage
 import kotlinx.android.synthetic.main.activity_album_recycler.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 
@@ -16,35 +16,35 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
     private val albums = listOf(
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         ),
         Album(
             name = "Lorem ipsum",
-            image = listOf(AlbumImage(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
+            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
         )
     )
 

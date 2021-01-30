@@ -10,8 +10,8 @@ import fr.esgi.firstfm.objects.Track
 
 class TopFiveAdapter(
     private val albums: MutableList<Album>,
-    private val artists: List<Artist>,
-    private val tracks: List<Track>,
+    private val artists: MutableList<Artist>,
+    private val tracks: MutableList<Track>,
     private val onNominatedClickedListener: NominatedViewHolder.OnNominatedClickedListener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -32,6 +32,14 @@ class TopFiveAdapter(
         with(albums) {
             clear()
             addAll(newAlbums)
+        }
+        notifyDataSetChanged()
+    }
+
+    fun updateArtists(newArtists: List<Artist>) {
+        with(artists) {
+            clear()
+            addAll(newArtists)
         }
         notifyDataSetChanged()
     }

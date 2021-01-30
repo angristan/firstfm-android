@@ -20,5 +20,6 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="cant_get_top_albums">"Could not fetch top albums"</string>
+    <string name="cant_get_top_artists">"Could not fetch top artisst"</string>
 
 </resources>

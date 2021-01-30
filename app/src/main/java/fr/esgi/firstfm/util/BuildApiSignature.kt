@@ -1,7 +1,7 @@
 package fr.esgi.firstfm.util
 
-import fr.esgi.firstfm.data.API_KEY
-import fr.esgi.firstfm.data.API_SECRET
+import fr.esgi.firstfm.data.Auth.API_KEY
+import fr.esgi.firstfm.data.Auth.API_SECRET
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest
 
