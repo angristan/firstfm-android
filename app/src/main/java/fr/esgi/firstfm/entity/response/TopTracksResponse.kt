@@ -1,5 +1,6 @@
 package fr.esgi.firstfm.entity
 
+import fr.esgi.firstfm.entity.model.Track
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

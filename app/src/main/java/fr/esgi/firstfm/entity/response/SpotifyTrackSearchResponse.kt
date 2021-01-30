@@ -1,6 +1,6 @@
 package fr.esgi.firstfm.entity
 
-import SpotifyTrack
+import fr.esgi.firstfm.entity.model.SpotifyTrack
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

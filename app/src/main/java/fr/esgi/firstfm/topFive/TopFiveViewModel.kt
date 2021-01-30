@@ -9,9 +9,9 @@ import fr.esgi.firstfm.data.Artist.ArtistRepository
 import fr.esgi.firstfm.data.Artist.TrackRepository
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.data.User.UserRepository
-import fr.esgi.firstfm.entity.TopAlbumsResult
-import fr.esgi.firstfm.entity.TopArtistsResult
-import fr.esgi.firstfm.entity.TopTracksResult
+import fr.esgi.firstfm.entity.result.TopAlbumsResult
+import fr.esgi.firstfm.entity.result.TopArtistsResult
+import fr.esgi.firstfm.entity.result.TopTracksResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main

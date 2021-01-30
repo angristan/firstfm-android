@@ -1,6 +1,5 @@
 package fr.esgi.firstfm.album.albumList
 
-import Image
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
-import fr.esgi.firstfm.entity.Album
+import fr.esgi.firstfm.entity.model.Album
+import fr.esgi.firstfm.entity.model.Image
 import kotlinx.android.synthetic.main.activity_album_recycler.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 

@@ -3,7 +3,7 @@ package fr.esgi.firstfm.album.albumList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import fr.esgi.firstfm.entity.Album
+import fr.esgi.firstfm.entity.model.Album
 
 class AlbumAdapter(private val albums: List<Album>, private val onAlbumClickedListener: AlbumViewHolder.OnAlbumClickedListener) :
     RecyclerView.Adapter<AlbumViewHolder>()

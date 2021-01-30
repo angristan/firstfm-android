@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.R
-import fr.esgi.firstfm.entity.Album
-import fr.esgi.firstfm.entity.Artist
-import fr.esgi.firstfm.entity.Track
+import fr.esgi.firstfm.entity.model.Album
+import fr.esgi.firstfm.entity.model.Artist
+import fr.esgi.firstfm.entity.model.Track
 
 class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.nominated_item, parent, false)),
