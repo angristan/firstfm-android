@@ -1,7 +1,6 @@
 package fr.esgi.firstfm.util
 
-import fr.esgi.firstfm.data.Auth.API_KEY
-import fr.esgi.firstfm.data.Auth.API_SECRET
+import fr.esgi.firstfm.BuildConfig
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest
 
@@ -25,7 +24,7 @@ fun md5(s: String): String? {
 fun BuildApiSignature(vararg params: String): String? {
 
     // Api key is always part of the params
-    val paramsMap = mutableMapOf("api_key" to API_KEY)
+    val paramsMap = mutableMapOf("api_key" to BuildConfig.LASTFM_API_TOKEN)
 
     // transform vararg to map
     for (i in params.indices step 2) {
@@ -47,7 +46,7 @@ fun BuildApiSignature(vararg params: String): String? {
     }
 
     // end with secret
-    toSign += API_SECRET
+    toSign += BuildConfig.LASTFM_API_SECRET
 
     // return signature :)
     return md5(toSign)

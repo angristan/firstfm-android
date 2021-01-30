@@ -17,6 +17,9 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         buildConfigField 'String', 'AUDD_API_TOKEN', '"' + AUDD_API_TOKEN + '"'
+        buildConfigField 'String', 'LASTFM_API_TOKEN', '"' + LASTFM_API_TOKEN + '"'
+        buildConfigField 'String', 'LASTFM_API_SECRET', '"' + LASTFM_API_SECRET + '"'
+        buildConfigField 'String', 'SPOTIFY_API_TOKEN', '"' + SPOTIFY_API_TOKEN + '"'
     }
 
     buildTypes {

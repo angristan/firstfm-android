@@ -1,5 +1,6 @@
 package fr.esgi.firstfm.data.User
 
+import fr.esgi.firstfm.BuildConfig
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.entity.TopAlbumsResponse
 import fr.esgi.firstfm.entity.TopArtistsResponse
@@ -14,14 +15,12 @@ import java.io.IOException
 
 class UserDataSource {
     fun getTopAlbums(username: String): Result<TopAlbumsResponse> {
-        val API_KEY = "d404c94c63e190519d70002332f09509"
-
         try {
             val method = "user.getTopAlbums"
 
             val body =
                 FormBody.Builder()
-                    .addEncoded("api_key", API_KEY)
+                    .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
                     .addEncoded("method", method)
                     .addEncoded("username", username)
                     .addEncoded("limit", "5")
@@ -47,13 +46,11 @@ class UserDataSource {
     }
 
     fun getTopArtists(username: String): Result<TopArtistsResponse> {
-        val API_KEY = "d404c94c63e190519d70002332f09509"
-
         try {
             val method = "user.getTopArtists"
             val body =
                 FormBody.Builder()
-                    .addEncoded("api_key", API_KEY)
+                    .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
                     .addEncoded("method", method)
                     .addEncoded("username", username)
                     .addEncoded("limit", "5")
@@ -79,13 +76,11 @@ class UserDataSource {
     }
 
     fun getTopTracks(username: String): Result<TopTracksResponse> {
-        val API_KEY = "d404c94c63e190519d70002332f09509"
-
         try {
             val method = "user.getTopTracks"
             val body =
                 FormBody.Builder()
-                    .addEncoded("api_key", API_KEY)
+                    .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
                     .addEncoded("method", method)
                     .addEncoded("username", username)
                     .addEncoded("limit", "5")

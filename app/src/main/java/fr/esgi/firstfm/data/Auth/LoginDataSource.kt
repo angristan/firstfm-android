@@ -1,5 +1,6 @@
 package fr.esgi.firstfm.data.Auth
 
+import fr.esgi.firstfm.BuildConfig
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.entity.LoggedInUser
 import fr.esgi.firstfm.entity.LoggedInUserSession
@@ -14,10 +15,6 @@ import java.io.IOException
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
-
-const val API_SECRET = "e4e1eb5bf14d2418f51ed6ea6ae5d91a"
-const val API_KEY = "d404c94c63e190519d70002332f09509"
-
 
 class LoginDataSource {
     fun login(username: String, password: String): Result<LoggedInUser> {
@@ -35,7 +32,7 @@ class LoginDataSource {
 
             val body =
                 FormBody.Builder()
-                    .addEncoded("api_key", API_KEY)
+                    .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
                     .addEncoded("method", method)
                     .addEncoded("username", username)
                     .addEncoded("password", password)

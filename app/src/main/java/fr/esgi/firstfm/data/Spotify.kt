@@ -3,6 +3,7 @@ package fr.esgi.firstfm.data
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
+import fr.esgi.firstfm.BuildConfig
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -12,8 +13,6 @@ import java.io.IOException
 class Spotify {
     fun renewSpotifyToken(activity: AppCompatActivity) {
 
-        val basicToken =
-            "ZmQxYTVkZDBlMzIzNDgyZGI3OGE5MWUyOTQ0NmFjNWE6ZWI5NTFmOWZiZmE0NDczM2I3ZTkxYjI4NTE3YTIyNDE="
         val body =
             FormBody.Builder()
                 .addEncoded("grant_type", "client_credentials")
@@ -22,7 +21,7 @@ class Spotify {
         val request = Request.Builder()
             .method("POST", body.build())
             .url("https://accounts.spotify.com/api/token")
-            .addHeader("Authorization", "Basic $basicToken")
+            .addHeader("Authorization", "Basic ${BuildConfig.SPOTIFY_API_TOKEN}")
             .build()
 
         OkHttpClient().newCall(request).execute().use { response ->
@@ -45,8 +44,6 @@ class Spotify {
 
             myEdit.apply()
         }
-
-
     }
 
     fun getSpotifyToken(activity: AppCompatActivity): String {
@@ -71,5 +68,4 @@ class Spotify {
 
         return JSONObject(spotifyToken).getString("token")
     }
-
 }
