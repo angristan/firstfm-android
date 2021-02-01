@@ -14,4 +14,8 @@
     <string name="top_five_default_title_value">Default Title Value</string>
     <string name="default_nominated_artist_name_value">A nominated artist name</string>
     <string name="rank_value">1</string>
+    <string name="default_album_name_value">Default Album Name</string>
+    <string name="default_artist_name_value">Default Artist Name</string>
+    <string name="list_title">Album List</string>
+    <string name="pred">Par</string>
 </resources>

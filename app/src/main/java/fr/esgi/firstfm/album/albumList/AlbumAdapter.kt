@@ -20,7 +20,7 @@ class AlbumAdapter(private val albums: List<Album>, private val onAlbumClickedLi
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int)
     {
         val album = albums[position]
-        holder.bind(album, onAlbumClickedListener)
+        holder.bind(position, album, onAlbumClickedListener)
     }
 
 }

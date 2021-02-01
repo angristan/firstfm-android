@@ -31,8 +31,8 @@
 
     <ImageView
         android:id="@+id/nominatedPictureImageView"
-        android:layout_width="@dimen/topPictureValue"
-        android:layout_height="@dimen/topPictureValue"
+        android:layout_width="@dimen/listPictureValue"
+        android:layout_height="@dimen/listPictureValue"
         android:contentDescription="@string/album_image_content_description_default_value"
         android:paddingStart="0dp"
         android:paddingEnd="@dimen/paddingElement"
