@@ -35,7 +35,7 @@ class AlbumViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         this.album = album
         this.onAlbumClickedListener = onAlbumClickedListener
         rankNumberTextView?.text = "$rank"
-        albumNameTextView?.text = album.name
+        albumNameTextView?.text = album.album
         artistNameTextView?.text = album.artist
 
         Picasso.get()
