@@ -13,7 +13,7 @@ class AlbumDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_album_detail)
 
         val receivedValue = intent?.getStringExtra("albumName")
-        album_detail_name?.text = "$receivedValue"
+        albumDetailName?.text = "$receivedValue"
     }
 
     companion object
