@@ -38,7 +38,7 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bindAlbumValues(album: Album) {
 
         this.album = album
-        nominatedNameTextView?.text = album.album
+        nominatedNameTextView?.text = album.name
         Picasso.get()
                 .load(album.url)
                 .into(nominatedPictureImageView)
@@ -47,7 +47,7 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bindArtistValues(artist: Artist) {
 
         this.artist = artist
-        nominatedNameTextView?.text = artist.album
+        nominatedNameTextView?.text = artist.name
         Picasso.get()
                 .load(artist.url)
                 .into(nominatedPictureImageView)
@@ -56,7 +56,7 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bindTrackValues(track: Track) {
 
         this.track = track
-        nominatedNameTextView?.text = track.album
+        nominatedNameTextView?.text = track.name
         Picasso.get()
                 .load(track.url)
                 .into(nominatedPictureImageView)
