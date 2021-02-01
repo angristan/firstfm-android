@@ -7,4 +7,8 @@
     <string name="menu_historical_label">Historical</string>
     <string name="menu_main_label">Home</string>
     <string name="menu_scanner_label">Scanner</string>
+    <string name="album_cover">Album cover</string>
+    <string name="duration">Duration:</string>
+    <string name="listeners">Listeners</string>
+    <string name="listened">Listened</string>
 </resources>
