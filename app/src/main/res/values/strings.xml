@@ -7,6 +7,10 @@
     <string name="menu_historical_label">Historical</string>
     <string name="menu_main_label">Home</string>
     <string name="menu_scanner_label">Scanner</string>
+    <string name="album_cover">Album cover</string>
+    <string name="duration">Duration:</string>
+    <string name="listeners">Listeners</string>
+    <string name="listened">Listened</string>
     <string name="top_five_default_title_value">Default Title Value</string>
     <string name="default_nominated_artist_name_value">A nominated artist name</string>
     <string name="rank_value">1</string>
