@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.album.AlbumDetailActivity
+import fr.esgi.firstfm.lastfmapi.AlbumResponse
 import fr.esgi.firstfm.objects.Album
 import fr.esgi.firstfm.objects.Artist
 import fr.esgi.firstfm.objects.Track
@@ -54,24 +55,28 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
         }
     }
 
+//    override fun onNominatedAlbumClicked(album: AlbumResponse?) {
+//        // TODO update this part, navigate to album page
+//        if (album != null) {
+//            AlbumDetailActivity.navigateTo(this, album.mbId)
+//        }
+//    }
+
     override fun onNominatedAlbumClicked(album: Album?) {
-        // TODO update this part, navigate to album page
-        if (album != null) {
-            AlbumDetailActivity.navigateTo(this, album.album, album.artist)
-        }
+        TODO("Not yet implemented")
     }
 
     override fun onNominatedArtistClicked(artist: Artist?) {
         // TODO update this part, navigate to artist page
         if (artist != null) {
-            AlbumDetailActivity.navigateTo(this, artist.album, artist.artist)
+//            AlbumDetailActivity.navigateTo(this, artist.album, artist.artist)
         }
     }
 
     override fun onNominatedTrackClicked(track: Track?) {
         // TODO update this part, navigate to track page
         if (track != null) {
-            AlbumDetailActivity.navigateTo(this, track.album, track.artist)
+//            AlbumDetailActivity.navigateTo(this, track.album, track.artist)
         }
     }
 }

@@ -3,6 +3,9 @@ package fr.esgi.firstfm.album
 import LastFmApiAlbumGetInfoResponse
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -10,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
+import fr.esgi.firstfm.MusicActivity
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.lastfmapi.AlbumResponse
 import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveAlbumInfo
@@ -48,14 +52,22 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_detail)
 
-        loader?.visibility = View.VISIBLE
-        scrollView?.visibility = View.GONE
 
         val receivedMbId = intent?.getStringExtra("mbId")
         val receivedArtistName = intent?.getStringExtra("artistName")
         val receivedAlbumName = intent?.getStringExtra("albumName")
 
-        retrieveAlbumInfo(receivedMbId, receivedArtistName, receivedAlbumName, this)
+        loader?.visibility = View.VISIBLE
+        scrollView?.visibility = View.GONE
+
+        if (isNetworkConnected()) {
+            retrieveAlbumInfo(receivedMbId, receivedArtistName, receivedAlbumName, this)
+        } else {
+            loader?.visibility = View.GONE
+            val toast = Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            toast.show()
+        }
     }
 
     override fun onResponse(
@@ -106,5 +118,21 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
     }
 
     override fun onTrackClicked(track: TrackResponse?) {
+        if (track != null) {
+            MusicActivity.navigateTo(this, track.name, this.album?.artist)
+        }
+    }
+
+    private fun isNetworkConnected(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork
+            val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
+            networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            true
+            // TODO("VERSION.SDK_INT < M")
+        }
     }
 }

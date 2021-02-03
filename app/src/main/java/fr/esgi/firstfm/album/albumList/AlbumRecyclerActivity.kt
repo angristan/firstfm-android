@@ -2,6 +2,9 @@ package fr.esgi.firstfm.album.albumList
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -33,9 +36,17 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_recycler)
+
         loader?.visibility = View.VISIBLE
 
-        retrieveArtistTopAlbumsInfoByMbId("6cad3ce5-6380-4594-a8da-ae7d273b683d", "", this)
+        if (isNetworkConnected()) {
+            retrieveArtistTopAlbumsInfoByMbId("6cad3ce5-6380-4594-a8da-ae7d273b683d", "", this)
+        } else {
+            loader?.visibility = View.GONE
+            val toast = Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            toast.show()
+        }
     }
 
     override fun onAlbumClicked(album: AlbumFromTop?) {
@@ -64,6 +75,19 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
     private fun deleteNameLessAlbumFromList(albums: List<AlbumFromTop>?) {
         if (albums != null) {
             this.albums = albums.filter { x: AlbumFromTop? -> x?.name != "(null)" }
+        }
+    }
+
+    private fun isNetworkConnected(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork
+            val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
+            networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            true
+            // TODO("VERSION.SDK_INT < M")
         }
     }
 }

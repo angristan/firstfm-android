@@ -10,17 +10,22 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.squareup.picasso.Picasso
+import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.lastfmapi.LastFmApi
 import fr.esgi.firstfm.lastfmapi.LastFmApiTrackGetInfoResponse
 import fr.esgi.firstfm.lastfmapi.Tag
+import kotlinx.android.synthetic.main.activity_album_detail.*
 import kotlinx.android.synthetic.main.activity_music.*
+import kotlinx.android.synthetic.main.activity_music.loader
 import org.jetbrains.anko.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,6 +46,11 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         if (title != null && artist != null) {
             if (isNetworkConnected()) {
                 LastFmApi.retrieveTrackInfo(artist, title, this)
+            } else {
+                loader.hide()
+                val toast = Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+                toast.show()
             }
         }
     }
@@ -58,7 +68,23 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         mainContainer.visibility = View.VISIBLE
         val track = response.body()?.track
 
-        Picasso.get().load(track?.album?.images?.last()?.url).into(album_cover)
+        for (i in 3 downTo 0) {
+            if (track?.album?.images?.get(i)?.url != "") {
+                Picasso.get()
+                        .load(track?.album?.images?.get(i)?.url)
+                        .into(album_cover,
+                                object : com.squareup.picasso.Callback {
+                                    override fun onSuccess() {}
+
+                                    override fun onError(e: Exception) {
+                                        album_cover?.setImageResource(R.drawable.default_album_picture)
+                                    }
+                                }
+                        )
+                break
+            }
+        }
+
         trackTitle?.text = track?.name
         artist?.text = track?.album?.artist
         trackDurationValue?.text = convertDurationTrack(track?.duration)
@@ -163,9 +189,15 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
 
     companion object
     {
-        fun navigateTo(context: Context)
+        private val PARAM1: String = "title"
+        private val PARAM2: String = "artist"
+        fun navigateTo(context: Context, param1: String?, param2: String?)
         {
-            context.startActivity(Intent(context, MusicActivity::class.java))
+            val intent = Intent(context, MusicActivity::class.java).apply {
+                putExtra(PARAM1, param1)
+                putExtra(PARAM2, param2)
+            }
+            context.startActivity(intent)
         }
     }
 }
