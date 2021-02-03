@@ -17,5 +17,9 @@
     <string name="default_album_name_value">Default Album Name</string>
     <string name="default_artist_name_value">Default Artist Name</string>
     <string name="list_title">Album List</string>
-    <string name="pred">Par</string>
+    <string name="pred_artist_name">By</string>
+    <string name="play_count_with_value">Play Count: %1$s</string>
+    <string name="listeners_with_value">Listeners: %1$s</string>
+    <string name="track_list_title">%1$s\'s track list</string>
+    <string name="album_detail_title">Album Detail Page</string>
 </resources>
