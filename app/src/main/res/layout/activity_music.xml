@@ -30,7 +30,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/album_cover" />
+                android:contentDescription="@string/album_cover"
+                app:srcCompat="@drawable/default_album_picture" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/trackInfo"

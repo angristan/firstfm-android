@@ -2,19 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/loader"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="60dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/rankNumberTextView"
@@ -27,12 +16,12 @@
         android:textSize="@dimen/listValueSize"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/albumNameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/trackNameTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/albumNameTextView"
+        android:id="@+id/trackNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/default_album_name_value"
@@ -42,25 +31,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/artistNameTextView"
+        android:id="@+id/durationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_artist_name_value"
-        android:textSize="@dimen/subTitleTextSize"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rankNumberTextView"
-        app:layout_constraintTop_toBottomOf="@+id/albumNameTextView" />
-
-    <ImageView
-        android:id="@+id/albumPictureImageView"
-        android:layout_width="@dimen/listPictureValue"
-        android:layout_height="@dimen/listPictureValue"
-        android:contentDescription="@string/album_image_content_description_default_value"
         android:paddingStart="0dp"
         android:paddingEnd="@dimen/paddingElement"
+        android:text="@string/duration"
+        android:textSize="@dimen/subTitleTextSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/default_album_picture" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
