@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.R
-import fr.esgi.firstfm.entity.model.Album
 import fr.esgi.firstfm.lastfmapi.AlbumFromTop
-import java.lang.Exception
 
 class AlbumViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.album_item, parent, false)), View.OnClickListener {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.album_item, parent, false)),
+    View.OnClickListener {
     interface OnAlbumClickedListener {
         fun onAlbumClicked(album: AlbumFromTop?)
     }
@@ -50,16 +49,16 @@ class AlbumViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         for (i in 2 downTo 0) {
             if (album.images[i].url != "") {
                 Picasso.get()
-                        ?.load(album.images[i].url)
-                        ?.into(albumPictureImageView,
-                                object : Callback {
-                                    override fun onSuccess() {}
+                    ?.load(album.images[i].url)
+                    ?.into(albumPictureImageView,
+                        object : Callback {
+                            override fun onSuccess() {}
 
-                                    override fun onError(e: Exception) {
-                                        albumPictureImageView?.setImageResource(R.drawable.default_album_picture)
-                                    }
-                                }
-                        )
+                            override fun onError(e: Exception) {
+                                albumPictureImageView?.setImageResource(R.drawable.default_album_picture)
+                            }
+                        }
+                    )
                 break
             }
         }

@@ -19,14 +19,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.squareup.picasso.Picasso
-import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.lastfmapi.LastFmApi
 import fr.esgi.firstfm.lastfmapi.LastFmApiTrackGetInfoResponse
 import fr.esgi.firstfm.lastfmapi.Tag
-import kotlinx.android.synthetic.main.activity_album_detail.*
 import kotlinx.android.synthetic.main.activity_music.*
-import kotlinx.android.synthetic.main.activity_music.loader
-import org.jetbrains.anko.*
+import org.jetbrains.anko.padding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,7 +45,8 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
                 LastFmApi.retrieveTrackInfo(artist, title, this)
             } else {
                 loader.hide()
-                val toast = Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
+                val toast =
+                    Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
                 toast.show()
             }
@@ -71,16 +69,16 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         for (i in 3 downTo 0) {
             if (track?.album?.images?.get(i)?.url != "") {
                 Picasso.get()
-                        .load(track?.album?.images?.get(i)?.url)
-                        .into(album_cover,
-                                object : com.squareup.picasso.Callback {
-                                    override fun onSuccess() {}
+                    .load(track?.album?.images?.get(i)?.url)
+                    .into(album_cover,
+                        object : com.squareup.picasso.Callback {
+                            override fun onSuccess() {}
 
-                                    override fun onError(e: Exception) {
-                                        album_cover?.setImageResource(R.drawable.default_album_picture)
-                                    }
-                                }
-                        )
+                            override fun onError(e: Exception) {
+                                album_cover?.setImageResource(R.drawable.default_album_picture)
+                            }
+                        }
+                    )
                 break
             }
         }
@@ -95,8 +93,8 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
 
     private fun convertDurationTrack(duration: Long?): String {
         if (duration != null) {
-            val minutes =  duration / 1000 / 60
-            val seconds =  duration / 1000 % 60
+            val minutes = duration / 1000 / 60
+            val seconds = duration / 1000 % 60
 
             return "${minutes}:${seconds}"
         }
@@ -156,18 +154,15 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         }
     }
 
-    private fun isNetworkConnected(): Boolean
-    {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private fun isNetworkConnected(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val activeNetwork = connectivityManager.activeNetwork
             val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
             networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        }
-        else
-        {
+        } else {
             true
             // TODO("VERSION.SDK_INT < M")
         }
@@ -177,7 +172,8 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
             != PackageManager.PERMISSION_GRANTED ||
             ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
 
             ActivityCompat.requestPermissions(
                 this,
@@ -187,12 +183,10 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         }
     }
 
-    companion object
-    {
+    companion object {
         private val PARAM1: String = "title"
         private val PARAM2: String = "artist"
-        fun navigateTo(context: Context, param1: String?, param2: String?)
-        {
+        fun navigateTo(context: Context, param1: String?, param2: String?) {
             val intent = Intent(context, MusicActivity::class.java).apply {
                 putExtra(PARAM1, param1)
                 putExtra(PARAM2, param2)

@@ -46,30 +46,30 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
             errorText?.visibility = View.GONE
 
             startRecording()
-        }
-        else
-        {
+        } else {
             errorText?.text = "NO NETWORK !"
             errorText?.visibility = View.VISIBLE
         }
     }
 
-    override fun onFailure(call: Call<AuddApiResponse>, t: Throwable)
-    {
+    override fun onFailure(call: Call<AuddApiResponse>, t: Throwable) {
         loader?.visibility = View.GONE
         buttonWebservices?.visibility = View.VISIBLE
         errorText?.text = "ERROR: $t"
         errorText?.visibility = View.VISIBLE
     }
 
-    override fun onResponse(call: Call<AuddApiResponse>, response: Response<AuddApiResponse>)
-    {
+    override fun onResponse(call: Call<AuddApiResponse>, response: Response<AuddApiResponse>) {
         val musicInfo = response.body()?.data
 
         if (musicInfo == null) {
             loader?.visibility = View.GONE
             buttonWebservices?.visibility = View.VISIBLE
-            Toast.makeText(this, "Audio not recognized, try to record in a quieter environment", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this,
+                "Audio not recognized, try to record in a quieter environment",
+                Toast.LENGTH_LONG
+            ).show()
         } else {
             loader?.visibility = View.GONE
 
@@ -81,18 +81,15 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
         }
     }
 
-    private fun isNetworkConnected(): Boolean
-    {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private fun isNetworkConnected(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val activeNetwork = connectivityManager.activeNetwork
             val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
             networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        }
-        else
-        {
+        } else {
             true
             // TODO("VERSION.SDK_INT < M")
         }
@@ -143,7 +140,8 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
 
     private fun checkNeededPermissions() {
         println("Requesting permission")
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
             )
             != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(
                 this,
@@ -157,7 +155,8 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
                 this,
                 Manifest.permission.ACCESS_NETWORK_STATE
             )
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             println("Requesting permission")
             ActivityCompat.requestPermissions(
                 this,
@@ -171,10 +170,8 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
         }
     }
 
-    companion object
-    {
-        fun navigateTo(context: Context)
-        {
+    companion object {
+        fun navigateTo(context: Context) {
             context.startActivity(Intent(context, MusicScannerActivity::class.java))
         }
     }

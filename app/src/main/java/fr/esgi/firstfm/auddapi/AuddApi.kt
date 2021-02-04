@@ -13,6 +13,7 @@ import java.io.File
 
 object AuddApi {
     private var auddApiServices: AuddApiServices? = null
+
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.audd.io/")

@@ -10,4 +10,4 @@ data class TrackResponse(
     @SerializedName("album") val album: Album,
     @SerializedName("toptags") val topTags: TopTags,
 
-)
+    )

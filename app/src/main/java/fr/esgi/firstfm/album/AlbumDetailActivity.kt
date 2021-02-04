@@ -21,14 +21,13 @@ import fr.esgi.firstfm.lastfmapi.TrackResponse
 import fr.esgi.firstfm.track.tracklist.TrackAdapter
 import fr.esgi.firstfm.track.tracklist.TrackViewHolder
 import kotlinx.android.synthetic.main.activity_album_detail.*
-import kotlinx.android.synthetic.main.activity_album_detail.recyclerView
 import kotlinx.android.synthetic.main.activity_album_detail.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedListener,
-        Callback<LastFmApiAlbumGetInfoResponse> {
+    Callback<LastFmApiAlbumGetInfoResponse> {
 
     private var album: AlbumResponse? = null
     private var tracks: List<TrackResponse>? = null
@@ -64,15 +63,16 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
             retrieveAlbumInfo(receivedMbId, receivedArtistName, receivedAlbumName, this)
         } else {
             loader?.visibility = View.GONE
-            val toast = Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
+            val toast =
+                Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
             toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
             toast.show()
         }
     }
 
     override fun onResponse(
-            call: Call<LastFmApiAlbumGetInfoResponse>,
-            response: Response<LastFmApiAlbumGetInfoResponse>
+        call: Call<LastFmApiAlbumGetInfoResponse>,
+        response: Response<LastFmApiAlbumGetInfoResponse>
     ) {
         loader?.visibility = View.GONE
         scrollView?.visibility = View.VISIBLE
@@ -90,16 +90,16 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         for (i in 3 downTo 0) {
             if (album?.images?.get(i)?.url != "") {
                 Picasso.get()
-                        .load(album?.images?.get(i)?.url)
-                        .into(albumDetailImage,
-                                object : com.squareup.picasso.Callback {
-                                    override fun onSuccess() {}
+                    .load(album?.images?.get(i)?.url)
+                    .into(albumDetailImage,
+                        object : com.squareup.picasso.Callback {
+                            override fun onSuccess() {}
 
-                                    override fun onError(e: Exception) {
-                                        albumDetailImage?.setImageResource(R.drawable.default_album_picture)
-                                    }
-                                }
-                        )
+                            override fun onError(e: Exception) {
+                                albumDetailImage?.setImageResource(R.drawable.default_album_picture)
+                            }
+                        }
+                    )
                 break
             }
         }
@@ -112,7 +112,11 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
     override fun onFailure(call: Call<LastFmApiAlbumGetInfoResponse>, t: Throwable) {
         loader?.visibility = View.GONE
-        val toast = Toast.makeText(applicationContext, "Error while loading detail page content", Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(
+            applicationContext,
+            "Error while loading detail page content",
+            Toast.LENGTH_SHORT
+        )
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
         toast.show()
     }
@@ -124,7 +128,8 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
     }
 
     private fun isNetworkConnected(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val activeNetwork = connectivityManager.activeNetwork

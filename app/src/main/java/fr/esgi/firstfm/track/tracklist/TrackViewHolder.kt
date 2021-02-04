@@ -9,7 +9,8 @@ import fr.esgi.firstfm.R
 import fr.esgi.firstfm.lastfmapi.TrackResponse
 
 class TrackViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.track_item, parent, false)), View.OnClickListener {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.track_item, parent, false)),
+    View.OnClickListener {
     interface OnTrackClickedListener {
         fun onTrackClicked(track: TrackResponse?)
     }

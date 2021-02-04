@@ -44,13 +44,13 @@ class TopFiveAdapter(
         notifyDataSetChanged()
     }
 
-fun updateTracks(newTracks: List<Track>) {
-    with(tracks) {
-        clear()
-        addAll(newTracks)
+    fun updateTracks(newTracks: List<Track>) {
+        with(tracks) {
+            clear()
+            addAll(newTracks)
+        }
+        notifyDataSetChanged()
     }
-    notifyDataSetChanged()
-}
 
     override fun getItemCount(): Int {
         return 3 + albums.size + artists.size + tracks.size
