@@ -7,6 +7,10 @@
     <string name="menu_historical_label">Historical</string>
     <string name="menu_main_label">Home</string>
     <string name="menu_scanner_label">Scanner</string>
+    <string name="album_cover">Album cover</string>
+    <string name="duration">Duration:</string>
+    <string name="listeners">Listeners</string>
+    <string name="listened">Listened</string>
     <string name="top_five_default_title_value">Default Title Value</string>
     <string name="default_nominated_artist_name_value">A nominated artist name</string>
     <string name="rank_value">1</string>
@@ -24,5 +28,12 @@
     <string name="cant_get_top_tracks_image">"Could not fetch top tracks image"</string>
     <string name="cant_get_top_artists">"Could not fetch top artists"</string>
     <string name="cant_get_top_tracks">"Could not fetch top tracks"</string>
-
+    <string name="default_album_name_value">Default Album Name</string>
+    <string name="default_artist_name_value">Default Artist Name</string>
+    <string name="list_title">Album List</string>
+    <string name="pred_artist_name">By</string>
+    <string name="play_count_with_value">Play Count: %1$s</string>
+    <string name="listeners_with_value">Listeners: %1$s</string>
+    <string name="track_list_title">%1$s\'s track list</string>
+    <string name="album_detail_title">Album Detail Page</string>
 </resources>

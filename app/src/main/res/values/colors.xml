@@ -3,4 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorCadetGrey">#97A7AF</color>
+    <color name="colorRichBlackFogra">#0A100D</color>
+    <color name="colorRichBlackFograLighter">#111715</color>
+    <color name="colorCeladonGreen">#028D7F</color>
 </resources>

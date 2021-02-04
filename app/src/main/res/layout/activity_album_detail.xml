@@ -7,47 +7,172 @@
     tools:context=".album.AlbumDetailActivity">
 
     <TextView
-        android:id="@+id/albumDetailName"
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp"
+        android:text="@string/album_detail_title"
+        android:textSize="@dimen/titleTextSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/albumDetailImage"
-        android:text="@string/album_name_default_value"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/albumDetailImage"
-        android:contentDescription="@string/album_image_content_description_default_value"
-        android:scaleType="fitCenter"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/fragmentMainMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/albumDetailName"
-        app:layout_constraintBottom_toTopOf="@+id/albumDetailDescription"
-        app:srcCompat="@drawable/default_album_picture" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView">
 
-    <TextView
-        android:id="@+id/albumDetailDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/albumDetailImage"
-        app:layout_constraintBottom_toTopOf="@+id/removeButton"
-        android:text="@string/album_description_default_value" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/removeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintAlbumDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toTopOf="@id/constraintStats"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/albumDetailName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/album_name_default_value"
+                    android:textSize="@dimen/titleTextSize"
+                    app:layout_constraintBottom_toTopOf="@+id/albumDetailArtistName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/pred"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/paddingElement"
+                    android:text="@string/pred_artist_name"
+                    android:textSize="@dimen/subTitleTextSize"
+                    app:layout_constraintBottom_toTopOf="@+id/albumDetailImage"
+                    app:layout_constraintEnd_toStartOf="@+id/albumDetailArtistName"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/albumDetailName" />
+
+                <TextView
+                    android:id="@+id/albumDetailArtistName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/album_name_default_value"
+                    android:textSize="@dimen/subTitleTextSize"
+                    app:layout_constraintBottom_toTopOf="@+id/albumDetailImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/pred"
+                    app:layout_constraintTop_toBottomOf="@+id/albumDetailName" />
+
+                <ImageView
+                    android:id="@+id/albumDetailImage"
+                    android:layout_width="@dimen/detailPictureValue"
+                    android:layout_height="@dimen/detailPictureValue"
+                    android:layout_marginTop="@dimen/padding"
+                    android:contentDescription="@string/album_image_content_description_default_value"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/albumDetailName"
+                    app:srcCompat="@drawable/default_album_picture" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintStats"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="40dp"
+                app:layout_constraintBottom_toTopOf="@id/constraintRecycler"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraintAlbumDetail">
+
+                <TextView
+                    android:id="@+id/playCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/play_count_with_value"
+                    android:textSize="@dimen/subTitleTextSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/listeners"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/listeners"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/listeners_with_value"
+                    android:textSize="@dimen/subTitleTextSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/playCount"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraintStats">
+
+                <TextView
+                    android:id="@+id/trackListTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:text="@string/track_list_title"
+                    android:textSize="@dimen/subTitleTextSize"
+                    app:layout_constraintBottom_toTopOf="@id/recyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trackListTitleTextView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/loader"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/albumDetailDescription"
-        app:layout_constraintBottom_toTopOf="parent"
-        android:text="@string/button_detail_album_default_value" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
         android:id="@+id/fragmentMainMenu"
@@ -55,8 +180,7 @@
         android:layout_width="0dp"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

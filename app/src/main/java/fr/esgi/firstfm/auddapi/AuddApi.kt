@@ -5,6 +5,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,7 +25,8 @@ object AuddApi {
     fun recognizeAudio(file: File, callback: Callback<AuddApiResponse>) {
         val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
         val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-        val requestApiToken: RequestBody = RequestBody.create(MultipartBody.FORM, BuildConfig.AUDD_API_TOKEN)
+        val requestApiToken: RequestBody =
+            BuildConfig.AUDD_API_TOKEN.toRequestBody(MultipartBody.FORM)
 
         val call = auddApiServices?.recognize(requestApiToken, body)
 
