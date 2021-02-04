@@ -9,7 +9,7 @@ data class ArtistResponse(
         @SerializedName("ontour") val onTour: String,
         @SerializedName("image") val images: List<Image>,
         @SerializedName("tags") val tags: TopTags,
-//        @SerializedName("similar") val similar: Artist,
+//        @SerializedName("similar") val similar: Artists,
         @SerializedName("stats.listeners") val listeners: String,
         @SerializedName("stats.playcount") val playCount: String
 )
