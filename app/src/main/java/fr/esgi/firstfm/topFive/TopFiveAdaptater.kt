@@ -87,7 +87,7 @@ class TopFiveAdapter(
                 }
             }
             12 -> {
-                (holder as TitleViewHolder).bind("Top Five fr.esgi.firstfm.entity.model.Track")
+                (holder as TitleViewHolder).bind("Top Five Track")
             }
             in 13..18 -> {
                 if (tracks.size > position - 13) {
