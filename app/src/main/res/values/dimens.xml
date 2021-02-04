@@ -7,4 +7,6 @@
   <dimen name="listPictureValue">64dp</dimen>
   <dimen name="detailPictureValue">320dp</dimen>
   <dimen name="paddingElement">5dp</dimen>
+  <dimen name="activity_horizontal_margin">16dp</dimen>
+  <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

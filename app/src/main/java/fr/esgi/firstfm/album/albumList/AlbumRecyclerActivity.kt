@@ -5,11 +5,11 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
@@ -23,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClickedListener,
-        Callback<LastFmApiArtistTopAlbumsGetInfoResponse> {
+    Callback<LastFmApiArtistTopAlbumsGetInfoResponse> {
 
     private var albums: List<AlbumFromTop>? = null
 
@@ -43,7 +43,8 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
             retrieveArtistTopAlbumsInfoByMbId("6cad3ce5-6380-4594-a8da-ae7d273b683d", "", this)
         } else {
             loader?.visibility = View.GONE
-            val toast = Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
+            val toast =
+                Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
             toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
             toast.show()
         }
@@ -55,7 +56,10 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
         }
     }
 
-    override fun onResponse(call: Call<LastFmApiArtistTopAlbumsGetInfoResponse>, response: Response<LastFmApiArtistTopAlbumsGetInfoResponse>) {
+    override fun onResponse(
+        call: Call<LastFmApiArtistTopAlbumsGetInfoResponse>,
+        response: Response<LastFmApiArtistTopAlbumsGetInfoResponse>
+    ) {
         deleteNameLessAlbumFromList(response.body()?.albums?.albums)
         loader?.visibility = View.GONE
 
@@ -67,7 +71,11 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
 
     override fun onFailure(call: Call<LastFmApiArtistTopAlbumsGetInfoResponse>, t: Throwable) {
         loader?.visibility = View.GONE
-        val toast = Toast.makeText(applicationContext, "Error while loading list content", Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(
+            applicationContext,
+            "Error while loading list content",
+            Toast.LENGTH_SHORT
+        )
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
         toast.show()
     }
@@ -79,7 +87,8 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
     }
 
     private fun isNetworkConnected(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val activeNetwork = connectivityManager.activeNetwork

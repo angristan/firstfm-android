@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.firstfm.lastfmapi.AlbumFromTop
 
-class AlbumAdapter(private val albums: List<AlbumFromTop>, private val onAlbumClickedListener: AlbumViewHolder.OnAlbumClickedListener) :
-        RecyclerView.Adapter<AlbumViewHolder>() {
+class AlbumAdapter(
+    private val albums: List<AlbumFromTop>,
+    private val onAlbumClickedListener: AlbumViewHolder.OnAlbumClickedListener
+) :
+    RecyclerView.Adapter<AlbumViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 

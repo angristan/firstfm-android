@@ -8,13 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.R
-import fr.esgi.firstfm.objects.Album
-import fr.esgi.firstfm.objects.Artist
-import fr.esgi.firstfm.objects.Track
+import fr.esgi.firstfm.entity.model.Album
+import fr.esgi.firstfm.entity.model.Artist
+import fr.esgi.firstfm.entity.model.Track
 
 class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.nominated_item, parent, false)), View.OnClickListener {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.nominated_item, parent, false)),
+    View.OnClickListener {
     interface OnNominatedClickedListener {
+
         fun onNominatedAlbumClicked(album: Album?)
         fun onNominatedArtistClicked(artist: Artist?)
         fun onNominatedTrackClicked(track: Track?)
@@ -36,30 +38,31 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 
     fun bindAlbumValues(album: Album) {
-
         this.album = album
-        nominatedNameTextView?.text = album.album
+        nominatedNameTextView?.text = album.name
         Picasso.get()
-                .load(album.url)
-                .into(nominatedPictureImageView)
+            .load(album.image[album.image.size - 1].url)
+            .into(nominatedPictureImageView)
     }
 
     fun bindArtistValues(artist: Artist) {
-
         this.artist = artist
-        nominatedNameTextView?.text = artist.album
-        Picasso.get()
-                .load(artist.url)
+        nominatedNameTextView?.text = artist.name
+        if (artist.spotifyImages.isNotEmpty()) {
+            Picasso.get()
+                .load(artist.spotifyImages[0].url)
                 .into(nominatedPictureImageView)
+        }
     }
 
     fun bindTrackValues(track: Track) {
-
         this.track = track
-        nominatedNameTextView?.text = track.album
-        Picasso.get()
-                .load(track.url)
+        nominatedNameTextView?.text = track.name
+        if (track.spotifyImages.isNotEmpty()) {
+            Picasso.get()
+                .load(track.spotifyImages[0].url)
                 .into(nominatedPictureImageView)
+        }
     }
 
     fun bind(position: Int, onNominatedClickedListener: OnNominatedClickedListener) {

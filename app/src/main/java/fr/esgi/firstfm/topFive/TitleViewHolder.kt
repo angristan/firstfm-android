@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.firstfm.R
 
 class TitleViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.title_item, parent, false)) {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.title_item, parent, false)) {
     private var titleTextView: TextView? = null
 
     init {

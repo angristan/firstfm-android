@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.firstfm.lastfmapi.TrackResponse
 
-class TrackAdapter(private val tracks: List<TrackResponse>, private val onTrackClickedListener: TrackViewHolder.OnTrackClickedListener) :
-        RecyclerView.Adapter<TrackViewHolder>() {
+class TrackAdapter(
+    private val tracks: List<TrackResponse>,
+    private val onTrackClickedListener: TrackViewHolder.OnTrackClickedListener
+) :
+    RecyclerView.Adapter<TrackViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
