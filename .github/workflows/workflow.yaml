@@ -1,0 +1,61 @@
+name: Main workflow
+
+on: push
+jobs:
+  lint:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Run gradlew lint
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: lint
+          wrapper-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Run gradlew test
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: test
+          wrapper-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+  buid:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Run gradlew build
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: build
+          wrapper-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
