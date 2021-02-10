@@ -51,7 +51,6 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_detail)
 
-
         val receivedMbId = intent?.getStringExtra("mbId")
         val receivedArtistName = intent?.getStringExtra("artistName")
         val receivedAlbumName = intent?.getStringExtra("albumName")
@@ -84,7 +83,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         albumDetailArtistName?.text = album?.artist
 
         listeners?.text = resources.getString(R.string.listeners_with_value, album?.listeners)
-        playCount?.text = resources.getString(R.string.play_count_with_value, album?.playCount)
+        listened?.text = resources.getString(R.string.listeners_with_value, album?.playCount)
         trackListTitleTextView?.text = resources.getString(R.string.track_list_title, album?.name)
 
         for (i in 3 downTo 0) {

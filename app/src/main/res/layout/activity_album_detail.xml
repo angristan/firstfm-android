@@ -102,25 +102,25 @@
                 app:layout_constraintTop_toBottomOf="@id/constraintAlbumDetail">
 
                 <TextView
-                    android:id="@+id/playCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/play_count_with_value"
-                    android:textSize="@dimen/subTitleTextSize"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/listeners"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
                     android:id="@+id/listeners"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/listeners_with_value"
                     android:textSize="@dimen/subTitleTextSize"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/listened"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/listened"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/listened_with_value"
+                    android:textSize="@dimen/subTitleTextSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/playCount"
+                    app:layout_constraintStart_toEndOf="@id/listeners"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
