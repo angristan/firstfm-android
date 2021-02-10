@@ -41,7 +41,7 @@ object LastFmApi {
     fun retrieveArtistInfoByMbId(
         mbId: String?,
         artist: String?,
-        callback: Callback<ArtistResponse>
+        callback: Callback<LastFmApiArtistGetInfoResponse>
     ) {
         val call =
             lastFmApiServices?.getArtistInfo(mbId, artist, "b61ee97cfc7ed80dad34909f0c980b8e")
@@ -53,11 +53,7 @@ object LastFmApi {
         artist: String?,
         callback: Callback<LastFmApiArtistTopAlbumsGetInfoResponse>
     ) {
-        val call = lastFmApiServices?.getArtistTopAlbumsInfo(
-            mbId,
-            artist,
-            "b61ee97cfc7ed80dad34909f0c980b8e"
-        )
+        val call = lastFmApiServices?.getArtistTopAlbumsInfo(mbId, artist, "b61ee97cfc7ed80dad34909f0c980b8e")
         call?.enqueue(callback)
     }
 }

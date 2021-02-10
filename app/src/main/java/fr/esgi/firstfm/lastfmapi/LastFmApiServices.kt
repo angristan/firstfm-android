@@ -26,7 +26,7 @@ interface LastFmApiServices {
         @Query("mbid") mbid: String?,
         @Query("artist") artist: String?,
         @Query("api_key") apiKey: String
-    ): Call<ArtistResponse>
+    ): Call<LastFmApiArtistGetInfoResponse>
 
     @GET("?method=artist.gettopalbums&format=json")
     fun getArtistTopAlbumsInfo(
