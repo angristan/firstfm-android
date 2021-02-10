@@ -58,8 +58,7 @@ class TopFiveViewModel(
                         for (i in artists.indices) {
                             val imageResult = artistRepository.getImage(activity, artists[i].name)
                             if (imageResult is Result.Success) {
-                                artists[i].spotifyImages =
-                                    imageResult.data.artistsContainer.artistsResults[0].images
+                                artists[i].spotifyImage = imageResult.data
                             } else {
                                 withContext(Main) {
                                     _topArtistsResult.value =
@@ -95,8 +94,7 @@ class TopFiveViewModel(
                                 tracks[i].artist.name
                             )
                             if (imageResult is Result.Success) {
-                                tracks[i].spotifyImages =
-                                    imageResult.data.tracksContainer.tracksResults[0].track.images
+                                tracks[i].spotifyImage = imageResult.data
                             } else {
                                 withContext(Main) {
                                     _topTracksResult.value =
