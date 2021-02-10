@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.data.Spotify
 import fr.esgi.firstfm.entity.SpotifyTrackSearchResponse
+import fr.esgi.firstfm.entity.model.SpotifyImage
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
@@ -16,7 +17,7 @@ class TrackDataSource {
         activity: AppCompatActivity,
         track: String,
         artist: String
-    ): Result<SpotifyTrackSearchResponse> {
+    ): Result<SpotifyImage> {
         try {
             val spotifyToken = Spotify().getSpotifyToken(activity)
 
@@ -35,7 +36,7 @@ class TrackDataSource {
                 val tracks =
                     format.decodeFromString<SpotifyTrackSearchResponse>(response.body!!.string())
 
-                return Result.Success(tracks)
+                return Result.Success(tracks.tracksContainer.tracksResults[0].track.images[0])
             }
 
         } catch (e: Exception) {

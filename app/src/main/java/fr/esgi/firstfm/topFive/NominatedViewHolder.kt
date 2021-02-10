@@ -48,9 +48,9 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bindArtistValues(artist: Artist) {
         this.artist = artist
         nominatedNameTextView?.text = artist.name
-        if (artist.spotifyImages.isNotEmpty()) {
+        if (artist.spotifyImage.url != "") {
             Picasso.get()
-                .load(artist.spotifyImages[0].url)
+                .load(artist.spotifyImage.url)
                 .into(nominatedPictureImageView)
         }
     }
@@ -58,9 +58,9 @@ class NominatedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bindTrackValues(track: Track) {
         this.track = track
         nominatedNameTextView?.text = track.name
-        if (track.spotifyImages.isNotEmpty()) {
+        if (track.spotifyImage.url != "") {
             Picasso.get()
-                .load(track.spotifyImages[0].url)
+                .load(track.spotifyImage.url)
                 .into(nominatedPictureImageView)
         }
     }
