@@ -107,7 +107,6 @@ class MainActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClicked
 
         if (!isLoggedIn()) {
             startActivity(Intent(this, LoginActivity::class.java))
-            onCreate(savedInstanceState)
         }
 
         setContentView(R.layout.activity_main)
