@@ -7,4 +7,6 @@
     <color name="colorRichBlackFogra">#0A100D</color>
     <color name="colorRichBlackFograLighter">#111715</color>
     <color name="colorCeladonGreen">#028D7F</color>
+    <color name="colorRed">#d92916</color>
+    <color name="colorBlack">#141414</color>
 </resources>
