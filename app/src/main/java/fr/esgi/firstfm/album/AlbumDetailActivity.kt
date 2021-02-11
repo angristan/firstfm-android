@@ -103,7 +103,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
             }
         }
 
-        recyclerView?.apply {
+        profileRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumDetailActivity)
             adapter = tracks?.let { TrackAdapter(it, this@AlbumDetailActivity) }
         }
