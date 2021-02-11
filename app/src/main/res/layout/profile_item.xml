@@ -11,23 +11,15 @@
         android:paddingStart="@dimen/paddingElement"
         android:paddingEnd="20dp"
         android:text="@string/rank_value"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/listValueSize"
         android:textStyle="italic"
+        android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/profileItemNameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/profileItemPictureImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/profileItemNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_profile_item_name_value"
-        android:textSize="@dimen/listValueSize"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rankNumberTextView"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/profileItemPictureImageView"
@@ -37,8 +29,21 @@
         android:paddingStart="0dp"
         android:paddingEnd="@dimen/paddingElement"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/profileItemNameTextView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rankNumberTextView"
         app:srcCompat="@drawable/default_album_picture" />
+
+    <TextView
+        android:id="@+id/profileItemNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_profile_item_name_value"
+        android:textSize="@dimen/listValueSize"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profileItemPictureImageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

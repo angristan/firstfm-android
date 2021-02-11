@@ -5,14 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorRichBlackFograLighter"
     tools:context=".ProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:elevation="4dp"
+        app:titleTextColor="@color/colorAccent"
+        android:background="@color/colorRichBlackFogra"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -23,6 +25,7 @@
         android:paddingTop="0dp"
         android:text="Profile"
         android:textSize="@dimen/titleTextSize"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tool_bar" />

@@ -34,10 +34,17 @@ class MainMenuFragment : Fragment() {
                 bottomNavigationView.menu.getItem(1)
                     .setIcon(R.drawable.ic_menu_main_solid_foreground)
             }
+
             MusicScannerActivity::class.simpleName -> {
                 bottomNavigationView.menu.getItem(2).isChecked = true
                 bottomNavigationView.menu.getItem(2)
                     .setIcon(R.drawable.ic_menu_mic_solid_foreground)
+            }
+
+            else -> {
+                for(i in 0..2) {
+                    bottomNavigationView.menu.getItem(i).isChecked = false
+                }
             }
         }
 
