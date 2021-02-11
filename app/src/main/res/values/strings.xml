@@ -4,11 +4,11 @@
     <string name="album_image_content_description_default_value">Default Album Description</string>
     <string name="album_description_default_value">Default Album Description</string>
     <string name="button_detail_album_default_value">button</string>
-    <string name="menu_historical_label">Historical</string>
+    <string name="menu_historical_label">History</string>
     <string name="menu_main_label">Home</string>
     <string name="menu_scanner_label">Scanner</string>
     <string name="album_cover">Album cover</string>
-    <string name="duration">Duration:</string>
+    <string name="duration">Duration:\u0020</string>
     <string name="listeners">Listeners</string>
     <string name="listened">Listened</string>
     <string name="top_five_default_title_value">Default Title Value</string>

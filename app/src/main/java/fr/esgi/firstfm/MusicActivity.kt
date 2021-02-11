@@ -96,7 +96,7 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
             val minutes = duration / 1000 / 60
             val seconds = duration / 1000 % 60
 
-            return "${minutes}:${seconds}"
+            return if (seconds < 10) "${minutes}:0${seconds}" else "${minutes}:${seconds}"
         }
 
         return ""
