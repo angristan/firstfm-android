@@ -63,7 +63,7 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
         deleteNameLessAlbumFromList(response.body()?.albums?.albums)
         loader?.visibility = View.GONE
 
-        profileRecyclerView?.apply {
+        albumRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumRecyclerActivity)
             adapter = albums?.let { AlbumAdapter(it, this@AlbumRecyclerActivity) }
         }

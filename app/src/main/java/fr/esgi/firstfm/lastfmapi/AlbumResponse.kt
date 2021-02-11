@@ -9,6 +9,6 @@ data class AlbumResponse(
     @SerializedName("image") val images: List<Image>,
     @SerializedName("tracks") val tracks: Tracks,
     @SerializedName("tags") val tags: TopTags,
-    @SerializedName("listeners") val listeners: String,
-    @SerializedName("playcount") val playCount: String
+    @SerializedName("listeners") val listeners: Long,
+    @SerializedName("playcount") val playCount: Long
 )

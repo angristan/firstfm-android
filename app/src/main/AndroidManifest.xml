@@ -22,6 +22,9 @@
             android:name=".album.AlbumDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".artist.ArtistDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MusicScannerActivity"
             android:screenOrientation="portrait" />
         <activity
