@@ -13,8 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
-import fr.esgi.firstfm.MusicActivity
 import fr.esgi.firstfm.R
+import fr.esgi.firstfm.TrackActivity
 import fr.esgi.firstfm.lastfmapi.AlbumResponse
 import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveAlbumInfo
 import fr.esgi.firstfm.lastfmapi.TrackResponse
@@ -122,7 +122,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
     override fun onTrackClicked(track: TrackResponse?) {
         if (track != null) {
-            MusicActivity.navigateTo(this, track.name, this.album?.artist)
+            TrackActivity.navigateTo(this, track.name, this.album?.artist)
         }
     }
 

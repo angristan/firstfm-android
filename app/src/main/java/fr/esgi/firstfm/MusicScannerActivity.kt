@@ -77,7 +77,7 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
 
             FileManager.delete(File(this.recordPath))
 
-            navigateTo(this, musicInfo, MusicActivity::class.java)
+            navigateTo(this, musicInfo, TrackActivity::class.java)
         }
     }
 
@@ -128,7 +128,7 @@ class MusicScannerActivity : AppCompatActivity(), View.OnClickListener, Callback
         mr.release()
     }
 
-    private fun navigateTo(context: Context, data: AuddApiData, activity: Class<MusicActivity>) {
+    private fun navigateTo(context: Context, data: AuddApiData, activity: Class<TrackActivity>) {
         val intent = Intent(context, activity).apply {
             putExtra("title", data.title)
             putExtra("artist", data.artist)

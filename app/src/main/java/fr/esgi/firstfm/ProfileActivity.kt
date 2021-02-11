@@ -242,9 +242,8 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     }
 
     override fun onProfileTrackClicked(track: Track?) {
-        // TODO update this part, navigate to track page
         if (track != null) {
-//            AlbumDetailActivity.navigateTo(this, track.album, track.artist)
+            TrackActivity.navigateTo(this, track.name, track.artist.name)
         }
     }
 }

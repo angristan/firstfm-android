@@ -29,7 +29,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoResponse> {
+class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoResponse> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -187,7 +187,7 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         private val PARAM1: String = "title"
         private val PARAM2: String = "artist"
         fun navigateTo(context: Context, param1: String?, param2: String?) {
-            val intent = Intent(context, MusicActivity::class.java).apply {
+            val intent = Intent(context, TrackActivity::class.java).apply {
                 putExtra(PARAM1, param1)
                 putExtra(PARAM2, param2)
             }
