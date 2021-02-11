@@ -61,14 +61,9 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
         noTrackList?.visibility = View.GONE
 
         if (isNetworkConnected()) {
-            val id = "6cad3ce5-6380-4594-a8da-ae7d273b683d"
-            val name = "Orelsan"
-//            val id = ""
-//            val name = "Jim Murple Memorial"
-
             CoroutineScope(Dispatchers.IO).launch {
 
-                searchArtistInfo(this@ArtistDetailActivity, name,
+                searchArtistInfo(this@ArtistDetailActivity, receivedArtistName,
                     object : Callback<SpotifyArtistSearchReponse> {
                         override fun onResponse(
                             call: Call<SpotifyArtistSearchReponse>,
@@ -102,7 +97,7 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
                     })
             }
 
-            retrieveArtistInfoByMbId(id, name,
+            retrieveArtistInfoByMbId(receivedMbId, receivedArtistName,
                 object : Callback<LastFmApiArtistGetInfoResponse> {
 
                     override fun onResponse(
@@ -146,7 +141,7 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
                 })
 
 
-            retrieveArtistTopAlbumsInfoByMbId(id, name,
+            retrieveArtistTopAlbumsInfoByMbId(receivedMbId, receivedArtistName,
                 object : Callback<LastFmApiArtistTopAlbumsGetInfoResponse> {
 
                     override fun onResponse(

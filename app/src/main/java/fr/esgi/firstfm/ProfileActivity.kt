@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.album.AlbumDetailActivity
+import fr.esgi.firstfm.artist.ArtistDetailActivity
 import fr.esgi.firstfm.entity.model.Album
 import fr.esgi.firstfm.entity.model.Artist
 import fr.esgi.firstfm.entity.model.Image
@@ -237,7 +238,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     override fun onProfileArtistClicked(artist: Artist?) {
         // TODO update this part, navigate to artist page
         if (artist != null) {
-//            AlbumDetailActivity.navigateTo(this, artist.album, artist.artist)
+            ArtistDetailActivity.navigateTo(this,artist.mbid, artist.name)
         }
     }
 
