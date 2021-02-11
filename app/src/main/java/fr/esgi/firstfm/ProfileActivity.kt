@@ -12,10 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import fr.esgi.firstfm.album.AlbumDetailActivity
+import fr.esgi.firstfm.album.albumList.AlbumViewHolder
 import fr.esgi.firstfm.entity.model.Album
 import fr.esgi.firstfm.entity.model.Artist
 import fr.esgi.firstfm.entity.model.Image
 import fr.esgi.firstfm.entity.model.Track
+import fr.esgi.firstfm.lastfmapi.AlbumFromTop
 import fr.esgi.firstfm.topFive.NominatedViewHolder
 import fr.esgi.firstfm.topFive.TopFiveAdapter
 import fr.esgi.firstfm.topFive.TopFiveViewModel
@@ -24,7 +27,8 @@ import fr.esgi.firstfm.ui.login.TopFiveViewModelFactory
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClickedListener {
+class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClickedListener,
+    AlbumViewHolder.OnAlbumClickedListener {
 
     private lateinit var topFiveViewModel: TopFiveViewModel
     private lateinit var adapter: TopFiveAdapter
@@ -214,6 +218,12 @@ class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClic
         return sharedPreferences.contains("token") && sharedPreferences.contains("username")
     }
 
+    override fun onAlbumClicked(album: AlbumFromTop?) {
+        if (album != null) {
+            AlbumDetailActivity.navigateTo(this, album.artist.name, album.name)
+        }
+    }
+
     companion object {
         fun navigateTo(context: Context) {
             context.startActivity(Intent(context, ProfileActivity::class.java))
@@ -228,7 +238,9 @@ class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClic
 //    }
 
     override fun onNominatedAlbumClicked(album: Album?) {
-        TODO("Not yet implemented")
+        if (album != null) {
+            AlbumDetailActivity.navigateTo(this, album.artist.name, album.name)
+        }
     }
 
     override fun onNominatedArtistClicked(artist: Artist?) {

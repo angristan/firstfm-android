@@ -15,7 +15,6 @@ interface LastFmApiServices {
 
     @GET("?method=album.getInfo&format=json")
     fun getAlbumInfo(
-        @Query("mbid") mbid: String?,
         @Query("artist") artist: String?,
         @Query("album") album: String?,
         @Query("api_key") apiKey: String

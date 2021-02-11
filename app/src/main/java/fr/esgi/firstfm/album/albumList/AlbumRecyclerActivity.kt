@@ -52,7 +52,7 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
 
     override fun onAlbumClicked(album: AlbumFromTop?) {
         if (album != null) {
-            AlbumDetailActivity.navigateTo(this, album.mbId, album.artist.name, album.name)
+            AlbumDetailActivity.navigateTo(this, album.artist.name, album.name)
         }
     }
 

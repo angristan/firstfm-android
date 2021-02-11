@@ -23,6 +23,7 @@ class UserDataSource {
                     .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
                     .addEncoded("method", method)
                     .addEncoded("username", username)
+                    .addEncoded("period", "1month")
                     .addEncoded("limit", "5")
 
             val request = Request.Builder()
@@ -53,6 +54,7 @@ class UserDataSource {
                     .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
                     .addEncoded("method", method)
                     .addEncoded("username", username)
+                    .addEncoded("period", "1month")
                     .addEncoded("limit", "5")
 
             val request = Request.Builder()
@@ -83,6 +85,7 @@ class UserDataSource {
                     .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
                     .addEncoded("method", method)
                     .addEncoded("username", username)
+                    .addEncoded("period", "1month")
                     .addEncoded("limit", "5")
 
             val request = Request.Builder()
