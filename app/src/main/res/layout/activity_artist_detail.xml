@@ -5,29 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorRichBlackFograLighter"
-    tools:context=".album.AlbumDetailActivity">
-
-    <fragment
-        android:id="@+id/fragmentBackButton"
-        android:name="fr.esgi.firstfm.fragments.BackButtonFragment"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/arrow_back_fragment_height"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/titleTextView"/>
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:paddingTop="0dp"
-        android:text="@string/album_detail_title"
-        android:textSize="@dimen/titleTextSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentBackButton" />
+    tools:context=".artist.ArtistDetailActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -43,12 +21,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/albumDetailImage"
+                android:id="@+id/artistDetailImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/album_cover"
-                app:layout_constraintBottom_toTopOf="@id/constraintAlbumDetail"
+                app:layout_constraintBottom_toTopOf="@id/constraintArtistDetail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -69,58 +47,49 @@
                 app:layout_constraintGuide_percent=".95" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintAlbumDetail"
+                android:id="@+id/constraintArtistDetail"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toTopOf="@id/constraintStats"
                 app:layout_constraintEnd_toEndOf="@id/verticalGuidelineRight"
                 app:layout_constraintStart_toStartOf="@id/verticalGuidelineLeft"
-                app:layout_constraintTop_toBottomOf="@id/albumDetailImage">
+                app:layout_constraintTop_toBottomOf="@id/artistDetailImage">
 
                 <TextView
-                    android:id="@+id/albumDetailName"
+                    android:id="@+id/artistDetailName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:text="@string/album_name_default_value"
-                    android:textSize="28sp"
-                    app:layout_constraintBottom_toTopOf="@+id/albumDetailArtistName"
+                    android:text="@string/default_artist_name_value"
+                    android:textSize="@dimen/titleTextSize"
+                    app:layout_constraintBottom_toTopOf="@id/onTour"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/pred"
+                    android:id="@+id/onTour"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pred_artist_name"
-                    android:textSize="18sp"
+                    android:layout_height="match_parent"
+                    android:gravity="start"
+                    android:text="@string/on_tour_value"
+                    android:textColor="@color/colorRed"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/albumDetailArtistName"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/albumDetailName" />
-
-                <TextView
-                    android:id="@+id/albumDetailArtistName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/default_artist_name_value"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/pred"
-                    app:layout_constraintTop_toBottomOf="@+id/albumDetailName" />
+                    app:layout_constraintTop_toBottomOf="@id/artistDetailName" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintStats"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:paddingTop="20dp"
                 app:layout_constraintBottom_toTopOf="@id/constraintRecycler"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintAlbumDetail">
+                app:layout_constraintEnd_toEndOf="@id/verticalGuidelineRight"
+                app:layout_constraintStart_toStartOf="@id/verticalGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/constraintArtistDetail">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/listeners"
@@ -201,36 +170,37 @@
                 app:layout_constraintTop_toBottomOf="@id/constraintStats">
 
                 <TextView
-                    android:id="@+id/trackListTitleTextView"
+                    android:id="@+id/albumListTitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingBottom="15dp"
                     android:text="@string/track_list_title"
-                    app:layout_constraintBottom_toTopOf="@id/profileRecyclerView"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/recyclerView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/profileRecyclerView"
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/trackListTitleTextView" />
+                    app:layout_constraintTop_toBottomOf="@id/albumListTitleTextView" />
 
                 <TextView
                     android:id="@+id/noTrackList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_album_list"
+                    android:text="@string/no_track_list"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/trackListTitleTextView" />
+                    app:layout_constraintTop_toBottomOf="@id/albumListTitleTextView" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -254,7 +224,7 @@
         android:id="@+id/fragmentMainMenu"
         android:name="fr.esgi.firstfm.fragments.MainMenuFragment"
         android:layout_width="0dp"
-        android:layout_height="@dimen/fragmentMainMenuHeight"
+        android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

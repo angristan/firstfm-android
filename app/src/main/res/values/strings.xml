@@ -39,6 +39,16 @@
     <string name="profile_scrobbles">Scrobbles: %1$s</string>
     <string name="profile_subs">Subscribers: %1$s</string>
     <string name="track_list_title">%1$s\'s track list</string>
+    <string name="listened_with_value">Listened\n%1$s</string>
+    <string name="listeners_with_value">Listeners\n%1$s</string>
+    <string name="on_tour_value">ON TOUR</string>
+    <string name="track_list_title">Track list</string>
+    <string name="album_list_title">Album list</string>
+    <string name="no_track_list">No track list</string>
+    <string name="no_album_list">No album list</string>
     <string name="album_detail_title">Album Detail Page</string>
+    <string name="artist_detail_title">Artist Detail Page</string>
+    <string name="artist_name_default_value">Artist Detail Page</string>
+    <string name="artist_image_content_description_default_value">Default Album Description</string>
     <string name="log_out">Log out</string>
 </resources>

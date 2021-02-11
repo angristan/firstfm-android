@@ -49,12 +49,12 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_detail)
 
-
         val receivedArtistName = intent?.getStringExtra("artistName")
         val receivedAlbumName = intent?.getStringExtra("albumName")
 
         loader?.visibility = View.VISIBLE
         scrollView?.visibility = View.GONE
+        noTrackList?.visibility = View.GONE
 
         if (isNetworkConnected()) {
             retrieveAlbumInfo(receivedArtistName, receivedAlbumName, this)
@@ -82,26 +82,15 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         albumDetailName?.text = album?.name
         albumDetailArtistName?.text = album?.artist
 
-        listeners?.text = resources.getString(R.string.listeners_with_value, album?.listeners)
-        playCount?.text = resources.getString(R.string.play_count_with_value, album?.playCount)
-        trackListTitleTextView?.text = resources.getString(R.string.track_list_title, album?.name)
-
-        for (i in 3 downTo 0) {
-            if (album?.images?.get(i)?.url != "") {
-                Picasso.get()
-                    .load(album?.images?.get(i)?.url)
-                    .into(albumDetailImage,
-                        object : com.squareup.picasso.Callback {
-                            override fun onSuccess() {}
-
-                            override fun onError(e: Exception) {
-                                albumDetailImage?.setImageResource(R.drawable.default_album_picture)
-                            }
-                        }
-                    )
-                break
-            }
+        if (album?.tracks?.tracks?.size == 0) {
+            albumRecyclerView?.visibility = View.GONE
+            noTrackList?.visibility = View.VISIBLE
         }
+
+        listenersNumber?.text = formatNumberToString(album?.listeners)
+        scrobblesNumber?.text = formatNumberToString(album?.playCount)
+
+        this.album?.let { selectBiggestPicture(it) }
 
         profileRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumDetailActivity)
@@ -138,5 +127,46 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
             true
             // TODO("VERSION.SDK_INT < M")
         }
+    }
+
+    fun selectBiggestPicture(album: AlbumResponse) {
+        for (i in 3 downTo 0) {
+            if (album.images.get(i).url != "") {
+                Picasso.get()
+                    .load(album.images.get(i).url)
+                    .into(albumDetailImage,
+                        object : com.squareup.picasso.Callback {
+                            override fun onSuccess() {}
+
+                            override fun onError(e: Exception) {
+                                albumDetailImage?.setImageResource(R.drawable.default_album_picture)
+                            }
+                        }
+                    )
+                break
+            }
+        }
+    }
+
+    private fun formatNumberToString(listeners: Long?): String {
+        if (listeners != null) {
+            return when {
+                listeners < 1000 -> {
+                    "$listeners"
+                }
+                listeners in 1000..999999 -> {
+                    val unit = listeners / 1000
+                    val rest = listeners % 1000 / 100
+                    "${unit}.${rest}K"
+                }
+                else -> {
+                    val unit = listeners / 1000000
+                    val rest = listeners % 1000000 / 1000
+                    "${unit}.${rest}M"
+                }
+            }
+        }
+
+        return ""
     }
 }

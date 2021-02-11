@@ -34,10 +34,17 @@ class MainMenuFragment : Fragment() {
                 bottomNavigationView.menu.getItem(1)
                     .setIcon(R.drawable.ic_menu_main_solid_foreground)
             }
+
             MusicScannerActivity::class.simpleName -> {
                 bottomNavigationView.menu.getItem(2).isChecked = true
                 bottomNavigationView.menu.getItem(2)
                     .setIcon(R.drawable.ic_menu_mic_solid_foreground)
+            }
+
+            else -> {
+                for(i in 0..2) {
+                    bottomNavigationView.menu.getItem(i).isChecked = false
+                }
             }
         }
 
@@ -45,7 +52,7 @@ class MainMenuFragment : Fragment() {
             when (it.itemId) {
                 R.id.profile -> activity?.let { it1 ->
                     if (!it.isChecked) {
-                        ProfileActivity.navigateTo(it1)
+                        RouterActivity.navigateTo(it1)
                     }
                 }
                 R.id.home -> activity?.let { it1 ->

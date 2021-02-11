@@ -15,6 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.entity.model.*
+import fr.esgi.firstfm.artist.ArtistDetailActivity
+import fr.esgi.firstfm.entity.model.Album
+import fr.esgi.firstfm.entity.model.Artist
+import fr.esgi.firstfm.entity.model.Image
+import fr.esgi.firstfm.entity.model.Track
 import fr.esgi.firstfm.profile.ProfileAdapter
 import fr.esgi.firstfm.profile.ProfileViewHolder
 import fr.esgi.firstfm.profile.ProfileViewModel
@@ -23,7 +28,6 @@ import fr.esgi.firstfm.ui.login.ProfileViewModelFactory
 import kotlinx.android.synthetic.main.activity_album_detail.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.activity_profile.profileRecyclerView
 
 class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedListener {
 
@@ -112,14 +116,8 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!isLoggedIn()) {
-            finish()
-            startActivity(Intent(this, LoginActivity::class.java))
-            this@ProfileActivity.recreate()
-        }
-
         setContentView(R.layout.activity_profile)
-        setSupportActionBar(tool_bar)
+        setSupportActionBar()
 
 
         profileViewModel = ViewModelProviders.of(this, ProfileViewModelFactory())
@@ -239,7 +237,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
         val id: Int = item.itemId
         return if (id == R.id.logout) {
             this.logOut()
-            this@ProfileActivity.recreate()
+            LoginActivity.navigateTo(this)
             return true
 
         } else super.onOptionsItemSelected(item)
@@ -306,7 +304,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     override fun onProfileArtistClicked(artist: Artist?) {
         // TODO update this part, navigate to artist page
         if (artist != null) {
-//            AlbumDetailActivity.navigateTo(this, artist.album, artist.artist)
+            ArtistDetailActivity.navigateTo(this,artist.mbid, artist.name)
         }
     }
 
