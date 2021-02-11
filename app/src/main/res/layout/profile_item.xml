@@ -15,22 +15,22 @@
         android:textSize="@dimen/listValueSize"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nominatedNameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/profileItemNameTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nominatedNameTextView"
+        android:id="@+id/profileItemNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_nominated_artist_name_value"
+        android:text="@string/default_profile_item_name_value"
         android:textSize="@dimen/listValueSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rankNumberTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/nominatedPictureImageView"
+        android:id="@+id/profileItemPictureImageView"
         android:layout_width="@dimen/listPictureValue"
         android:layout_height="@dimen/listPictureValue"
         android:contentDescription="@string/album_image_content_description_default_value"

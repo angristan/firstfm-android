@@ -12,7 +12,7 @@
     <string name="listeners">Listeners</string>
     <string name="listened">Listened</string>
     <string name="top_five_default_title_value">Default Title Value</string>
-    <string name="default_nominated_artist_name_value">A nominated artist name</string>
+    <string name="default_profile_item_name_value">An item name</string>
     <string name="rank_value">1</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="username">Username</string>

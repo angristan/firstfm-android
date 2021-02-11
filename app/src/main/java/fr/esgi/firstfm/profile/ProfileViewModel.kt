@@ -1,4 +1,4 @@
-package fr.esgi.firstfm.topFive
+package fr.esgi.firstfm.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,7 +18,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TopFiveViewModel(
+class ProfileViewModel(
     private val userRepository: UserRepository,
     private val artistRepository: ArtistRepository,
     private val trackRepository: TrackRepository,
