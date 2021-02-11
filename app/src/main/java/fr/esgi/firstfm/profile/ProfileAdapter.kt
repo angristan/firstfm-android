@@ -52,6 +52,7 @@ class ProfileAdapter(
         notifyDataSetChanged()
     }
 
+
     override fun getItemCount(): Int {
         return 3 + albums.size + artists.size + tracks.size
     }

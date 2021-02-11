@@ -5,6 +5,7 @@ import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.entity.TopAlbumsResponse
 import fr.esgi.firstfm.entity.TopArtistsResponse
 import fr.esgi.firstfm.entity.TopTracksResponse
+import fr.esgi.firstfm.entity.response.UserInfoResponse
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.FormBody
@@ -101,6 +102,35 @@ class UserDataSource {
                     format.decodeFromString<TopTracksResponse>(response.body!!.string())
 
                 return Result.Success(topTracks)
+            }
+
+        } catch (e: Throwable) {
+            return Result.Error(IOException("Error getting top tracks: " + e.message, e))
+        }
+    }
+
+    fun getInfo(username: String): Result<UserInfoResponse> {
+        try {
+            val method = "user.getInfo"
+            val body =
+                FormBody.Builder()
+                    .addEncoded("api_key", BuildConfig.LASTFM_API_TOKEN)
+                    .addEncoded("method", method)
+                    .addEncoded("username", username)
+
+            val request = Request.Builder()
+                .method("POST", body.build())
+                .url("https://ws.audioscrobbler.com/2.0/?format=json")
+                .build()
+
+            OkHttpClient().newCall(request).execute().use { response ->
+                if (!response.isSuccessful) throw IOException("Unexpected code $response")
+                val format = Json { ignoreUnknownKeys = true }
+
+                val userResponse =
+                    format.decodeFromString<UserInfoResponse>(response.body!!.string())
+
+                return Result.Success(userResponse)
             }
 
         } catch (e: Throwable) {
