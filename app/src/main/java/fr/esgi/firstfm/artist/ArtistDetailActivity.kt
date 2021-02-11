@@ -24,11 +24,6 @@ import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistInfoByMbId
 import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistTopAlbumsInfoByMbId
 import fr.esgi.firstfm.spotifyapi.SpotifyApi.searchArtistInfo
 import kotlinx.android.synthetic.main.activity_artist_detail.*
-import kotlinx.android.synthetic.main.activity_artist_detail.listened
-import kotlinx.android.synthetic.main.activity_artist_detail.listeners
-import kotlinx.android.synthetic.main.activity_artist_detail.loader
-import kotlinx.android.synthetic.main.activity_artist_detail.recyclerView
-import kotlinx.android.synthetic.main.activity_artist_detail.scrollView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -63,12 +58,13 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
 
         loader?.visibility = View.VISIBLE
         scrollView?.visibility = View.GONE
+        noTrackList?.visibility = View.GONE
 
         if (isNetworkConnected()) {
-//            val id = "6cad3ce5-6380-4594-a8da-ae7d273b683d"
-//            val name = "Orelsan"
-            val id = ""
-            val name = "Jim Murple Memorial"
+            val id = "6cad3ce5-6380-4594-a8da-ae7d273b683d"
+            val name = "Orelsan"
+//            val id = ""
+//            val name = "Jim Murple Memorial"
 
             CoroutineScope(Dispatchers.IO).launch {
 
@@ -119,25 +115,15 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
 
                         artistDetailName?.text = artist?.name
 
-                        listeners?.text = resources.getString(
-                            R.string.listeners_with_value,
-                            formatNumberToString(artist?.stats?.listeners)
-                        )
-                        listened?.text = resources.getString(
-                            R.string.listened_with_value,
-                            formatNumberToString(artist?.stats?.playCount)
-                        )
+                        listenersNumber.text = formatNumberToString(artist?.stats?.listeners)
+                        scrobblesNumber.text = formatNumberToString(artist?.stats?.playCount)
 
-                        onTour?.text = resources.getString(R.string.on_tour_value, "ON TOUR")
                         onTour?.setTextColor(
                             ContextCompat.getColor(
                                 this@ArtistDetailActivity,
                                 R.color.colorRed
                             )
                         )
-
-                        albumListTitleTextView?.text =
-                            resources.getString(R.string.album_list_title, artist?.name)
 
                         if (artist?.onTour.equals("0")) {
                             onTour?.visibility = View.GONE
@@ -169,6 +155,11 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
                     ) {
                         deleteNameLessAlbumFromList(response.body()?.albums?.albums)
                         loader?.visibility = View.GONE
+
+                        if (albums?.size == 0) {
+                            recyclerView?.visibility = View.GONE
+                            noTrackList?.visibility = View.VISIBLE
+                        }
 
                         recyclerView?.apply {
                             layoutManager = LinearLayoutManager(this@ArtistDetailActivity)
