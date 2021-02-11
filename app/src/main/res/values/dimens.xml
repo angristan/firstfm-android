@@ -4,7 +4,8 @@
   <dimen name="titleTextSize">28sp</dimen>
   <dimen name="subTitleTextSize">14sp</dimen>
   <dimen name="listValueSize">18sp</dimen>
-  <dimen name="listPictureValue">64dp</dimen>
+  <dimen name="listPictureValue">55dp</dimen>
+  <dimen name="fragmentMainMenuHeight">65dp</dimen>
   <dimen name="detailPictureValue">320dp</dimen>
   <dimen name="paddingElement">5dp</dimen>
   <dimen name="activity_horizontal_margin">16dp</dimen>

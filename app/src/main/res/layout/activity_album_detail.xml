@@ -193,7 +193,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/profileRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -232,7 +232,7 @@
         android:id="@+id/fragmentMainMenu"
         android:name="fr.esgi.firstfm.fragments.MainMenuFragment"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/fragmentMainMenuHeight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

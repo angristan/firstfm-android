@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/historical"
-        android:title="@string/menu_historical_label"
-        android:icon="@drawable/ic_menu_user_regular_foreground"/>
+        android:id="@+id/profile"
+        android:title="@string/menu_profile_label"
+        android:icon="@drawable/ic_menu_user_regular_foreground" />
     <item
         android:id="@+id/home"
         android:title="@string/menu_main_label"
-        android:icon="@drawable/ic_menu_main_regular_foreground"/>
+        android:icon="@drawable/ic_menu_main_regular_foreground" />
     <item
         android:id="@+id/scanner"
         android:title="@string/menu_scanner_label"

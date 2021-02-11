@@ -28,10 +28,16 @@
             android:name=".MusicScannerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MusicActivity"
+            android:name=".TrackActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".album.albumList.AlbumRecyclerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GlobalActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"

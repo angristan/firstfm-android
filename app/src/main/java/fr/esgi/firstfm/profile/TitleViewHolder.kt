@@ -1,4 +1,4 @@
-package fr.esgi.firstfm.topFive
+package fr.esgi.firstfm.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

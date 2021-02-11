@@ -3,22 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
-
-    <TextView
-        android:id="@+id/rankNumberTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/paddingElement"
-        android:paddingEnd="20dp"
-        android:text="@string/rank_value"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/listValueSize"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/trackNameTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:padding="10dp"
+    android:background="@color/colorRichBlackFograLighter">
 
     <TextView
         android:id="@+id/trackNameTextView"
@@ -27,7 +13,7 @@
         android:text="@string/default_album_name_value"
         android:textSize="@dimen/listValueSize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rankNumberTextView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

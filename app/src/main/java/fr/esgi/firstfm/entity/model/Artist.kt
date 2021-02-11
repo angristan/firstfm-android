@@ -10,5 +10,5 @@ data class Artist(
     @SerialName("url") val url: String = "",
     @SerialName("playcount") val playcount: Int = 0,
     @SerialName("image") val images: List<Image> = listOf(),
-    var spotifyImages: List<SpotifyImage> = listOf()
+    var spotifyImage: SpotifyImage = SpotifyImage(),
 )

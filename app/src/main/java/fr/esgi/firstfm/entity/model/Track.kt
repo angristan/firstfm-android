@@ -12,5 +12,5 @@ data class Track(
     @SerialName("artist") val artist: Artist = Artist(),
 
     @SerialName("image") val image: List<Image> = listOf(),
-    var spotifyImages: List<SpotifyImage> = listOf()
+    var spotifyImage: SpotifyImage = SpotifyImage(),
 )

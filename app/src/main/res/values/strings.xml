@@ -4,18 +4,18 @@
     <string name="album_image_content_description_default_value">Default Album Description</string>
     <string name="album_description_default_value">Default Album Description</string>
     <string name="button_detail_album_default_value">button</string>
-    <string name="menu_historical_label">Historical</string>
+    <string name="menu_profile_label">Profile</string>
     <string name="menu_main_label">Home</string>
     <string name="menu_scanner_label">Scanner</string>
     <string name="album_cover">Album cover</string>
-    <string name="duration">Duration:</string>
+    <string name="duration">Duration:\u0020</string>
     <string name="listeners">Listeners</string>
     <string name="listened">Listened</string>
     <string name="top_five_default_title_value">Default Title Value</string>
-    <string name="default_nominated_artist_name_value">A nominated artist name</string>
+    <string name="default_profile_item_name_value">An item name</string>
     <string name="rank_value">1</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
+    <string name="username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -43,4 +43,5 @@
     <string name="artist_detail_title">Artist Detail Page</string>
     <string name="artist_name_default_value">Artist Detail Page</string>
     <string name="artist_image_content_description_default_value">Default Album Description</string>
+    <string name="log_out">Log out</string>
 </resources>

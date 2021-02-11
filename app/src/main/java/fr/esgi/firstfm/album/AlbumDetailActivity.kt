@@ -13,8 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
-import fr.esgi.firstfm.MusicActivity
 import fr.esgi.firstfm.R
+import fr.esgi.firstfm.TrackActivity
 import fr.esgi.firstfm.lastfmapi.AlbumResponse
 import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveAlbumInfo
 import fr.esgi.firstfm.lastfmapi.TrackResponse
@@ -33,13 +33,11 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
     private var tracks: List<TrackResponse>? = null
 
     companion object {
-        private val PARAM1: String = "mbId"
         private val PARAM2: String = "artistName"
         private val PARAM3: String = "albumName"
 
-        fun navigateTo(context: Context, param1: String?, param2: String?, param3: String?) {
+        fun navigateTo(context: Context, param2: String?, param3: String?) {
             val intent = Intent(context, AlbumDetailActivity::class.java).apply {
-                putExtra(PARAM1, param1)
                 putExtra(PARAM2, param2)
                 putExtra(PARAM3, param3)
             }
@@ -51,7 +49,6 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_detail)
 
-        val receivedMbId = intent?.getStringExtra("mbId")
         val receivedArtistName = intent?.getStringExtra("artistName")
         val receivedAlbumName = intent?.getStringExtra("albumName")
 
@@ -60,7 +57,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         noTrackList?.visibility = View.GONE
 
         if (isNetworkConnected()) {
-            retrieveAlbumInfo(receivedMbId, receivedArtistName, receivedAlbumName, this)
+            retrieveAlbumInfo(receivedArtistName, receivedAlbumName, this)
         } else {
             loader?.visibility = View.GONE
             val toast =
@@ -77,8 +74,10 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         loader?.visibility = View.GONE
         scrollView?.visibility = View.VISIBLE
 
-        album = response.body()?.album
-        tracks = response.body()?.album?.tracks?.tracks
+        val body = response.body()
+
+        album = body?.album
+        tracks = body?.album?.tracks?.tracks
 
         albumDetailName?.text = album?.name
         albumDetailArtistName?.text = album?.artist
@@ -93,7 +92,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
         this.album?.let { selectBiggestPicture(it) }
 
-        recyclerView?.apply {
+        profileRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumDetailActivity)
             adapter = tracks?.let { TrackAdapter(it, this@AlbumDetailActivity) }
         }
@@ -112,7 +111,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
     override fun onTrackClicked(track: TrackResponse?) {
         if (track != null) {
-            MusicActivity.navigateTo(this, track.name, this.album?.artist)
+            TrackActivity.navigateTo(this, track.name, this.album?.artist)
         }
     }
 

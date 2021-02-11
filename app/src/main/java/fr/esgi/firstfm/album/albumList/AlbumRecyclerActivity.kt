@@ -52,7 +52,7 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
 
     override fun onAlbumClicked(album: AlbumFromTop?) {
         if (album != null) {
-            AlbumDetailActivity.navigateTo(this, album.mbId, album.artist.name, album.name)
+            AlbumDetailActivity.navigateTo(this, album.artist.name, album.name)
         }
     }
 
@@ -63,7 +63,7 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
         deleteNameLessAlbumFromList(response.body()?.albums?.albums)
         loader?.visibility = View.GONE
 
-        recyclerView?.apply {
+        profileRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumRecyclerActivity)
             adapter = albums?.let { AlbumAdapter(it, this@AlbumRecyclerActivity) }
         }

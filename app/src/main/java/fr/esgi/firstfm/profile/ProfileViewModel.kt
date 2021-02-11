@@ -1,9 +1,9 @@
-package fr.esgi.firstfm.topFive
+package fr.esgi.firstfm.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fr.esgi.firstfm.MainActivity
+import fr.esgi.firstfm.ProfileActivity
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.data.Artist.ArtistRepository
 import fr.esgi.firstfm.data.Artist.TrackRepository
@@ -18,7 +18,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TopFiveViewModel(
+class ProfileViewModel(
     private val userRepository: UserRepository,
     private val artistRepository: ArtistRepository,
     private val trackRepository: TrackRepository,
@@ -31,8 +31,7 @@ class TopFiveViewModel(
     private val _topTracksResult = MutableLiveData<TopTracksResult>()
     val topTracksResult: LiveData<TopTracksResult> = _topTracksResult
 
-    fun getTopAlbums(activity: MainActivity) {
-        // can be launched in a separate asynchronous job
+    fun getTopAlbums(activity: ProfileActivity) {
         CoroutineScope(IO).launch {
             val result = userRepository.getTopAlbums(activity)
 
@@ -47,8 +46,7 @@ class TopFiveViewModel(
         }
     }
 
-    fun getTopArtists(activity: MainActivity) {
-        // can be launched in a separate asynchronous job
+    fun getTopArtists(activity: ProfileActivity) {
         CoroutineScope(IO).launch {
             val result = userRepository.getTopArtists(activity)
 
@@ -56,11 +54,11 @@ class TopFiveViewModel(
                 if (result is Result.Success) {
                     val artists = result.data.artistsContainer.artists
                     CoroutineScope(IO).launch {
+                        // For each artist, get image from Spotify API
                         for (i in artists.indices) {
                             val imageResult = artistRepository.getImage(activity, artists[i].name)
                             if (imageResult is Result.Success) {
-                                artists[i].spotifyImages =
-                                    imageResult.data.artistsContainer.artistsResults[0].images
+                                artists[i].spotifyImage = imageResult.data
                             } else {
                                 withContext(Main) {
                                     _topArtistsResult.value =
@@ -80,8 +78,7 @@ class TopFiveViewModel(
         }
     }
 
-    fun getTopTracks(activity: MainActivity) {
-        // can be launched in a separate asynchronous job
+    fun getTopTracks(activity: ProfileActivity) {
         CoroutineScope(IO).launch {
             val result = userRepository.getTopTracks(activity)
 
@@ -89,6 +86,7 @@ class TopFiveViewModel(
                 if (result is Result.Success) {
                     val tracks = result.data.tracksContainer.tracks
                     CoroutineScope(IO).launch {
+                        // For each track, get image from Spotify API
                         for (i in tracks.indices) {
                             val imageResult = trackRepository.getImage(
                                 activity,
@@ -96,8 +94,7 @@ class TopFiveViewModel(
                                 tracks[i].artist.name
                             )
                             if (imageResult is Result.Success) {
-                                tracks[i].spotifyImages =
-                                    imageResult.data.tracksContainer.tracksResults[0].track.images
+                                tracks[i].spotifyImage = imageResult.data
                             } else {
                                 withContext(Main) {
                                     _topTracksResult.value =
