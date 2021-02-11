@@ -15,7 +15,7 @@
     <string name="default_nominated_artist_name_value">A nominated artist name</string>
     <string name="rank_value">1</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
+    <string name="username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -36,4 +36,5 @@
     <string name="listeners_with_value">Listeners: %1$s</string>
     <string name="track_list_title">%1$s\'s track list</string>
     <string name="album_detail_title">Album Detail Page</string>
+    <string name="log_out">Log out</string>
 </resources>

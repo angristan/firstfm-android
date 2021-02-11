@@ -16,6 +16,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import fr.esgi.firstfm.ProfileActivity
 import fr.esgi.firstfm.R
 
 class LoginActivity : AppCompatActivity() {
@@ -61,8 +62,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 setResult(Activity.RESULT_OK)
 
-                //Complete and destroy login activity once successful
-                finish()
+                startActivity(Intent(this, ProfileActivity::class.java))
             }
         })
 
