@@ -3,7 +3,6 @@ package fr.esgi.firstfm.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import fr.esgi.firstfm.MainActivity
 import fr.esgi.firstfm.MusicScannerActivity
 import fr.esgi.firstfm.ProfileActivity
 import fr.esgi.firstfm.R
@@ -35,7 +34,7 @@ class MainMenuFragment : Fragment() {
                 bottomNavigationView.menu.getItem(0)
                     .setIcon(R.drawable.ic_menu_user_bold_foreground)
             }
-            MainActivity::class.simpleName -> {
+            ProfileActivity::class.simpleName -> {
                 bottomNavigationView.menu.getItem(1).isChecked = true
                 bottomNavigationView.menu.getItem(1)
                     .setIcon(R.drawable.ic_menu_main_solid_foreground)
