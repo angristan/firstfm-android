@@ -55,7 +55,7 @@ class MusicActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
 
     override fun onFailure(call: Call<LastFmApiTrackGetInfoResponse>, t: Throwable) {
         loader.hide()
-        MainActivity.navigateTo(this)
+        ProfileActivity.navigateTo(this)
     }
 
     override fun onResponse(

@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import fr.esgi.firstfm.MainActivity
 import fr.esgi.firstfm.MusicScannerActivity
+import fr.esgi.firstfm.ProfileActivity
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.album.albumList.AlbumRecyclerActivity
@@ -48,14 +49,14 @@ class MainMenuFragment : Fragment() {
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.historical -> activity?.let { it1 ->
+                R.id.history -> activity?.let { it1 ->
                     if (!it.isChecked) {
                         AlbumRecyclerActivity.navigateTo(it1)
                     }
                 }
                 R.id.home -> activity?.let { it1 ->
                     if (!it.isChecked) {
-                        MainActivity.navigateTo(it1)
+                        ProfileActivity.navigateTo(it1)
                     }
                 }
                 R.id.scanner -> activity?.let { it1 ->

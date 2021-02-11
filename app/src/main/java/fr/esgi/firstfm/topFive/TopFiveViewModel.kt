@@ -3,7 +3,7 @@ package fr.esgi.firstfm.topFive
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fr.esgi.firstfm.MainActivity
+import fr.esgi.firstfm.ProfileActivity
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.data.Artist.ArtistRepository
 import fr.esgi.firstfm.data.Artist.TrackRepository
@@ -31,7 +31,7 @@ class TopFiveViewModel(
     private val _topTracksResult = MutableLiveData<TopTracksResult>()
     val topTracksResult: LiveData<TopTracksResult> = _topTracksResult
 
-    fun getTopAlbums(activity: MainActivity) {
+    fun getTopAlbums(activity: ProfileActivity) {
         CoroutineScope(IO).launch {
             val result = userRepository.getTopAlbums(activity)
 
@@ -46,7 +46,7 @@ class TopFiveViewModel(
         }
     }
 
-    fun getTopArtists(activity: MainActivity) {
+    fun getTopArtists(activity: ProfileActivity) {
         CoroutineScope(IO).launch {
             val result = userRepository.getTopArtists(activity)
 
@@ -78,7 +78,7 @@ class TopFiveViewModel(
         }
     }
 
-    fun getTopTracks(activity: MainActivity) {
+    fun getTopTracks(activity: ProfileActivity) {
         CoroutineScope(IO).launch {
             val result = userRepository.getTopTracks(activity)
 
