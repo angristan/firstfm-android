@@ -3,10 +3,7 @@ package fr.esgi.firstfm.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import fr.esgi.firstfm.GlobalActivity
-import fr.esgi.firstfm.MusicScannerActivity
-import fr.esgi.firstfm.ProfileActivity
-import fr.esgi.firstfm.R
+import fr.esgi.firstfm.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 
 class MainMenuFragment : Fragment() {
@@ -52,7 +49,7 @@ class MainMenuFragment : Fragment() {
             when (it.itemId) {
                 R.id.profile -> activity?.let { it1 ->
                     if (!it.isChecked) {
-                        ProfileActivity.navigateTo(it1)
+                        RouterActivity.navigateTo(it1)
                     }
                 }
                 R.id.home -> activity?.let { it1 ->

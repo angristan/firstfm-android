@@ -22,6 +22,9 @@
             android:name=".album.AlbumDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".artist.ArtistDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MusicScannerActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -34,10 +37,10 @@
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".GlobalActivity"
+            android:name=".RouterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".GlobalActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

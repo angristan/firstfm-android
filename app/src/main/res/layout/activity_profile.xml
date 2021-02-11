@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/tool_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profileRecyclerView"
+        android:id="@+id/albumRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/fragmentMainMenu"

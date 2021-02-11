@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.album.AlbumDetailActivity
+import fr.esgi.firstfm.artist.ArtistDetailActivity
 import fr.esgi.firstfm.entity.model.Album
 import fr.esgi.firstfm.entity.model.Artist
 import fr.esgi.firstfm.entity.model.Image
@@ -107,12 +108,6 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!isLoggedIn()) {
-            finish()
-            startActivity(Intent(this, LoginActivity::class.java))
-            this@ProfileActivity.recreate()
-        }
-
         setContentView(R.layout.activity_profile)
         setSupportActionBar(tool_bar)
 
@@ -175,8 +170,8 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
         })
 
         this.adapter = ProfileAdapter(this.albums, this.artists, this.tracks, this@ProfileActivity)
-        profileRecyclerView.layoutManager = LinearLayoutManager(this@ProfileActivity)
-        profileRecyclerView.adapter = this.adapter
+        albumRecyclerView.layoutManager = LinearLayoutManager(this@ProfileActivity)
+        albumRecyclerView.adapter = this.adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -192,7 +187,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
         val id: Int = item.itemId
         return if (id == R.id.logout) {
             this.logOut()
-            this@ProfileActivity.recreate()
+            LoginActivity.navigateTo(this)
             return true
 
         } else super.onOptionsItemSelected(item)
@@ -237,7 +232,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     override fun onProfileArtistClicked(artist: Artist?) {
         // TODO update this part, navigate to artist page
         if (artist != null) {
-//            AlbumDetailActivity.navigateTo(this, artist.album, artist.artist)
+            ArtistDetailActivity.navigateTo(this,artist.mbid, artist.name)
         }
     }
 
