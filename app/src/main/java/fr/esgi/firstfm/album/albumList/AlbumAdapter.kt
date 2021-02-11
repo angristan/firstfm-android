@@ -22,5 +22,4 @@ class AlbumAdapter(
         val album = albums[position]
         holder.bind(position + 1, album, onAlbumClickedListener)
     }
-
 }

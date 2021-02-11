@@ -57,6 +57,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
         loader?.visibility = View.VISIBLE
         scrollView?.visibility = View.GONE
+        noTrackList?.visibility = View.GONE
 
         if (isNetworkConnected()) {
             retrieveAlbumInfo(receivedMbId, receivedArtistName, receivedAlbumName, this)
@@ -82,26 +83,16 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         albumDetailName?.text = album?.name
         albumDetailArtistName?.text = album?.artist
 
+        if (album?.tracks?.tracks?.size == 0) {
+            recyclerView?.visibility = View.GONE
+            noTrackList?.visibility = View.VISIBLE
+        }
+
         listeners?.text = resources.getString(R.string.listeners_with_value, album?.listeners)
         listened?.text = resources.getString(R.string.listeners_with_value, album?.playCount)
         trackListTitleTextView?.text = resources.getString(R.string.track_list_title, album?.name)
 
-        for (i in 3 downTo 0) {
-            if (album?.images?.get(i)?.url != "") {
-                Picasso.get()
-                    .load(album?.images?.get(i)?.url)
-                    .into(albumDetailImage,
-                        object : com.squareup.picasso.Callback {
-                            override fun onSuccess() {}
-
-                            override fun onError(e: Exception) {
-                                albumDetailImage?.setImageResource(R.drawable.default_album_picture)
-                            }
-                        }
-                    )
-                break
-            }
-        }
+        this.album?.let { selectBiggestPicture(it) }
 
         recyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumDetailActivity)
@@ -137,6 +128,25 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         } else {
             true
             // TODO("VERSION.SDK_INT < M")
+        }
+    }
+
+    fun selectBiggestPicture(album: AlbumResponse) {
+        for (i in 3 downTo 0) {
+            if (album.images.get(i).url != "") {
+                Picasso.get()
+                    .load(album.images.get(i).url)
+                    .into(albumDetailImage,
+                        object : com.squareup.picasso.Callback {
+                            override fun onSuccess() {}
+
+                            override fun onError(e: Exception) {
+                                albumDetailImage?.setImageResource(R.drawable.default_album_picture)
+                            }
+                        }
+                    )
+                break
+            }
         }
     }
 }
