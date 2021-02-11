@@ -83,7 +83,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         albumDetailArtistName?.text = album?.artist
 
         if (album?.tracks?.tracks?.size == 0) {
-            recyclerView?.visibility = View.GONE
+            albumRecyclerView?.visibility = View.GONE
             noTrackList?.visibility = View.VISIBLE
         }
 
@@ -92,7 +92,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
         this.album?.let { selectBiggestPicture(it) }
 
-        profileRecyclerView?.apply {
+        albumRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumDetailActivity)
             adapter = tracks?.let { TrackAdapter(it, this@AlbumDetailActivity) }
         }
