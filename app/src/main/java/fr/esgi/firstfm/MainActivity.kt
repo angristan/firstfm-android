@@ -1,6 +1,5 @@
 package fr.esgi.firstfm
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,10 +11,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         if (!isLoggedIn()) {
-            startActivity(Intent(this, LoginActivity::class.java))
+            LoginActivity.navigateTo(this)
+        } else {
+            GlobalActivity.navigateTo(this)
         }
-
-        startActivity(Intent(this, GlobalActivity::class.java))
     }
 
     private fun isLoggedIn(): Boolean {

@@ -107,12 +107,6 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!isLoggedIn()) {
-            finish()
-            startActivity(Intent(this, LoginActivity::class.java))
-            this@ProfileActivity.recreate()
-        }
-
         setContentView(R.layout.activity_profile)
         setSupportActionBar(tool_bar)
 
@@ -192,7 +186,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
         val id: Int = item.itemId
         return if (id == R.id.logout) {
             this.logOut()
-            this@ProfileActivity.recreate()
+            LoginActivity.navigateTo(this)
             return true
 
         } else super.onOptionsItemSelected(item)
