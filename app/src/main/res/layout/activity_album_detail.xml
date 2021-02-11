@@ -2,22 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorRichBlackFograLighter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorRichBlackFograLighter"
     tools:context=".album.AlbumDetailActivity">
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:paddingTop="0dp"
-        android:text="@string/album_detail_title"
-        android:textSize="@dimen/titleTextSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -26,31 +14,55 @@
         app:layout_constraintBottom_toTopOf="@id/fragmentMainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintAlbumDetail"
+            <ImageView
+                android:id="@+id/albumDetailImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toTopOf="@id/constraintStats"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/album_cover"
+                app:layout_constraintBottom_toTopOf="@id/constraintAlbumDetail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/default_album_picture" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/verticalGuidelineLeft"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/verticalGuidelineRight"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".95" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintAlbumDetail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toTopOf="@id/constraintStats"
+                app:layout_constraintEnd_toEndOf="@id/verticalGuidelineRight"
+                app:layout_constraintStart_toStartOf="@id/verticalGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/albumDetailImage">
 
                 <TextView
                     android:id="@+id/albumDetailName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:text="@string/album_name_default_value"
-                    android:textSize="@dimen/titleTextSize"
+                    android:textSize="28sp"
                     app:layout_constraintBottom_toTopOf="@+id/albumDetailArtistName"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,12 +70,10 @@
                     android:id="@+id/pred"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/paddingElement"
                     android:text="@string/pred_artist_name"
-                    android:textSize="@dimen/subTitleTextSize"
-                    app:layout_constraintBottom_toTopOf="@+id/albumDetailImage"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/albumDetailArtistName"
-                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/albumDetailName" />
 
@@ -71,25 +81,12 @@
                     android:id="@+id/albumDetailArtistName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/album_name_default_value"
-                    android:textSize="@dimen/subTitleTextSize"
-                    app:layout_constraintBottom_toTopOf="@+id/albumDetailImage"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/default_artist_name_value"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/pred"
                     app:layout_constraintTop_toBottomOf="@+id/albumDetailName" />
-
-                <ImageView
-                    android:id="@+id/albumDetailImage"
-                    android:layout_width="@dimen/detailPictureValue"
-                    android:layout_height="@dimen/detailPictureValue"
-                    android:layout_marginTop="@dimen/padding"
-                    android:contentDescription="@string/album_image_content_description_default_value"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/albumDetailName"
-                    app:srcCompat="@drawable/default_album_picture" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,33 +94,77 @@
                 android:id="@+id/constraintStats"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="40dp"
+                android:paddingTop="20dp"
                 app:layout_constraintBottom_toTopOf="@id/constraintRecycler"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraintAlbumDetail">
 
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/listeners"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/listeners_with_value"
-                    android:textSize="@dimen/subTitleTextSize"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/listened"
+                    app:layout_constraintEnd_toStartOf="@id/scrobbles"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/listened"
+                    <TextView
+                        android:id="@+id/listenersLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/listeners"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/listenersNumber"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/listenersNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorCadetGrey"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/listenersLabel" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/scrobbles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/listened_with_value"
-                    android:textSize="@dimen/subTitleTextSize"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/listeners"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/scrobblesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/listened"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/scrobblesNumber"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/scrobblesNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorCadetGrey"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/scrobblesLabel" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -141,10 +182,11 @@
                     android:id="@+id/trackListTitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
                     android:gravity="center"
+                    android:paddingBottom="15dp"
                     android:text="@string/track_list_title"
-                    android:textSize="@dimen/subTitleTextSize"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/recyclerView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -163,10 +205,10 @@
                     android:id="@+id/noTrackList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_track_list"
+                    android:text="@string/no_album_list"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/trackListTitleTextView"/>
+                    app:layout_constraintTop_toBottomOf="@id/trackListTitleTextView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

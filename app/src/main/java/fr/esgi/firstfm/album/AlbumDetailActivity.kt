@@ -88,9 +88,8 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
             noTrackList?.visibility = View.VISIBLE
         }
 
-        listeners?.text = resources.getString(R.string.listeners_with_value, album?.listeners)
-        listened?.text = resources.getString(R.string.listeners_with_value, album?.playCount)
-        trackListTitleTextView?.text = resources.getString(R.string.track_list_title, album?.name)
+        listenersNumber?.text = formatNumberToString(album?.listeners)
+        scrobblesNumber?.text = formatNumberToString(album?.playCount)
 
         this.album?.let { selectBiggestPicture(it) }
 
@@ -148,5 +147,27 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
                 break
             }
         }
+    }
+
+    private fun formatNumberToString(listeners: Long?): String {
+        if (listeners != null) {
+            return when {
+                listeners < 1000 -> {
+                    "$listeners"
+                }
+                listeners in 1000..999999 -> {
+                    val unit = listeners / 1000
+                    val rest = listeners % 1000 / 100
+                    "${unit}.${rest}K"
+                }
+                else -> {
+                    val unit = listeners / 1000000
+                    val rest = listeners % 1000000 / 1000
+                    "${unit}.${rest}M"
+                }
+            }
+        }
+
+        return ""
     }
 }
