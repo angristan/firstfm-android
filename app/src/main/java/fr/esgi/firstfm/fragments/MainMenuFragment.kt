@@ -3,10 +3,7 @@ package fr.esgi.firstfm.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import fr.esgi.firstfm.GlobalActivity
-import fr.esgi.firstfm.MusicScannerActivity
-import fr.esgi.firstfm.ProfileActivity
-import fr.esgi.firstfm.R
+import fr.esgi.firstfm.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 
 class MainMenuFragment : Fragment() {

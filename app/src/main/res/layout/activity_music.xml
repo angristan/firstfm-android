@@ -44,10 +44,28 @@
                 android:contentDescription="@string/album_cover"
                 app:srcCompat="@drawable/default_album_picture" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/verticalGuidelineLeft"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/verticalGuidelineRight"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".95" />
+
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/trackInfo"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/verticalGuidelineRight"
+                app:layout_constraintStart_toStartOf="@id/verticalGuidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/album_cover"
                 app:layout_constraintBottom_toTopOf="@id/statsContainer">
 
@@ -57,10 +75,10 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold"
+                    android:gravity="start"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/artist"
-                    android:layout_marginStart="25dp"
                     android:textSize="28sp" />
 
                 <TextView
@@ -68,10 +86,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorAccent"
+                    android:gravity="start"
                     app:layout_constraintTop_toBottomOf="@id/trackTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/trackDurationLabel"
-                    android:layout_marginStart="25dp"
                     android:textSize="18sp"/>
 
                 <TextView
@@ -84,7 +102,6 @@
                     app:layout_constraintTop_toBottomOf="@id/artist"
                     app:layout_constraintBottom_toTopOf="@id/tagsContainer"
                     app:layout_constraintHorizontal_chainStyle="packed"
-                    android:layout_marginStart="25dp"
                     android:text="@string/duration"
                     android:textSize="14sp" />
 

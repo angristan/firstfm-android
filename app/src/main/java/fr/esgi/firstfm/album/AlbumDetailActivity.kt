@@ -92,7 +92,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
         this.album?.let { selectBiggestPicture(it) }
 
-        profileRecyclerView?.apply {
+        albumRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumDetailActivity)
             adapter = tracks?.let { TrackAdapter(it, this@AlbumDetailActivity) }
         }

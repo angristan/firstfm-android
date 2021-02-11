@@ -14,12 +14,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.album.AlbumDetailActivity
-import fr.esgi.firstfm.entity.model.*
 import fr.esgi.firstfm.artist.ArtistDetailActivity
-import fr.esgi.firstfm.entity.model.Album
-import fr.esgi.firstfm.entity.model.Artist
-import fr.esgi.firstfm.entity.model.Image
-import fr.esgi.firstfm.entity.model.Track
+import fr.esgi.firstfm.entity.model.*
 import fr.esgi.firstfm.profile.ProfileAdapter
 import fr.esgi.firstfm.profile.ProfileViewHolder
 import fr.esgi.firstfm.profile.ProfileViewModel
@@ -33,92 +29,18 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var adapter: ProfileAdapter
+    private var albums: MutableList<Album> = mutableListOf()
+    private var artists: MutableList<Artist> = mutableListOf()
+    private var tracks: MutableList<Track> = mutableListOf()
+    private var user = User()
     private val resourcesToLoad =
         mutableMapOf("albums" to true, "tracks" to true, "artists" to true, "user" to true)
-
-
-    private var albums: MutableList<Album> = mutableListOf(
-        Album(
-            name = "Album_1",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
-        ),
-        Album(
-            name = "Album_2",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
-        ),
-        Album(
-            name = "Album_3",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
-        ),
-        Album(
-            name = "Album_4",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
-        ),
-        Album(
-            name = "Album_5",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/11dd7e48a1f042c688bf54985f01d088.webp#11dd7e48a1f042c688bf54985f01d088"))
-        )
-    )
-
-    private var artists = mutableListOf(
-        Artist(
-            name = "Artist_1",
-            images = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
-        ),
-        Artist(
-            name = "Artist_2",
-            images = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
-        ),
-        Artist(
-            name = "Artist_3",
-            images = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
-        ),
-        Artist(
-            name = "Artist_4",
-            images = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
-        ),
-        Artist(
-            name = "Artist_5",
-            images = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/fcb1563652a613b27c2fcf4d1bd0cf6a.webp#fcb1563652a613b27c2fcf4d1bd0cf6a"))
-        )
-    )
-
-    private var tracks = mutableListOf(
-        Track(
-            "Track_1",
-            "TEST",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
-        ),
-        Track(
-            "Track_2",
-            "TEST",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
-        ),
-        Track(
-            "Track_3",
-            "TEST",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
-        ),
-        Track(
-            "Track_4",
-            "TEST",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
-        ),
-        Track(
-            "Track_5",
-            "TEST",
-            image = listOf(Image(url = "https://lastfm.freetls.fastly.net/i/u/770x0/686cff186b134340827fa08930c04ff1.webp#686cff186b134340827fa08930c04ff1"))
-        )
-    )
-
-    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_profile)
-        setSupportActionBar()
-
+        setSupportActionBar(tool_bar)
 
         profileViewModel = ViewModelProviders.of(this, ProfileViewModelFactory())
             .get(ProfileViewModel::class.java)
@@ -201,7 +123,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
                     .load(this.user.images[this.user.images.size - 1].url)
                     .into(profileImage)
 
-                profileUsername.text = resources.getString(R.string.username, user.name)
+                profileUsername.text = resources.getString(R.string.profileUsername, user.name)
                 val scrobbles = formatNumberToString(user.playcount)
                 profileScroblesCount.text =
                     resources.getString(R.string.profile_scrobbles, scrobbles)
@@ -288,13 +210,6 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
         }
     }
 
-//    override fun onNominatedAlbumClicked(album: AlbumResponse?) {
-//        // TODO update this part, navigate to album page
-//        if (album != null) {
-//            AlbumDetailActivity.navigateTo(this, album.mbId)
-//        }
-//    }
-
     override fun onProfileAlbumClicked(album: Album?) {
         if (album != null) {
             AlbumDetailActivity.navigateTo(this, album.artist.name, album.name)
@@ -304,7 +219,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     override fun onProfileArtistClicked(artist: Artist?) {
         // TODO update this part, navigate to artist page
         if (artist != null) {
-            ArtistDetailActivity.navigateTo(this,artist.mbid, artist.name)
+            ArtistDetailActivity.navigateTo(this, artist.name)
         }
     }
 

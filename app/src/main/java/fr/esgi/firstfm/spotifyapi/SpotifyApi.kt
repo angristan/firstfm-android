@@ -2,7 +2,7 @@ package fr.esgi.firstfm.spotifyapi
 
 import androidx.appcompat.app.AppCompatActivity
 import fr.esgi.firstfm.data.Spotify
-import fr.esgi.firstfm.entity.SpotifyArtistSearchReponse
+import fr.esgi.firstfm.entity.SpotifyArtistSearchResponse
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,7 +23,8 @@ object SpotifyApi {
     fun searchArtistInfo(
         activity: AppCompatActivity,
         artist: String?,
-        callback: Callback<SpotifyArtistSearchReponse>) {
+        callback: Callback<SpotifyArtistSearchResponse>
+    ) {
 
         val spotifyToken = Spotify().getSpotifyToken(activity)
         val encodedArtist = URLEncoder.encode(artist, "utf-8")

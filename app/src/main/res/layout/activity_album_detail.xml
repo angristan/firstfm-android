@@ -72,6 +72,7 @@
                 android:id="@+id/constraintAlbumDetail"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toTopOf="@id/constraintStats"
                 app:layout_constraintEnd_toEndOf="@id/verticalGuidelineRight"
                 app:layout_constraintStart_toStartOf="@id/verticalGuidelineLeft"
@@ -207,7 +208,7 @@
                     android:gravity="center"
                     android:paddingBottom="15dp"
                     android:text="@string/track_list_title"
-                    app:layout_constraintBottom_toTopOf="@id/profileRecyclerView"
+                    app:layout_constraintBottom_toTopOf="@id/albumRecyclerView"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -215,7 +216,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/profileRecyclerView"
+                    android:id="@+id/albumRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -227,7 +228,7 @@
                     android:id="@+id/noTrackList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_album_list"
+                    android:text="@string/no_track_list"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/trackListTitleTextView" />
