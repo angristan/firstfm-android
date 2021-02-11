@@ -23,7 +23,7 @@ import fr.esgi.firstfm.profile.ProfileViewModel
 import fr.esgi.firstfm.ui.login.LoginActivity
 import fr.esgi.firstfm.ui.login.ProfileViewModelFactory
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedListener {
 
@@ -113,7 +113,7 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
             this@ProfileActivity.recreate()
         }
 
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_profile)
         setSupportActionBar(tool_bar)
 
 
