@@ -175,8 +175,8 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
         })
 
         this.adapter = ProfileAdapter(this.albums, this.artists, this.tracks, this@ProfileActivity)
-        recyclerView.layoutManager = LinearLayoutManager(this@ProfileActivity)
-        recyclerView.adapter = this.adapter
+        profileRecyclerView.layoutManager = LinearLayoutManager(this@ProfileActivity)
+        profileRecyclerView.adapter = this.adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
