@@ -5,7 +5,6 @@ import fr.esgi.firstfm.objects.Stats
 
 data class ArtistResponse(
         @SerializedName("name") val name: String,
-        @SerializedName("mbid") val mbId: String,
         @SerializedName("url") val url: String,
         @SerializedName("ontour") val onTour: String,
         @SerializedName("image") val images: List<Image>,

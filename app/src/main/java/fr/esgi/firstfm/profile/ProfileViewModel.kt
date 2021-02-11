@@ -12,6 +12,7 @@ import fr.esgi.firstfm.data.User.UserRepository
 import fr.esgi.firstfm.entity.result.TopAlbumsResult
 import fr.esgi.firstfm.entity.result.TopArtistsResult
 import fr.esgi.firstfm.entity.result.TopTracksResult
+import fr.esgi.firstfm.entity.result.UserInfoResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
@@ -30,6 +31,8 @@ class ProfileViewModel(
     val topArtistsResult: LiveData<TopArtistsResult> = _topArtistsResult
     private val _topTracksResult = MutableLiveData<TopTracksResult>()
     val topTracksResult: LiveData<TopTracksResult> = _topTracksResult
+    private val _userInfoResult = MutableLiveData<UserInfoResult>()
+    val userInfoResult: LiveData<UserInfoResult> = _userInfoResult
 
     fun getTopAlbums(activity: ProfileActivity) {
         CoroutineScope(IO).launch {
@@ -110,6 +113,21 @@ class ProfileViewModel(
 
                 } else {
                     _topTracksResult.value = TopTracksResult(error = R.string.cant_get_top_tracks)
+                }
+            }
+        }
+    }
+
+    fun getInfo(activity: ProfileActivity) {
+        CoroutineScope(IO).launch {
+            val result = userRepository.getInfo(activity)
+
+            withContext(Main) {
+                if (result is Result.Success) {
+                    _userInfoResult.value =
+                        UserInfoResult(success = result.data.user)
+                } else {
+                    _userInfoResult.value = UserInfoResult(error = R.string.cant_get_user_info)
                 }
             }
         }

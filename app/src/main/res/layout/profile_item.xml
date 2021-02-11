@@ -8,18 +8,17 @@
         android:id="@+id/rankNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:paddingStart="@dimen/paddingElement"
         android:paddingEnd="20dp"
         android:text="@string/rank_value"
-        android:textColor="@color/colorAccent"
         android:textSize="@dimen/listValueSize"
+        android:textColor="@color/colorAccent"
         android:textStyle="italic"
-        android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profileItemPictureImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <ImageView
         android:id="@+id/profileItemPictureImageView"

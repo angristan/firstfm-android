@@ -18,10 +18,10 @@ import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.album.albumList.AlbumAdapter
 import fr.esgi.firstfm.album.albumList.AlbumViewHolder
-import fr.esgi.firstfm.entity.SpotifyArtistSearchReponse
+import fr.esgi.firstfm.entity.SpotifyArtistSearchResponse
 import fr.esgi.firstfm.lastfmapi.*
-import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistInfoByMbId
-import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistTopAlbumsInfoByMbId
+import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistInfo
+import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistTopAlbumsInfo
 import fr.esgi.firstfm.spotifyapi.SpotifyApi.searchArtistInfo
 import kotlinx.android.synthetic.main.activity_artist_detail.*
 import kotlinx.coroutines.CoroutineScope
@@ -37,12 +37,10 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
     private var albums: List<AlbumFromTop>? = null
 
     companion object {
-        private val PARAM1: String = "mbId"
         private val PARAM2: String = "artistName"
 
-        fun navigateTo(context: Context, param1: String?, param2: String?) {
+        fun navigateTo(context: Context, param2: String?) {
             val intent = Intent(context, ArtistDetailActivity::class.java).apply {
-                putExtra(PARAM1, param1)
                 putExtra(PARAM2, param2)
             }
             context.startActivity(intent)
@@ -53,7 +51,6 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_artist_detail)
 
-        val receivedMbId = intent?.getStringExtra("mbId")
         val receivedArtistName = intent?.getStringExtra("artistName")
 
         loader?.visibility = View.VISIBLE
@@ -64,10 +61,10 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
             CoroutineScope(Dispatchers.IO).launch {
 
                 searchArtistInfo(this@ArtistDetailActivity, receivedArtistName,
-                    object : Callback<SpotifyArtistSearchReponse> {
+                    object : Callback<SpotifyArtistSearchResponse> {
                         override fun onResponse(
-                            call: Call<SpotifyArtistSearchReponse>,
-                            response: Response<SpotifyArtistSearchReponse>
+                            call: Call<SpotifyArtistSearchResponse>,
+                            response: Response<SpotifyArtistSearchResponse>
                         ) {
 
                             val image =
@@ -89,7 +86,7 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
                         }
 
                         override fun onFailure(
-                            call: Call<SpotifyArtistSearchReponse>,
+                            call: Call<SpotifyArtistSearchResponse>,
                             t: Throwable
                         ) {
                             Log.d("testSpot", "onFailure")
@@ -97,7 +94,8 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
                     })
             }
 
-            retrieveArtistInfoByMbId(receivedMbId, receivedArtistName,
+            retrieveArtistInfo(
+                receivedArtistName,
                 object : Callback<LastFmApiArtistGetInfoResponse> {
 
                     override fun onResponse(
@@ -141,7 +139,8 @@ class ArtistDetailActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicked
                 })
 
 
-            retrieveArtistTopAlbumsInfoByMbId(receivedMbId, receivedArtistName,
+            retrieveArtistTopAlbumsInfo(
+                receivedArtistName,
                 object : Callback<LastFmApiArtistTopAlbumsGetInfoResponse> {
 
                     override fun onResponse(

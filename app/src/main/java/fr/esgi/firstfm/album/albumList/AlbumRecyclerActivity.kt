@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.album.AlbumDetailActivity
 import fr.esgi.firstfm.lastfmapi.AlbumFromTop
-import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistTopAlbumsInfoByMbId
+import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveArtistTopAlbumsInfo
 import fr.esgi.firstfm.lastfmapi.LastFmApiArtistTopAlbumsGetInfoResponse
 import kotlinx.android.synthetic.main.activity_album_recycler.*
 import kotlinx.android.synthetic.main.fragment_main_menu.*
@@ -40,7 +40,7 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
         loader?.visibility = View.VISIBLE
 
         if (isNetworkConnected()) {
-            retrieveArtistTopAlbumsInfoByMbId("6cad3ce5-6380-4594-a8da-ae7d273b683d", "", this)
+            retrieveArtistTopAlbumsInfo("6cad3ce5-6380-4594-a8da-ae7d273b683d", this)
         } else {
             loader?.visibility = View.GONE
             val toast =
@@ -63,7 +63,7 @@ class AlbumRecyclerActivity : AppCompatActivity(), AlbumViewHolder.OnAlbumClicke
         deleteNameLessAlbumFromList(response.body()?.albums?.albums)
         loader?.visibility = View.GONE
 
-        albumRecyclerView?.apply {
+        profileRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumRecyclerActivity)
             adapter = albums?.let { AlbumAdapter(it, this@AlbumRecyclerActivity) }
         }

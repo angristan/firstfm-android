@@ -4,10 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Artist(
+data class User(
     @SerialName("name") val name: String = "",
-    @SerialName("url") val url: String = "",
-    @SerialName("playcount") val playcount: Int = 0,
+    @SerialName("playcount") val playcount: Long = 0,
+    @SerialName("subscriber") val subscriber: String = "",
     @SerialName("image") val images: List<Image> = listOf(),
-    var spotifyImage: SpotifyImage = SpotifyImage(),
 )

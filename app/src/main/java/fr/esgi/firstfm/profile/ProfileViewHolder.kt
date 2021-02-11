@@ -67,7 +67,7 @@ class ProfileViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bind(position: Int, onProfileClickedListener: OnProfileClickedListener) {
         this.onProfileClickedListener = onProfileClickedListener
-        this.rankNumberTextView?.text = "#$position"
+        this.rankNumberTextView?.text = "$position"
         itemView.setOnClickListener(this)
     }
 
