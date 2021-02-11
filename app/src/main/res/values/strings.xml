@@ -36,6 +36,8 @@
     <string name="listeners_with_value">Listeners: %1$s</string>
     <string name="on_tour_value">%1$s</string>
     <string name="track_list_title">%1$s\'s track list</string>
+    <string name="album_list_title">%1$s\'s album list</string>
+    <string name="no_track_list">No track list</string>
     <string name="album_detail_title">Album Detail Page</string>
     <string name="artist_detail_title">Artist Detail Page</string>
     <string name="artist_name_default_value">Artist Detail Page</string>
