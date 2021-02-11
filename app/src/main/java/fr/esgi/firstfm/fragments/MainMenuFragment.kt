@@ -3,11 +3,10 @@ package fr.esgi.firstfm.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import fr.esgi.firstfm.GlobalActivity
 import fr.esgi.firstfm.MusicScannerActivity
 import fr.esgi.firstfm.ProfileActivity
 import fr.esgi.firstfm.R
-import fr.esgi.firstfm.album.AlbumDetailActivity
-import fr.esgi.firstfm.album.albumList.AlbumRecyclerActivity
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 
 class MainMenuFragment : Fragment() {
@@ -24,17 +23,13 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         when (activity?.javaClass?.simpleName) {
-            AlbumRecyclerActivity::class.simpleName -> {
+            ProfileActivity::class.simpleName -> {
                 bottomNavigationView.menu.getItem(0).isChecked = true
                 bottomNavigationView.menu.getItem(0)
                     .setIcon(R.drawable.ic_menu_user_solid_foreground)
             }
-            AlbumDetailActivity::class.simpleName -> {
-                bottomNavigationView.menu.getItem(0).isChecked = true
-                bottomNavigationView.menu.getItem(0)
-                    .setIcon(R.drawable.ic_menu_user_bold_foreground)
-            }
-            ProfileActivity::class.simpleName -> {
+
+            GlobalActivity::class.simpleName -> {
                 bottomNavigationView.menu.getItem(1).isChecked = true
                 bottomNavigationView.menu.getItem(1)
                     .setIcon(R.drawable.ic_menu_main_solid_foreground)
@@ -48,14 +43,14 @@ class MainMenuFragment : Fragment() {
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.history -> activity?.let { it1 ->
+                R.id.profile -> activity?.let { it1 ->
                     if (!it.isChecked) {
-                        AlbumRecyclerActivity.navigateTo(it1)
+                        ProfileActivity.navigateTo(it1)
                     }
                 }
                 R.id.home -> activity?.let { it1 ->
                     if (!it.isChecked) {
-                        ProfileActivity.navigateTo(it1)
+                        GlobalActivity.navigateTo(it1)
                     }
                 }
                 R.id.scanner -> activity?.let { it1 ->

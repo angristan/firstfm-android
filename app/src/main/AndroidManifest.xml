@@ -34,6 +34,9 @@
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".GlobalActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

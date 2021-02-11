@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        startActivity(Intent(this, ProfileActivity::class.java))
+        startActivity(Intent(this, GlobalActivity::class.java))
     }
 
     private fun isLoggedIn(): Boolean {
