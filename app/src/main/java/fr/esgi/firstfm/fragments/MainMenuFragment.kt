@@ -49,13 +49,19 @@ class MainMenuFragment : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.historical -> activity?.let { it1 ->
-                    AlbumRecyclerActivity.navigateTo(it1)
+                    if (!it.isChecked) {
+                        AlbumRecyclerActivity.navigateTo(it1)
+                    }
                 }
                 R.id.home -> activity?.let { it1 ->
-                    MainActivity.navigateTo(it1)
+                    if (!it.isChecked) {
+                        MainActivity.navigateTo(it1)
+                    }
                 }
                 R.id.scanner -> activity?.let { it1 ->
-                    MusicScannerActivity.navigateTo(it1)
+                    if (!it.isChecked) {
+                        MusicScannerActivity.navigateTo(it1)
+                    }
                 }
             }
             true
