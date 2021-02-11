@@ -7,6 +7,28 @@
     android:background="@color/colorRichBlackFograLighter"
     tools:context=".album.AlbumDetailActivity">
 
+    <fragment
+        android:id="@+id/fragmentBackButton"
+        android:name="fr.esgi.firstfm.fragments.BackButtonFragment"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/arrow_back_fragment_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/titleTextView"/>
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp"
+        android:text="@string/album_detail_title"
+        android:textSize="@dimen/titleTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentBackButton" />
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
