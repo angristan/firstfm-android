@@ -3,7 +3,7 @@ package fr.esgi.firstfm.data.Artist
 import androidx.appcompat.app.AppCompatActivity
 import fr.esgi.firstfm.data.Result
 import fr.esgi.firstfm.data.Spotify
-import fr.esgi.firstfm.entity.SpotifyArtistSearchReponse
+import fr.esgi.firstfm.entity.SpotifyArtistSearchResponse
 import fr.esgi.firstfm.entity.model.SpotifyImage
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -35,7 +35,7 @@ class ArtistDataSource {
                 val format = Json { ignoreUnknownKeys = true }
 
                 val artists =
-                    format.decodeFromString<SpotifyArtistSearchReponse>(response.body!!.string())
+                    format.decodeFromString<SpotifyArtistSearchResponse>(response.body!!.string())
 
                 return Result.Success(artists.artistsContainer.artistsResults[0].images[0])
             }

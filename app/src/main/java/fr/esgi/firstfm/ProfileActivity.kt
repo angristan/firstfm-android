@@ -204,8 +204,9 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
                     .into(profileImage)
 
                 profileUsername.text = resources.getString(R.string.username, user.name)
+                val scrobbles = formatNumberToString(user.playcount)
                 profileScroblesCount.text =
-                    resources.getString(R.string.profile_scrobbles, user.playcount)
+                    resources.getString(R.string.profile_scrobbles, scrobbles)
 
                 this.resourcesToLoad["user"] = false
                 this.updateLoader()
@@ -253,6 +254,28 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
         myEdit.remove("token")
         myEdit.remove("username")
         myEdit.apply()
+    }
+
+    private fun formatNumberToString(listeners: Long?): String {
+        if (listeners != null) {
+            return when {
+                listeners < 1000 -> {
+                    "$listeners"
+                }
+                listeners in 1000..999999 -> {
+                    val unit = listeners / 1000
+                    val rest = listeners % 1000 / 100
+                    "${unit}.${rest}K"
+                }
+                else -> {
+                    val unit = listeners / 1000000
+                    val rest = listeners % 1000000 / 1000
+                    "${unit}.${rest}M"
+                }
+            }
+        }
+
+        return ""
     }
 
     private fun isLoggedIn(): Boolean {
