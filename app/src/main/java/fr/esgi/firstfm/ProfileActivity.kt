@@ -17,18 +17,18 @@ import fr.esgi.firstfm.entity.model.Album
 import fr.esgi.firstfm.entity.model.Artist
 import fr.esgi.firstfm.entity.model.Image
 import fr.esgi.firstfm.entity.model.Track
-import fr.esgi.firstfm.topFive.NominatedViewHolder
-import fr.esgi.firstfm.topFive.TopFiveAdapter
-import fr.esgi.firstfm.topFive.TopFiveViewModel
+import fr.esgi.firstfm.profile.ProfileAdapter
+import fr.esgi.firstfm.profile.ProfileViewHolder
+import fr.esgi.firstfm.profile.ProfileViewModel
 import fr.esgi.firstfm.ui.login.LoginActivity
-import fr.esgi.firstfm.ui.login.TopFiveViewModelFactory
+import fr.esgi.firstfm.ui.login.ProfileViewModelFactory
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClickedListener {
+class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedListener {
 
-    private lateinit var topFiveViewModel: TopFiveViewModel
-    private lateinit var adapter: TopFiveAdapter
+    private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var adapter: ProfileAdapter
 
     private var albums: MutableList<Album> = mutableListOf(
         Album(
@@ -117,14 +117,14 @@ class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClic
         setSupportActionBar(tool_bar)
 
 
-        topFiveViewModel = ViewModelProviders.of(this, TopFiveViewModelFactory())
-            .get(TopFiveViewModel::class.java)
+        profileViewModel = ViewModelProviders.of(this, ProfileViewModelFactory())
+            .get(ProfileViewModel::class.java)
 
-        topFiveViewModel.getTopAlbums(this)
-        topFiveViewModel.getTopArtists(this)
-        topFiveViewModel.getTopTracks(this)
+        profileViewModel.getTopAlbums(this)
+        profileViewModel.getTopArtists(this)
+        profileViewModel.getTopTracks(this)
 
-        topFiveViewModel.topAlbumResult.observe(this@ProfileActivity, Observer {
+        profileViewModel.topAlbumResult.observe(this@ProfileActivity, Observer {
             val topAlbumResult = it ?: return@Observer
 
             if (loading != null) {
@@ -140,7 +140,7 @@ class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClic
             }
         })
 
-        topFiveViewModel.topArtistsResult.observe(this@ProfileActivity, Observer {
+        profileViewModel.topArtistsResult.observe(this@ProfileActivity, Observer {
             val topArtistsResult = it ?: return@Observer
 
             if (loading != null) {
@@ -157,7 +157,7 @@ class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClic
             }
         })
 
-        topFiveViewModel.topTracksResult.observe(this@ProfileActivity, Observer {
+        profileViewModel.topTracksResult.observe(this@ProfileActivity, Observer {
             val topTracksResult = it ?: return@Observer
 
             if (loading != null) {
@@ -174,7 +174,7 @@ class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClic
             }
         })
 
-        this.adapter = TopFiveAdapter(this.albums, this.artists, this.tracks, this@ProfileActivity)
+        this.adapter = ProfileAdapter(this.albums, this.artists, this.tracks, this@ProfileActivity)
         recyclerView.layoutManager = LinearLayoutManager(this@ProfileActivity)
         recyclerView.adapter = this.adapter
     }
@@ -228,20 +228,20 @@ class ProfileActivity : AppCompatActivity(), NominatedViewHolder.OnNominatedClic
 //        }
 //    }
 
-    override fun onNominatedAlbumClicked(album: Album?) {
+    override fun onProfileAlbumClicked(album: Album?) {
         if (album != null) {
             AlbumDetailActivity.navigateTo(this, album.artist.name, album.name)
         }
     }
 
-    override fun onNominatedArtistClicked(artist: Artist?) {
+    override fun onProfileArtistClicked(artist: Artist?) {
         // TODO update this part, navigate to artist page
         if (artist != null) {
 //            AlbumDetailActivity.navigateTo(this, artist.album, artist.artist)
         }
     }
 
-    override fun onNominatedTrackClicked(track: Track?) {
+    override fun onProfileTrackClicked(track: Track?) {
         // TODO update this part, navigate to track page
         if (track != null) {
 //            AlbumDetailActivity.navigateTo(this, track.album, track.artist)
