@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.R
 import fr.esgi.firstfm.TrackActivity
+import fr.esgi.firstfm.artist.ArtistDetailActivity
 import fr.esgi.firstfm.lastfmapi.AlbumResponse
 import fr.esgi.firstfm.lastfmapi.LastFmApi.retrieveAlbumInfo
 import fr.esgi.firstfm.lastfmapi.TrackResponse
@@ -27,7 +28,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedListener,
-    Callback<LastFmApiAlbumGetInfoResponse> {
+    Callback<LastFmApiAlbumGetInfoResponse>, View.OnClickListener {
 
     private var album: AlbumResponse? = null
     private var tracks: List<TrackResponse>? = null
@@ -79,6 +80,7 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
         albumDetailName?.text = album?.name
         albumDetailArtistName?.text = album?.artist
+        albumDetailArtistName.setOnClickListener(this)
 
         if (album?.tracks?.tracks?.size == 0) {
             albumRecyclerView?.visibility = View.GONE
@@ -170,5 +172,11 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         }
 
         return ""
+    }
+
+    override fun onClick(v: View?) {
+        if (this.album != null) {
+            ArtistDetailActivity.navigateTo(this, album?.artist)
+        }
     }
 }
