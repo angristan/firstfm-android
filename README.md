@@ -11,16 +11,16 @@
 
 ### Screenshots
 
-<p float="left">
-    <img src="doc/images/profile.jpg" alt="profile" width="100">
-    <img src="doc/images/charts.jpg" alt="charts" width="100">
-    <img src="doc/images/scan.jpg" alt="scan" width="100">
+<p align="middle" float="left">
+    <img src="doc/images/profile.jpg" alt="profile" width="30%" style="padding-right: 1em">
+    <img src="doc/images/charts.jpg" alt="charts" width="30%" style="padding-right: 1em">
+    <img src="doc/images/scan.jpg" alt="scan" width="30%">
 </p>
 
-<p float="left">
-    <img src="doc/images/artist.jpg" alt="artist" width="100">
-    <img src="doc/images/album.jpg" alt="album" width="100">
-    <img src="doc/images/track.jpg" alt="track" width="100">
+<p align="middle" float="left">
+    <img src="doc/images/artist.jpg" alt="artist" width="30%" style="padding-right: 1em">
+    <img src="doc/images/album.jpg" alt="album" width="30%" style="padding-right: 1em">
+    <img src="doc/images/track.jpg" alt="track" width="30%">
 </p>
 
 ## Build
