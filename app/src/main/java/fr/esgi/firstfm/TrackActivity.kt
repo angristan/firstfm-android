@@ -19,9 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.squareup.picasso.Picasso
-import fr.esgi.firstfm.lastfmapi.LastFmApi
-import fr.esgi.firstfm.lastfmapi.LastFmApiTrackGetInfoResponse
-import fr.esgi.firstfm.lastfmapi.Tag
+import fr.esgi.firstfm.artist.ArtistDetailActivity
+import fr.esgi.firstfm.lastfmapi.*
 import kotlinx.android.synthetic.main.activity_music.*
 import org.jetbrains.anko.padding
 import retrofit2.Call
@@ -29,7 +28,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoResponse> {
+class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoResponse>, View.OnClickListener {
+
+    private var track: TrackResponse? = null
+    private var artistName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,7 @@ class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
 
         val title = intent.getStringExtra("title")
         val artist = intent.getStringExtra("artist")
+        this.artistName = intent.getStringExtra("artist")
 
         if (title != null && artist != null) {
             if (isNetworkConnected()) {
@@ -62,6 +65,9 @@ class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
         call: Call<LastFmApiTrackGetInfoResponse>,
         response: Response<LastFmApiTrackGetInfoResponse>
     ) {
+
+        this.track = response.body()?.track
+
         loader.hide()
         mainContainer.visibility = View.VISIBLE
         val track = response.body()?.track
@@ -85,6 +91,7 @@ class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
 
         trackTitle?.text = track?.name
         artist?.text = track?.album?.artist
+        artist?.setOnClickListener(this)
         trackDurationValue?.text = convertDurationTrack(track?.duration)
         listenersNumber?.text = formatNumberToString(track?.listeners)
         scrobblesNumber?.text = formatNumberToString(track?.playCount)
@@ -192,6 +199,12 @@ class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoRespons
                 putExtra(PARAM2, param2)
             }
             context.startActivity(intent)
+        }
+    }
+
+    override fun onClick(v: View?) {
+        if (this.track != null) {
+            ArtistDetailActivity.navigateTo(this, artistName)
         }
     }
 }
