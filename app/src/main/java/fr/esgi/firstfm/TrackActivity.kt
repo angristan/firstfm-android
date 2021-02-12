@@ -20,7 +20,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.squareup.picasso.Picasso
 import fr.esgi.firstfm.artist.ArtistDetailActivity
-import fr.esgi.firstfm.lastfmapi.*
+import fr.esgi.firstfm.lastfmapi.LastFmApi
+import fr.esgi.firstfm.lastfmapi.LastFmApiTrackGetInfoResponse
+import fr.esgi.firstfm.lastfmapi.Tag
+import fr.esgi.firstfm.lastfmapi.TrackResponse
 import kotlinx.android.synthetic.main.activity_music.*
 import org.jetbrains.anko.padding
 import retrofit2.Call
@@ -28,7 +31,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoResponse>, View.OnClickListener {
+class TrackActivity : AppCompatActivity(), Callback<LastFmApiTrackGetInfoResponse>,
+    View.OnClickListener {
 
     private var track: TrackResponse? = null
     private var artistName: String? = null

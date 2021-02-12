@@ -39,7 +39,7 @@ class MainMenuFragment : Fragment() {
             }
 
             else -> {
-                for(i in 0..2) {
+                for (i in 0..2) {
                     bottomNavigationView.menu.getItem(i).isChecked = false
                 }
             }
