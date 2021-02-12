@@ -27,22 +27,26 @@ class Spotify {
         OkHttpClient().newCall(request).execute().use { response ->
             if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
-            val token = JSONObject(response.body!!.string()).getString("access_token")
+            val spotifyTokenBody = response.body
 
-            val prefs: SharedPreferences =
-                activity.getSharedPreferences("firstfm", Context.MODE_PRIVATE)
+            if (spotifyTokenBody != null) {
+                val token = JSONObject(spotifyTokenBody.string()).getString("access_token")
 
-            val spotifyToken = JSONObject()
-            spotifyToken.put(
-                "token",
-                token
-            )
-            spotifyToken.put("expires_at", System.currentTimeMillis() + 3600)
-            val myEdit = prefs.edit()
+                val prefs: SharedPreferences =
+                    activity.getSharedPreferences("firstfm", Context.MODE_PRIVATE)
 
-            myEdit.putString("spotifyToken", spotifyToken.toString())
+                val spotifyToken = JSONObject()
+                spotifyToken.put(
+                    "token",
+                    token
+                )
+                spotifyToken.put("expires_at", System.currentTimeMillis() + 3600)
+                val myEdit = prefs.edit()
 
-            myEdit.apply()
+                myEdit.putString("spotifyToken", spotifyToken.toString())
+
+                myEdit.apply()
+            }
         }
     }
 
