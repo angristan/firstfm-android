@@ -1,15 +1,37 @@
 # First.fm
 
-## Features:
+[Last.fm](https://www.last.fm/home) client for Android, written in Kotlin, made as a part of a school project.
 
-### Scan a music: ###
- First.fm is using an external API ([Audd API](https://docs.audd.io/)) to recognize the records made by the end user. This is a PAYING API, but they also provide you an `api_token` key if you explain them your working on an educational project. 
+## Features
 
- The following steps explain how to use it:
+- View your profile with your top tracks/albums/artists
+- View track/artist/album details
+- View global worldwide charts on Last.fm
+- Scan a song to identify it (Shazam-like)
 
-1. Go to find your `API_TOKEN` on [Audd Dashboard](https://dashboard.audd.io/)
+### Screenshots
 
-2. Insert your token inside `gradle.properties` at the root of the project:
- ```
- AUDD_API_TOKEN=<YOUR TOKEN>
- ```
+<p align="middle" float="left">
+    <img src="doc/images/profile.jpg" alt="profile" width="30%">
+    <img src="doc/images/charts.jpg" alt="charts" width="30%">
+    <img src="doc/images/scan.jpg" alt="scan" width="30%">
+</p>
+
+<p align="middle" float="left">
+    <img src="doc/images/artist.jpg" alt="artist" width="30%">
+    <img src="doc/images/album.jpg" alt="album" width="30%">
+    <img src="doc/images/track.jpg" alt="track" width="30%">
+</p>
+
+## Build
+
+Get and add the needed API keys to `gradle.properties`:
+
+```
+AUDD_API_TOKEN=
+LASTFM_API_TOKEN=
+LASTFM_API_SECRET=
+SPOTIFY_API_TOKEN=
+```
+
+AudD is for the Shazam-like music scanning and Spotify is to retrive artist and album images since [the Last.fm API stopped providing them](https://stackoverflow.com/q/55978243/6945353).
