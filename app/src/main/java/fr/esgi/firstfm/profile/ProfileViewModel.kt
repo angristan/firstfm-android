@@ -64,8 +64,9 @@ class ProfileViewModel(
                                 artists[i].spotifyImage = imageResult.data
                             } else {
                                 withContext(Main) {
-                                    _topArtistsResult.value =
-                                        TopArtistsResult(error = R.string.cant_get_top_albums_image)
+                                    // We don't really care if an image fails
+//                                    _topArtistsResult.value =
+//                                        TopArtistsResult(error = R.string.cant_get_top_albums_image)
                                 }
                             }
                         }
@@ -100,8 +101,9 @@ class ProfileViewModel(
                                 tracks[i].spotifyImage = imageResult.data
                             } else {
                                 withContext(Main) {
-                                    _topTracksResult.value =
-                                        TopTracksResult(error = R.string.cant_get_top_tracks_image)
+                                    // We don't really care if an image fails
+//                                    _topTracksResult.value =
+//                                        TopTracksResult(error = R.string.cant_get_top_tracks_image)
                                 }
                             }
                         }
