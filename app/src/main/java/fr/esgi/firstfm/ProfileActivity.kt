@@ -119,9 +119,21 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
             if (userInfoResult.success != null) {
                 this.user = userInfoResult.success
 
-                Picasso.get()
-                    .load(this.user.images[this.user.images.size - 1].url)
-                    .into(profileImage)
+                if(this.user.images[this.user.images.size - 1].url == ""){
+                    profileImage?.setImageResource(R.drawable.default_album_picture)
+                } else {
+                    Picasso.get()
+                        .load(this.user.images[this.user.images.size - 1].url)
+                        .into(profileImage,
+                            object : com.squareup.picasso.Callback {
+                                override fun onSuccess() {}
+
+                                override fun onError(e: Exception) {
+                                    profileImage?.setImageResource(R.drawable.default_album_picture)
+                                }
+                            }
+                        )
+                }
 
                 profileUsername.text = resources.getString(R.string.profileUsername, user.name)
                 val scrobbles = formatNumberToString(user.playcount)
