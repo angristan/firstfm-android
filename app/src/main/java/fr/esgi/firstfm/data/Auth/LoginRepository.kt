@@ -27,11 +27,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
         user = null
     }
 
-    fun logout() {
-        user = null
-        dataSource.logout()
-    }
-
     fun login(
         activity: AppCompatActivity,
         username: String,
