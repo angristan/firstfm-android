@@ -11,29 +11,17 @@
 
 ### Screenshots
 
-<div class="row">
-  <div class="column" style="  float: left;width: 33.33%;  padding: 5px;">
-    <img src="doc/images/profile.jpg" alt="profile" style="height:500px">
-  </div>
-  <div class="column" style="  float: left;width: 33.33%;  padding: 5px;">
-    <img src="doc/images/charts.jpg" alt="charts" style="height:500px">
-  </div>
-  <div class="column" style="  float: left;width: 33.33%;  padding: 5px;">
-    <img src="doc/images/scan.jpg" alt="scan" style="height:500px">
-  </div>
-</div>
+<p float="left">
+    <img src="doc/images/profile.jpg" alt="profile" width="100">
+    <img src="doc/images/charts.jpg" alt="charts" width="100">
+    <img src="doc/images/scan.jpg" alt="scan" width="100">
+</p>
 
-<div class="row">
-  <div class="column" style="  float: left;width: 33.33%;  padding: 5px;">
-    <img src="doc/images/artist.jpg" alt="artist" style="height:500px">
-  </div>
-  <div class="column" style="  float: left;width: 33.33%;  padding: 5px;">
-    <img src="doc/images/album.jpg" alt="album" style="height:500px">
-  </div>
-  <div class="column" style="  float: left;width: 33.33%;  padding: 5px;">
-    <img src="doc/images/track.jpg" alt="track" style="height:500px">
-  </div>
-</div>
+<p float="left">
+    <img src="doc/images/artist.jpg" alt="artist" width="100">
+    <img src="doc/images/album.jpg" alt="album" width="100">
+    <img src="doc/images/track.jpg" alt="track" width="100">
+</p>
 
 ## Build
 
