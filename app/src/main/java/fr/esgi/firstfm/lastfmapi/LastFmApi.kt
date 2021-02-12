@@ -1,6 +1,7 @@
 package fr.esgi.firstfm.lastfmapi
 
 import LastFmApiAlbumGetInfoResponse
+import fr.esgi.firstfm.BuildConfig
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,7 +24,7 @@ object LastFmApi {
         callback: Callback<LastFmApiTrackGetInfoResponse>
     ) {
         val call =
-            lastFmApiServices?.retrieveTrackInfo(artist, title, "b61ee97cfc7ed80dad34909f0c980b8e")
+            lastFmApiServices?.retrieveTrackInfo(artist, title, BuildConfig.LASTFM_API_TOKEN)
         call?.enqueue(callback)
     }
 
@@ -33,7 +34,7 @@ object LastFmApi {
         callback: Callback<LastFmApiAlbumGetInfoResponse>
     ) {
         val call =
-            lastFmApiServices?.getAlbumInfo(artist, album, "b61ee97cfc7ed80dad34909f0c980b8e")
+            lastFmApiServices?.getAlbumInfo(artist, album, BuildConfig.LASTFM_API_TOKEN)
         call?.enqueue(callback)
     }
 
@@ -42,7 +43,7 @@ object LastFmApi {
         callback: Callback<LastFmApiArtistGetInfoResponse>
     ) {
         val call =
-            lastFmApiServices?.getArtistInfo(artist, "b61ee97cfc7ed80dad34909f0c980b8e")
+            lastFmApiServices?.getArtistInfo(artist, BuildConfig.LASTFM_API_TOKEN)
         call?.enqueue(callback)
     }
 
@@ -51,7 +52,7 @@ object LastFmApi {
         callback: Callback<LastFmApiArtistTopAlbumsGetInfoResponse>
     ) {
         val call =
-            lastFmApiServices?.getArtistTopAlbumsInfo(artist, "b61ee97cfc7ed80dad34909f0c980b8e")
+            lastFmApiServices?.getArtistTopAlbumsInfo(artist, BuildConfig.LASTFM_API_TOKEN)
         call?.enqueue(callback)
     }
 }

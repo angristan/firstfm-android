@@ -9,12 +9,6 @@ import fr.esgi.firstfm.entity.TopArtistsResponse
 import fr.esgi.firstfm.entity.TopTracksResponse
 import fr.esgi.firstfm.entity.response.UserInfoResponse
 
-
-/**
- * Class that requests authentication and user information from the remote data source and
- * maintains an in-memory cache of login status and user credentials information.
- */
-
 class UserRepository(val dataSource: UserDataSource) {
     fun getTopAlbums(
         activity: AppCompatActivity,

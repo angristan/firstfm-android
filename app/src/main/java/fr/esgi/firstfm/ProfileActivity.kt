@@ -217,7 +217,6 @@ class ProfileActivity : AppCompatActivity(), ProfileViewHolder.OnProfileClickedL
     }
 
     override fun onProfileArtistClicked(artist: Artist?) {
-        // TODO update this part, navigate to artist page
         if (artist != null) {
             ArtistDetailActivity.navigateTo(this, artist.name)
         }

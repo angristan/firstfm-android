@@ -71,8 +71,6 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         call: Call<LastFmApiAlbumGetInfoResponse>,
         response: Response<LastFmApiAlbumGetInfoResponse>
     ) {
-        loader?.visibility = View.GONE
-        scrollView?.visibility = View.VISIBLE
 
         val body = response.body()
 
@@ -91,6 +89,9 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
         scrobblesNumber?.text = formatNumberToString(album?.playCount)
 
         this.album?.let { selectBiggestPicture(it) }
+
+        loader?.visibility = View.GONE
+        scrollView?.visibility = View.VISIBLE
 
         albumRecyclerView?.apply {
             layoutManager = LinearLayoutManager(this@AlbumDetailActivity)
@@ -131,10 +132,11 @@ class AlbumDetailActivity : AppCompatActivity(), TrackViewHolder.OnTrackClickedL
 
     fun selectBiggestPicture(album: AlbumResponse) {
         for (i in 3 downTo 0) {
-            if (album.images.get(i).url != "") {
+            if (album.images[i].url != "") {
                 Picasso.get()
-                    .load(album.images.get(i).url)
-                    .into(albumDetailImage,
+                    .load(album.images[i].url)
+                    .into(
+                        albumDetailImage,
                         object : com.squareup.picasso.Callback {
                             override fun onSuccess() {}
 

@@ -33,6 +33,7 @@
     <string name="default_album_name_value">Default Album Name</string>
     <string name="default_artist_name_value">Default Artist Name</string>
     <string name="default_username_value">Default username</string>
+    <string name="global_charts_title">Global Music Charts</string>
     <string name="list_title">Album List</string>
     <string name="pred_artist_name">By</string>
     <string name="play_count_with_value">Play Count: %1$s</string>

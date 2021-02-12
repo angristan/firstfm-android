@@ -26,7 +26,7 @@ class MainMenuFragment : Fragment() {
                     .setIcon(R.drawable.ic_menu_user_solid_foreground)
             }
 
-            GlobalActivity::class.simpleName -> {
+            ChartActivity::class.simpleName -> {
                 bottomNavigationView.menu.getItem(1).isChecked = true
                 bottomNavigationView.menu.getItem(1)
                     .setIcon(R.drawable.ic_menu_main_solid_foreground)
@@ -54,7 +54,7 @@ class MainMenuFragment : Fragment() {
                 }
                 R.id.home -> activity?.let { it1 ->
                     if (!it.isChecked) {
-                        GlobalActivity.navigateTo(it1)
+                        ChartActivity.navigateTo(it1)
                     }
                 }
                 R.id.scanner -> activity?.let { it1 ->

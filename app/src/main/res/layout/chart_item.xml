@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/rankNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:paddingStart="@dimen/paddingElement"
+        android:paddingEnd="20dp"
+        android:text="@string/rank_value"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/listValueSize"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chartItemPictureImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/chartItemPictureImageView"
+        android:layout_width="@dimen/listPictureValue"
+        android:layout_height="@dimen/listPictureValue"
+        android:contentDescription="@string/album_image_content_description_default_value"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/paddingElement"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/chartItemNameTextView"
+        app:layout_constraintStart_toEndOf="@id/rankNumberTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/default_album_picture" />
+
+    <TextView
+        android:id="@+id/chartItemNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/default_profile_item_name_value"
+        android:textSize="@dimen/listValueSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chartItemPictureImageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

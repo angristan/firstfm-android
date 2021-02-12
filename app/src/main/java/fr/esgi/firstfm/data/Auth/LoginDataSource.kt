@@ -62,8 +62,4 @@ class LoginDataSource {
             )
         }
     }
-
-    fun logout() {
-        // TODO: revoke authentication
-    }
 }
