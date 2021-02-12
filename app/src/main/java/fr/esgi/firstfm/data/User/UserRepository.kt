@@ -17,7 +17,7 @@ class UserRepository(val dataSource: UserDataSource) {
             activity.getSharedPreferences("firstfm", MODE_PRIVATE)
 
         val username = sharedPreferences.getString("username", "")
-        return dataSource.getTopAlbums(username!!)
+        return dataSource.getTopAlbums(username)
     }
 
     fun getTopArtists(
@@ -27,7 +27,7 @@ class UserRepository(val dataSource: UserDataSource) {
             activity.getSharedPreferences("firstfm", MODE_PRIVATE)
 
         val username = sharedPreferences.getString("username", "")
-        return dataSource.getTopArtists(username!!)
+        return dataSource.getTopArtists(username)
     }
 
 
@@ -38,7 +38,7 @@ class UserRepository(val dataSource: UserDataSource) {
             activity.getSharedPreferences("firstfm", MODE_PRIVATE)
 
         val username = sharedPreferences.getString("username", "")
-        return dataSource.getTopTracks(username!!)
+        return dataSource.getTopTracks(username)
     }
 
     fun getInfo(
@@ -48,6 +48,6 @@ class UserRepository(val dataSource: UserDataSource) {
             activity.getSharedPreferences("firstfm", MODE_PRIVATE)
 
         val username = sharedPreferences.getString("username", "")
-        return dataSource.getInfo(username!!)
+        return dataSource.getInfo(username)
     }
 }

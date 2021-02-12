@@ -26,21 +26,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MusicScannerActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".TrackActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RouterActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ChartActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

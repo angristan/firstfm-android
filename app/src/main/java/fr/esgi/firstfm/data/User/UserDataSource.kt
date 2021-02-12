@@ -15,7 +15,10 @@ import java.io.IOException
 
 
 class UserDataSource {
-    fun getTopAlbums(username: String): Result<TopAlbumsResponse> {
+    fun getTopAlbums(username: String?): Result<TopAlbumsResponse> {
+        if (username == null) {
+            return Result.Error(IOException("Error getting top albums"))
+        }
         try {
             val method = "user.getTopAlbums"
 
@@ -47,7 +50,10 @@ class UserDataSource {
         }
     }
 
-    fun getTopArtists(username: String): Result<TopArtistsResponse> {
+    fun getTopArtists(username: String?): Result<TopArtistsResponse> {
+        if (username == null) {
+            return Result.Error(IOException("Error getting top albums"))
+        }
         try {
             val method = "user.getTopArtists"
             val body =
@@ -78,7 +84,10 @@ class UserDataSource {
         }
     }
 
-    fun getTopTracks(username: String): Result<TopTracksResponse> {
+    fun getTopTracks(username: String?): Result<TopTracksResponse> {
+        if (username == null) {
+            return Result.Error(IOException("Error getting top albums"))
+        }
         try {
             val method = "user.getTopTracks"
             val body =
@@ -109,7 +118,10 @@ class UserDataSource {
         }
     }
 
-    fun getInfo(username: String): Result<UserInfoResponse> {
+    fun getInfo(username: String?): Result<UserInfoResponse> {
+        if (username == null) {
+            return Result.Error(IOException("Error getting top albums"))
+        }
         try {
             val method = "user.getInfo"
             val body =
