@@ -55,7 +55,7 @@ class ChartViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bind(position: Int, onChartClickedListener: OnChartClickedListener) {
         this.onChartClickedListener = onChartClickedListener
-        this.rankNumberTextView?.text = "$position"
+        this.rankNumberTextView?.text = "#$position"
         itemView.setOnClickListener(this)
     }
 
