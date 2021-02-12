@@ -20,16 +20,15 @@
         android:visibility="gone"
         />
 
-    <Button
+    <ImageView
         android:id="@+id/buttonWebservices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragmentMainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        android:src="@drawable/ic_baseline_play_circle_outline" />
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/loader"
